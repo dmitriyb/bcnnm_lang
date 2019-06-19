@@ -1,0 +1,60 @@
+## Действия "первого" рода?
+## Действие первого рода является терминальным, принимает минимум параметров и выполняет заданную задачу.
+## Действие первого рода по определению не может вызвать другое действие.
+## Не имеет параметра duration, исполняется немедленно.
+
+#ChangeChemicalSignal
+action ChangeChemicalSignal:
+  logicalObjectId: <NonNegativeLongValue>
+  coordinate: [x,y,z] #обязателен если logicalObjectId = -1
+  quantity: [negative_value,0) & (0, positive_value]
+
+#ObjectCreateParameter
+action CreateLogicalObject:
+  type: CellType/CompartmentType/SignalPointType
+  parentLogicalObjectId: <NonNegativeLongValue> #компартменты вложены в клетки
+  coordinate: [x,y,z]
+
+#ObjectDeleteParameter
+action DeleteLogicalObject:
+  logicalObjectId: <NonNegativeLongValue>
+
+#Прекращение любых действий в компартменте. Можно вызвать только в компартменте
+action DisruptAllInCompartment:
+  objectId: <NonNegativeLongValue>
+
+#Прекращение любых действий в клетке и её компартментах. Можно вызвать в любом компартменте
+action DisruptAllInLogicalObject:
+  objectId: <NonNegativeLongValue>
+
+#"Нейтральное" действие - не делать НИЧЕГО. Может быть потребуется.
+action EmptyAction:
+
+#Останавливающее действие. Будет применимо, чтобы не городить execute/disrupt if true/false в каскадах
+action Disrupt:
+  actionIdToDisrupt: actionId
+
+action ProbabilityExecution:
+  type: Gaussian,Uniform,...
+  expectedValue: <value>
+  dispersion: <value>
+  referenceValue: <value>
+
+
+## Идея: мы можем назначить пространству Id компартмента -1.???
+
+## Действия второго рода может быть вызвано только в логическом объекте
+## Действие второго рода может вызвать другое действие второго рода, либо действие первого рода.
+## Действие второго рода имеет duration
+
+#Замена duration????
+action Wait:
+  duration: <PositiveLongValue>
+
+action CheckSignal:
+  predicate: <Logical Expression> OR <Math Expression>
+  cascade:
+    - true: [action1, DisruptAction(action2), ...]
+    - false: [action1, DisruptAction(action2), ...]
+    - default: [DisruptAction(action1), action2, ...]
+

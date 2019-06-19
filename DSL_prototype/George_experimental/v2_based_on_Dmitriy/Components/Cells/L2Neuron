@@ -1,0 +1,21 @@
+define cell L2Neuron from Neuron
+  movable: false
+  compartments:
+    L2NeuronAxon
+    L2NeuronDendriteTree
+    
+  signalingPathways:
+    L2NeuronAxonForm(duration: 50) from CompartmentForm
+    	parameters: (L2NeuronAxon)
+
+  	L2NeuronDendriteTreeForm(duration: 50) from CompartmentForm
+  		parameters: (L2NeuronDendriteTree)
+
+  conditions:
+    L2NeuronCompartmentsFormCondition
+      condition: [GNF >= 0.5]
+
+  cascades:
+    on extracellular condition L2NeuronCompartmentsFormCondition
+      -> L2NeuronAxonForm
+      -> L2NeuronDendriteTreeForm

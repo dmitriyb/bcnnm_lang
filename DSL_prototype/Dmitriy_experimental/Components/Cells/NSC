@@ -1,0 +1,19 @@
+define cell NeuralStemCell from StemCell
+  movable: false
+  signalingPathways:
+    NSCToNPCDivideAndDifferentiate(duration: 1000) from Divide
+    	parameters: (_, NeuralProgenitorCell)
+
+  	NSCFSpread(duration: 200) from SignalSpread
+  		parameters: (NSCF)
+
+  cascades:
+    Initial
+      -> NSCToNPCDivideAndDifferentiate
+      -> NSCFSpread
+
+  	NSCToNPCDivideAndDifferentiate
+      -> self
+
+    NSCFSpread
+      -> self

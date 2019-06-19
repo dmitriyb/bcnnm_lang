@@ -1,0 +1,15 @@
+lineage:
+  NeuralStemCell =>
+    NeuralProgenitorCell =>
+      BasalProgenitorCell =>
+        NeuronalRestrictedProgenitorCell =>
+          L1Neuron
+          L2Neuron
+          L3Neuron
+          L4Neuron
+        RadialGliaCell =>
+          GlialRestrictedProgenitorCell =>
+            Type1AstrocyteCell
+            OligodendrocyteType2AstrocytePrecursorCell =>
+              OligodendrocyteCell
+              Type2AstrocyteCell

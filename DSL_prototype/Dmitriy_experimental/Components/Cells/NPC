@@ -1,0 +1,51 @@
+define cell NeuralProgenitorCell from StemCell
+  movable: true
+  signalingPathways:
+    NPCDivide(duration: 100) from Divide
+      parameters: (_, _)
+
+    NPCToRGCDifferentiate(duration: 100) from Differentiate
+      parameters: (RadialGliaCell)
+
+    NPCToBPCDifferentiate(duration: 100) from Differentiate
+      parameters: (BasalProgenitorCell)
+
+    NPCFSpread(duration: 100) from SignalSpread
+      parameters: (NPCF)
+
+    NPCApoptize(duration: 100) from Apoptize
+
+  conditions:
+    NPCApoptizeCondition
+      condition: [NSCF < 0.01]
+
+    NPCDivideCondition
+      condition: [NSCF > 0.05]
+
+    NPCDifferentiateCondition
+      condition: [NPCF >= 4.15 & NSCF < 0.9]
+      probability:
+        distribution: Gaussian
+        ligand:       NPCF
+        mean:         3.25
+        dispersion:   0.59
+        
+  cascades:
+    on extracellular condition NPCDivideCondition
+      -> NPCDivide
+    otherwise
+      -> NPCFSpread
+
+    on extracellular condition NPCDifferentiateCondition
+      -> NPCToRGCDifferentiate
+    otherwise
+      -> NPCToBPCDifferentiate
+    with
+      -| all
+
+    on extracellular condition NPCApoptizeCondition
+      -| all
+      -> NPCApoptize
+
+    NPCFSpread
+      -> self
