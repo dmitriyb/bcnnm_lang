@@ -1,14 +1,14 @@
 Condition c0:
-    activate receptor 5HT2a
-    block receptor D1
+    activated receptor 5HT2a
+    blocked receptor D1
 
 Condition c1:
-    block receptor 5HT2a
-    activate receptor D2
+    blocked receptor 5HT2a
+    activated receptor D2
 
 Condition c2:
-    activate receptor D1
+    activated receptor D1
 
 Condition c3:
-    block receptor D2
+    blocked receptor D2
 
