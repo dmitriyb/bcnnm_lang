@@ -13,9 +13,11 @@ define cell NeuralProgenitorCell from StemCell
             NPCToBPCDifferentiate(duration: 100) from Differentiate
                 parameters: (BasalProgenitorCell)
                 => on NPCDifferentiateCondition with probability: Gaussian(NPCF, [3.25, 0.59])
+                -> NPCFSpread
+                =| on NPCDifferentiateCondition with probability: Uniform(NPCF, [1,1])
                 -| all
 
-        -> cyclic NPCFSpread(duration: 100) from SignalSpread
+        * cyclic NPCFSpread(duration: 100) from SignalSpread
             parameters: (NPCF)
             -| on condition set NPCDivideCondition
 
@@ -23,15 +25,17 @@ define cell NeuralProgenitorCell from StemCell
             => on NPCApoptizeCondition
             -| all
 
+#убирать ли conditions внутрь механизмов?
+#переносить ли conditions в начало?
     conditions:
         NPCApoptizeCondition
-            receptor 5HT2a is activate
-            mechanism NPCFSpread is active
-            molecule NSCF is in [0, 0,01)
+            receptor 5HT2a active
+            mechanism NPCFSpread inactive
+            molecule NSCF in [0, 0,01)
 
         NPCDivideCondition
-            molecule NSCF is in (0.05, infinity)
+            molecule NSCF in (0.05, infinity)
 
         NPCDifferentiateCondition
-            molecule NSCF is in [4.15, infinity)
-            molecule NSCF is in [0, 0.9)
+            molecule NSCF in [4.15, infinity)
+            molecule NSCF in [0, 0.9)
