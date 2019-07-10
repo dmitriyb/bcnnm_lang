@@ -1,51 +1,37 @@
 define cell NeuralProgenitorCell from StemCell
-  movable: true
-  signalingPathways:
-    NPCDivide(duration: 100) from Divide
-      parameters: (_, _)
+    mechanisms:
+        NPCDivide(duration: 100) from Divide
+            parameters: (_, _)
+            => on condition set NPCDivideCondition
 
-    NPCToRGCDifferentiate(duration: 100) from Differentiate
-      parameters: (RadialGliaCell)
+        mutual exclusive
+            NPCToRGCDifferentiate(duration: 100) from Differentiate
+                parameters: (RadialGliaCell)
+                => on NPCDifferentiateCondition with probability: Gaussian(NPCF, [3.25, 0.59])
+                -| all
 
-    NPCToBPCDifferentiate(duration: 100) from Differentiate
-      parameters: (BasalProgenitorCell)
+            NPCToBPCDifferentiate(duration: 100) from Differentiate
+                parameters: (BasalProgenitorCell)
+                => on NPCDifferentiateCondition with probability: Gaussian(NPCF, [3.25, 0.59])
+                -| all
 
-    NPCFSpread(duration: 100) from SignalSpread
-      parameters: (NPCF)
+        -> cyclic NPCFSpread(duration: 100) from SignalSpread
+            parameters: (NPCF)
+            -| on condition set NPCDivideCondition
 
-    NPCApoptize(duration: 100) from Apoptize
+        NPCApoptize(duration: 100) from Apoptize
+            => on NPCApoptizeCondition
+            -| all
 
-  conditions:
-    NPCApoptizeCondition
-      condition: [NSCF < 0.01]
+    conditions:
+        NPCApoptizeCondition
+            receptor 5HT2a is activate
+            mechanism NPCFSpread is active
+            molecule NSCF is in [0, 0,01)
 
-    NPCDivideCondition
-      condition: [NSCF > 0.05]
+        NPCDivideCondition
+            molecule NSCF is in (0.05, infinity)
 
-    NPCDifferentiateCondition
-      condition: [NPCF >= 4.15 & NSCF < 0.9]
-      probability:
-        distribution: Gaussian
-        ligand:       NPCF
-        mean:         3.25
-        dispersion:   0.59
-        
-  cascades:
-    on extracellular condition NPCDivideCondition
-      -> NPCDivide
-    otherwise
-      -> NPCFSpread
-
-    on extracellular condition NPCDifferentiateCondition
-      -> NPCToRGCDifferentiate
-    otherwise
-      -> NPCToBPCDifferentiate
-    with
-      -| all
-
-    on extracellular condition NPCApoptizeCondition
-      -| all
-      -> NPCApoptize
-
-    NPCFSpread
-      -> self
+        NPCDifferentiateCondition
+            molecule NSCF is in [4.15, infinity)
+            molecule NSCF is in [0, 0.9)

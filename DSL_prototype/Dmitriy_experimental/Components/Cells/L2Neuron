@@ -1,4 +1,4 @@
-define cell L2Neuron from Neuron
+define immovable cell L2Neuron from Neuron
   movable: false
   compartments:
     L2NeuronAxon
