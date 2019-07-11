@@ -3,13 +3,25 @@ define immovable cell NeuralStemCell from StemCell
         C := 0,45
         X := 1.1
 
+    conditions:
+        none
+
     mechanisms:
-        -> cyclic NSCToNPCAsyncDivide(duration: 1000) from Divide
-            parameters: (_, NeuralProgenitorCell)
+        declaration:
+            cyclic NSCToNPCAsyncDivide(duration: 1000) from Divide
+                parameters: (_, NeuralProgenitorCell)
 
-        -> cyclic NSCFSpread(duration: 200) from SignalSpread
-            parameters: (NSCF)
+            cyclic NSCFSpread(duration: 200) from SignalSpread
+                parameters: (NSCF)
 
-        -> cyclic CyclinDynamic(duration: 200) from Dynamic
-            parameters: (C)
-            delta: C / 35 + (C - X) / X
+            cyclic CyclinDynamic(duration: 200) from Dynamic
+                parameters: (C)
+                delta: C / 35 + (C - X) / X
+
+        initial:
+            NSCToNPCAsyncDivide
+            NSCFSpread
+            CyclinDynamic
+
+        mutually exclusive:
+            none
