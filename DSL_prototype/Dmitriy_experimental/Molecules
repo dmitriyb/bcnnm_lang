@@ -1,17 +1,15 @@
 #Объявление лигандов
 molecule NSCF:
-  type: ligand
-  radius: 70
-  comment: "Neural Stem Cell Factor is secreted by the initial stem cell, regulates the size of resulting structure"
+    type: factor
+    radius: 70
 
 molecule NPCF:
-  type: ligand
-  radius: 2
-  comment: "Neuron Progenitor Cell Factor is secreted by NPCs, which have approached the NSC presence boundary. after this, NPCF emission is triggered in all NPCs of the structure. In such a way, transformation process into the successive cell lineage stages is triggered in the direction outside->inside"
+    type: factor
+    radius: 2
 
 molecule AchE:
-  type: esterase
-  radius: 1
+    type: esterase
+    radius: 1
 
 molecule Hexokinase:
-  type: kinase
+    type: kinase

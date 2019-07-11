@@ -1,13 +1,23 @@
-define cell BasalProgenitorCell from StemCell
-  movable: true
-  signalingPathways:
-    BPCToNRPDifferentiate(duration: 100) from Differentiate
-      parameters: (NeuronalRestrictedProgenitorCell)
+define movable cell BasalProgenitorCell from StemCell
+    molecules:
+        none
 
-  conditions:
-    BPCToNRPDifferentiateCondition
-      condition: [NSCF > 0.0]
-        
-  cascades:
-    on extracellular condition BPCToNRPDifferentiateCondition
-      -> BPCToNRPDifferentiate
+    compartments:
+        none
+
+    conditions:
+        BPCToNRPDifferentiateCondition
+            molecule NSCF is in [0, infinity)
+
+    mechanisms:
+        declaration:
+            single BPCToNRPDifferentiate(duration: 100) from Differentiate
+                parameters: (NeuronalRestrictedProgenitorCell)
+                start on:
+                    BPCToNRPDifferentiateCondition
+
+        initial:
+            none
+
+        mutually exclusive:
+            none

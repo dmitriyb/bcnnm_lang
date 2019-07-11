@@ -3,17 +3,20 @@ define movable cell NeuralProgenitorCell from StemCell
         NSCF: 0
         NPCF: 0
 
+    compartments:
+        none
+
     conditions:
-        NPCApoptizeCondition
+        NPCApoptizeCondition:
             receptor 5HT2a is active
             mechanism NPCFSpread is active
             molecule NSCF is in [0, 0,01)
 
-        NPCDivideCondition
+        NPCDivideCondition:
             molecule NSCF is in (0.05, infinity)
 
-        NPCDifferentiateCondition
-            molecule NSCF is in [4.15, infinity)
+        NPCDifferentiateCondition:
+            molecule NPCF is in [4.15, infinity)
             molecule NSCF is in [0, 0.9)
 
     mechanisms:

@@ -1,13 +1,23 @@
-define cell RadialGliaCell from StemCell
-  movable: true
-  signalingPathways:
-    RGCToGRPDifferentiate(duration: 100) from Differentiate
-      parameters: (GlialRestrictedProgenitorCell)
+define movable cell RadialGliaCell from StemCell
+    molecules:
+        none
 
-  conditions:
-    RGCToGRPDifferentiateCondition
-      condition: [NSCF > 0.0]
-        
-  cascades:
-    on extracellular condition RGCToGRPDifferentiateCondition
-      -> RGCToGRPDifferentiate
+    compartments:
+        none
+
+    conditions:
+        RGCToGRPDifferentiateCondition
+            molecule NSCF is in [0, infinity)
+
+    mechanisms:
+        declaration:
+            single RGCToGRPDifferentiate(duration: 100) from Differentiate
+                parameters: (GlialRestrictedProgenitorCell)
+                start on:
+                    RGCToGRPDifferentiateCondition
+
+        initial:
+            none
+
+        mutually exclusive:
+            none
