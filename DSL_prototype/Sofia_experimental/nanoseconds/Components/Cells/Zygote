@@ -36,7 +36,6 @@ define movable cell ZygoteCell from StemCell
         CleavageCondition:
                     M_a == 0.5  # C* is a threshold for M activation by E1; the abrupt rise in the active cdc2 kinase M
                                 # brings about the biochemical events leading to mitosis
-                                # 0.3 is an approximate point I chose by looking at graphs in the paper; need to find the actual one.
 
     mechanisms:
         declaration:
