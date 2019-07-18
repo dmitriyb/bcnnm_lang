@@ -1,0 +1,8 @@
+# Список доступных обхектов модели
+Define LogicalObjects:
+  # Cells
+  - ZygoteCell
+  - TotipotentCell
+
+  # SignalPoints
+  - SignalPoint

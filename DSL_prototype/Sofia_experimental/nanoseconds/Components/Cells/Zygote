@@ -10,19 +10,19 @@ define movable cell ZygoteCell from StemCell
 
 
     constants:
-        vi: 0.025/(6*10^10)     # uM*ns−1 the constant rate of cyclin synthesis (per nanosecond == tick) 4.1666667e-13
-        vd: 0.25/(6*10^10)      # uM*ns−1 the maximum rate of cyclin degradation by protease X (reached for X = 1)
+        vi: 4.17*10^(-13)       # uM/ns = 0.025 uM/min; the constant rate of cyclin synthesis (per nanosecond == tick) 4.1666667e-13
+        vd: 4.17*10^(-12)       # uM/ns = 0.25 uM/min; the maximum rate of cyclin degradation by protease X (reached for X = 1)
         Kd: 0.02                # uM Michaelis constant for cyclin degradation
-        kd: 0.01*6*10^10        # min−1 represents an apparent first-order rate constant related to nonspecific degradation of cyclin
-        VM1: 3*6*10^10          # ns-1 the maximum rate of E1 phosphatase reached at saturating cyclin levels
-        VM3: 1*6*10^10          # ns−1 the maximum velocity of the kinase reached for M == 1
-        V2: 1.5*6*10^10         # ns−1 the effective max rate of E2, divided by the total amount of relevant target protein (MT)***
-        V4: 0.5*6*10^10         # ns−1 the effective max rate of E4, divided by the total amount of relevant target protein (XT)***
+        kd: 0.01*6*10^10        # ns−1 = 0.01 min-1; represents an apparent first-order rate constant related to nonspecific degradation of cyclin
+        VM1: 3*6*10^10          # ns-1 = 3 min-1; the maximum rate of E1 phosphatase reached at saturating cyclin levels
+        VM3: 1*6*10^10          # ns−1 = 1 min-1; the maximum velocity of the kinase reached for M == 1
+        V2: 1.5*6*10^10         # ns−1 = 1.5 min-1; the effective max rate of E2, divided by the total amount of relevant target protein (MT)***
+        V4: 0.5*6*10^10         # ns−1 = 0.5 min-1; the effective max rate of E4, divided by the total amount of relevant target protein (XT)***
         K1: 0.1                 # normalized Km for E1 (divided by MT=4uM)
         K2: 0.1                 # normalized Km for E2 (divided by MT=4uM)
         K3: 0.1                 # normalized Km for E3 (divided by XT=4uM)
         K4: 0.1                 # normalized Km for E4 (divided by XT=4uM)
-        Kc: 0.5*6*10^10         # uM Michaelis constant for cyclin activation of the phosphatase acting on the phosphorylated form of cdc2 kinase
+        Kc: 0.5                 # uM Michaelis constant for cyclin activation of the phosphatase acting on the phosphorylated form of cdc2 kinase
 
 
                                 # *** MT (total amount of cdc2 kinase) for enzymes E1 and E2, and XT (total amount of cyclin protease)
@@ -34,7 +34,7 @@ define movable cell ZygoteCell from StemCell
 
     conditions:
         CleavageCondition:
-                    M_a == 0.3  # C* is a threshold for M activation by E1; the abrupt rise in the active cdc2 kinase M
+                    M_a == 0.5  # C* is a threshold for M activation by E1; the abrupt rise in the active cdc2 kinase M
                                 # brings about the biochemical events leading to mitosis
                                 # 0.3 is an approximate point I chose by looking at graphs in the paper; need to find the actual one.
 
@@ -43,15 +43,15 @@ define movable cell ZygoteCell from StemCell
             cyclic Mitosis(duration: 461538461538) from Divide                                                  # 4/13 of cell cycle: 1500000000000ns = 25*6*10^10 = 1.5e+12 == 25 minutes full cycle at 25C
                 parameters: (_, _)
 
-            cyclic CyclinDynamic(duration: __?__) from Dynamic
+            cyclic CyclinDynamic(duration: 1) from Dynamic
                 parameters: (C)
-                delta: vi - vd * X_a * C / (Kd + C) - Kd * C
+                delta: vi - vd * X_a * C / (Kd + C) - Kd * C                                                    # vi - vd * X_a * C / (Kd + C) - Kd * C when the protease X is inhibited (?)
 
-            cyclic CdK2Dynamic(duration: __?__) from Dynamic
+            cyclic CdK2Dynamic(duration: 1) from Dynamic
                 parameters: (M_a)
                 delta: C / (Kc + C) * VM1 * (1 - M_a) / (K1 + (1 - M_a)) - V2 * M_a / (K2 + M_a)                # V1 = C / (Kc + C) * VM1
 
-            cyclic ProteaseDynamic(duration: __?__) from Dynamic
+            cyclic ProteaseDynamic(duration: 1) from Dynamic
                 parameters: (X_a)
                 delta: M_a * VM3 * (1 - X) / (K3 + (1 - X)) - V4 * X_a / (K4 + X_a)                             # V3 = M_a * VM3
 
