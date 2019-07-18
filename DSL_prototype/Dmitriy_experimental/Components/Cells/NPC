@@ -29,7 +29,7 @@ define movable cell NeuralProgenitorCell from StemCell
             single NPCApoptize(duration: 100) from Apoptize
                 start on:
                     NPCApoptizeCondition
-                    additional stop all
+                        additional stop all
 
             cyclic NPCFSpread(duration: 100) from SignalSpread
                 parameters: (NPCF)
@@ -40,13 +40,13 @@ define movable cell NeuralProgenitorCell from StemCell
                 parameters: (RadialGliaCell)
                 start on:
                     NPCDifferentiateCondition with probability: Gaussian(NPCF, [3.25, 0.59])
-                    additional stop all
+                        additional stop all
 
             single NPCToBPCDifferentiate(duration: 100) from Differentiate
                 parameters: (BasalProgenitorCell)
                 start on:
                     NPCDifferentiateCondition with probability: Gaussian(NPCF, [3.25, 0.59])
-                    additional stop all
+                        additional stop all
 
         initial:
             NPCFSpread
