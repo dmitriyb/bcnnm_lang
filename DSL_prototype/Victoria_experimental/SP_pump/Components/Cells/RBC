@@ -1,0 +1,32 @@
+define immovable cell RBC from BloodCell
+
+    molecules:
+        Na: 22.7        #mM steady state sodium concentration in red blood cell [Nakayama2005]
+        K:  126         #mM steady state potassium concentration in red blood cell [Nakayama2005]
+
+    constants:
+        VlK:            #the velocity of potassium leakage
+        VlNa:           #the velocity of sodium leakage
+        Vpump:          #the rate of Na/K pump activity
+
+    compartments:
+        none
+
+    conditions:
+        none
+
+    mechanisms:
+        declaration:
+            none
+
+        initial:
+            cyclic PotassiumBalance (duration: ) from Dynamic
+                parameters: (K)
+                delta: VlK + 2 * Vpump
+
+            cyclic PotassiumBalance (duration: ) from Dynamic
+                parameters: (Na)
+                delta: VlNa - 3 * Vpump
+
+        mutually exclusive:
+            none

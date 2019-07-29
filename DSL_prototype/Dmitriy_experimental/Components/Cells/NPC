@@ -1,51 +1,55 @@
-define cell NeuralProgenitorCell from StemCell
-  movable: true
-  signalingPathways:
-    NPCDivide(duration: 100) from Divide
-      parameters: (_, _)
+define movable cell NeuralProgenitorCell from StemCell
+    molecules:
+        NSCF: 0
+        NPCF: 0
 
-    NPCToRGCDifferentiate(duration: 100) from Differentiate
-      parameters: (RadialGliaCell)
+    compartments:
+        none
 
-    NPCToBPCDifferentiate(duration: 100) from Differentiate
-      parameters: (BasalProgenitorCell)
+    conditions:
+        NPCApoptizeCondition:
+            receptor 5HT2a is active
+            mechanism NPCFSpread is active
+            molecule NSCF is in [0, 0,01)
 
-    NPCFSpread(duration: 100) from SignalSpread
-      parameters: (NPCF)
+        NPCDivideCondition:
+            molecule NSCF is in (0.05, infinity)
 
-    NPCApoptize(duration: 100) from Apoptize
+        NPCDifferentiateCondition:
+            molecule NPCF is in [4.15, infinity)
+            molecule NSCF is in [0, 0.9)
 
-  conditions:
-    NPCApoptizeCondition
-      condition: [NSCF < 0.01]
+    mechanisms:
+        declaration:
+            single NPCDivide(duration: 100) from Divide
+                parameters: (_, _)
+                start on:
+                    NPCDivideCondition
 
-    NPCDivideCondition
-      condition: [NSCF > 0.05]
+            single NPCApoptize(duration: 100) from Apoptize
+                start on:
+                    NPCApoptizeCondition
+                    additional stop all
 
-    NPCDifferentiateCondition
-      condition: [NPCF >= 4.15 & NSCF < 0.9]
-      probability:
-        distribution: Gaussian
-        ligand:       NPCF
-        mean:         3.25
-        dispersion:   0.59
-        
-  cascades:
-    on extracellular condition NPCDivideCondition
-      -> NPCDivide
-    otherwise
-      -> NPCFSpread
+            cyclic NPCFSpread(duration: 100) from SignalSpread
+                parameters: (NPCF)
+                stop on:
+                    NPCDivideCondition
 
-    on extracellular condition NPCDifferentiateCondition
-      -> NPCToRGCDifferentiate
-    otherwise
-      -> NPCToBPCDifferentiate
-    with
-      -| all
+            single NPCToRGCDifferentiate(duration: 100) from Differentiate
+                parameters: (RadialGliaCell)
+                start on:
+                    NPCDifferentiateCondition with probability: Gaussian(NPCF, [3.25, 0.59])
+                    additional stop all
 
-    on extracellular condition NPCApoptizeCondition
-      -| all
-      -> NPCApoptize
+            single NPCToBPCDifferentiate(duration: 100) from Differentiate
+                parameters: (BasalProgenitorCell)
+                start on:
+                    NPCDifferentiateCondition with probability: Gaussian(NPCF, [3.25, 0.59])
+                    additional stop all
 
-    NPCFSpread
-      -> self
+        initial:
+            NPCFSpread
+
+        mutually exclusive:
+            [NPCToRGCDifferentiate, NPCToBPCDifferentiate]

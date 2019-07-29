@@ -1,0 +1,9 @@
+#Define molecules
+
+molecule Na:                #intracellular sodium
+    type: ion
+    radius: 0
+
+molecule K:                 #intracellular potassium
+    type: ion
+    radius: 0
