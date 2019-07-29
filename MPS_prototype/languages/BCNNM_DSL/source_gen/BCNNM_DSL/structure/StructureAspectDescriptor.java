@@ -210,10 +210,11 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   }
   private static ConceptDescriptor createDescriptorForStemCell() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "StemCell", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57cb18ebL);
-    b.class_(false, false, false);
+    b.class_(false, false, true);
     b.super_("BCNNM_DSL.structure.Cell", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57ca6a5dL);
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668885031147");
     b.version(2);
+    b.property("divisionTime", 0x4a9dcbdb890a70fdL).type(PrimitiveTypeId.INTEGER).origin("5376677673907679485").done();
     b.alias("stemcell");
     return b.create();
   }
