@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<debug-info version="2" />
+<debug-info version="2">
+  <root nodeRef="r:6bcb3b44-32e3-46af-b334-30fc5dbf021b(BCNNM_DSL.sandbox)/1231514014563723856">
+    <file name="map_StemCell.xml">
+      <unit id="1231514014563723856" at="1,0,5,7" name="BCNNM_DSL.sandbox.map_StemCell" />
+    </file>
+  </root>
+</debug-info>
 

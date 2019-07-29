@@ -68,7 +68,13 @@
     <property role="EcuMT" value="4049080668885031147" />
     <property role="TrG5h" value="StemCell" />
     <property role="34LRSv" value="stemcell" />
+    <property role="19KtqR" value="true" />
     <ref role="1TJDcQ" node="3wLemDnMADt" resolve="Cell" />
+    <node concept="1TJgyi" id="4EtMXI92B3X" role="1TKVEl">
+      <property role="IQ2nx" value="5376677673907679485" />
+      <property role="TrG5h" value="divisionTime" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
   </node>
   <node concept="1TIwiD" id="3wLemDnML_n">
     <property role="EcuMT" value="4049080668885031255" />
