@@ -1,15 +1,5 @@
 define immovable cell FSMC from MuscleCell #define frog sceletal muscle cell
 
-    molecules
-        Ko:
-        Ki:
-        Nao:
-        Nai:
-        Clo:
-        Cli:
-        ATP:
-
-
     constants:
         F:     9.648533e+04   #Faraday's constant (С/mol)
         T:                    #absolute temperature (K)
@@ -24,6 +14,16 @@ define immovable cell FSMC from MuscleCell #define frog sceletal muscle cell
         #time in seconds
 
     variables
+        #molecules
+        Ko:
+        Ki:
+        Nao:
+        Nai:
+        Clo:
+        Cli:
+        ATP:
+
+        #other
         Vm:                   #membrane voltage
         PsiNa:                #ratio of potential to random thermal energy (dimensionless)
         PsiK:                 #ratio of potential to random thermal energy (dimensionless)
@@ -37,6 +37,8 @@ define immovable cell FSMC from MuscleCell #define frog sceletal muscle cell
 
 
     conditions:
+        none
+        #to be added
 
 
     mechanisms:
@@ -99,3 +101,4 @@ define immovable cell FSMC from MuscleCell #define frog sceletal muscle cell
             PumpCurrent
 
         mutually exclusive:
+            none
