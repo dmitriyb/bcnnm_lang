@@ -12,8 +12,8 @@ import jetbrains.mps.smodel.adapter.ids.SConceptId;
 import jetbrains.mps.smodel.runtime.DataTypeDescriptor;
 import org.jetbrains.mps.openapi.language.SAbstractConcept;
 import jetbrains.mps.smodel.runtime.impl.ConceptDescriptorBuilder2;
-import jetbrains.mps.smodel.adapter.ids.PrimitiveTypeId;
 import jetbrains.mps.smodel.adapter.ids.MetaIdFactory;
+import jetbrains.mps.smodel.adapter.ids.PrimitiveTypeId;
 
 public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptApoptosisPathway = createDescriptorForApoptosisPathway();
@@ -132,6 +132,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.class_(false, true, false);
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263870224");
     b.version(2);
+    b.property("type", 0x220b50389f37e25aL).type(MetaIdFactory.dataTypeId(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d0aL)).origin("2453142626152997466").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForConditionDistribution() {
@@ -162,7 +163,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263920725");
     b.version(2);
     b.property("formula", 0x5719c93ddd814256L).type(PrimitiveTypeId.STRING).origin("6276268823263920726").done();
-    b.property("type", 0x5719c93ddd8166b1L).type(MetaIdFactory.dataTypeId(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d0aL)).origin("6276268823263930033").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForDivisionPathway() {

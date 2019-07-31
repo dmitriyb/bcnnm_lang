@@ -42,21 +42,21 @@
     <file name="StructureAspectDescriptor.java">
       <node id="1835501466345278524" at="24,0,25,0" concept="2" trace="myConceptConditionDistribution" />
       <node id="1835501466345278524" at="66,55,67,46" concept="6" />
-      <node id="1835501466345278524" at="137,79,138,165" concept="5" />
-      <node id="1835501466345278524" at="138,165,139,34" concept="1" />
-      <node id="1835501466345278524" at="139,34,140,109" concept="1" />
-      <node id="1835501466345278524" at="140,109,141,96" concept="1" />
-      <node id="1835501466345278524" at="141,96,142,17" concept="1" />
-      <node id="1835501466345278525" at="142,17,143,118" concept="1" />
-      <node id="1835501466345278527" at="143,118,144,116" concept="1" />
-      <node id="1835501466345322556" at="144,116,145,112" concept="1" />
-      <node id="1835501466345278524" at="145,112,146,22" concept="6" />
-      <node id="1835501466345278524" at="137,0,148,0" concept="8" trace="createDescriptorForConditionDistribution#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
+      <node id="1835501466345278524" at="138,79,139,165" concept="5" />
+      <node id="1835501466345278524" at="139,165,140,34" concept="1" />
+      <node id="1835501466345278524" at="140,34,141,109" concept="1" />
+      <node id="1835501466345278524" at="141,109,142,96" concept="1" />
+      <node id="1835501466345278524" at="142,96,143,17" concept="1" />
+      <node id="1835501466345278525" at="143,17,144,118" concept="1" />
+      <node id="1835501466345278527" at="144,118,145,116" concept="1" />
+      <node id="1835501466345322556" at="145,116,146,112" concept="1" />
+      <node id="1835501466345278524" at="146,112,147,22" concept="6" />
+      <node id="1835501466345278524" at="138,0,149,0" concept="8" trace="createDescriptorForConditionDistribution#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
       <scope id="1835501466345278524" at="66,55,67,46" />
-      <scope id="1835501466345278524" at="137,79,146,22">
+      <scope id="1835501466345278524" at="138,79,147,22">
         <var name="b" id="1835501466345278524" />
       </scope>
-      <scope id="1835501466345278524" at="137,0,148,0" />
+      <scope id="1835501466345278524" at="138,0,149,0" />
     </file>
   </root>
   <root nodeRef="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461">
@@ -200,35 +200,38 @@
   </root>
   <root nodeRef="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263870218">
     <file name="EnumerationDescriptor_ConditionType.java">
-      <node id="6276268823263870218" at="15,48,16,198" concept="9" />
-      <node id="6276268823263870219" at="19,0,20,0" concept="2" trace="VALUE_false_0" />
-      <node id="6276268823263870220" at="20,0,21,0" concept="2" trace="VALUE_true_0" />
-      <node id="6276268823263870218" at="24,62,25,25" concept="6" />
-      <node id="6276268823263870218" at="30,74,31,54" concept="6" />
-      <node id="6276268823263870218" at="37,25,38,18" concept="6" />
-      <node id="6276268823263870219" at="41,19,42,29" concept="6" />
-      <node id="6276268823263870220" at="43,18,44,28" concept="6" />
-      <node id="6276268823263870218" at="45,5,46,16" concept="6" />
+      <node id="6276268823263870218" at="15,48,16,197" concept="9" />
+      <node id="6276268823263870219" at="19,0,20,0" concept="2" trace="VALUE_rule_0" />
+      <node id="6276268823263870220" at="20,0,21,0" concept="2" trace="VALUE_probability_0" />
+      <node id="2453142626153004934" at="21,0,22,0" concept="2" trace="VALUE_distribution_0" />
+      <node id="6276268823263870218" at="25,62,26,24" concept="6" />
+      <node id="6276268823263870218" at="31,74,32,82" concept="6" />
+      <node id="6276268823263870218" at="38,25,39,18" concept="6" />
+      <node id="6276268823263870219" at="42,18,43,28" concept="6" />
+      <node id="6276268823263870220" at="44,25,45,35" concept="6" />
+      <node id="2453142626153004934" at="46,26,47,36" concept="6" />
+      <node id="6276268823263870218" at="48,5,49,16" concept="6" />
       <node id="6276268823263870218" at="15,0,18,0" concept="0" trace="EnumerationDescriptor_ConditionType#()V" />
-      <node id="6276268823263870218" at="36,84,39,5" concept="3" />
-      <node id="6276268823263870218" at="22,0,27,0" concept="4" trace="getDefault#()Ljetbrains/mps/smodel/runtime/EnumerationDescriptor/MemberDescriptor;" />
-      <node id="6276268823263870218" at="28,0,33,0" concept="4" trace="getMembers#()Ljava/util/Collection;" />
-      <node id="6276268823263870218" at="39,5,45,5" concept="10" />
-      <node id="6276268823263870218" at="34,0,48,0" concept="4" trace="getMember#(Ljava/lang/String;)Ljetbrains/mps/smodel/runtime/EnumerationDescriptor/MemberDescriptor;" />
-      <scope id="6276268823263870218" at="15,48,16,198" />
-      <scope id="6276268823263870218" at="24,62,25,25" />
-      <scope id="6276268823263870218" at="30,74,31,54" />
-      <scope id="6276268823263870218" at="37,25,38,18" />
-      <scope id="6276268823263870219" at="41,19,42,29" />
-      <scope id="6276268823263870220" at="43,18,44,28" />
+      <node id="6276268823263870218" at="37,84,40,5" concept="3" />
+      <node id="6276268823263870218" at="23,0,28,0" concept="4" trace="getDefault#()Ljetbrains/mps/smodel/runtime/EnumerationDescriptor/MemberDescriptor;" />
+      <node id="6276268823263870218" at="29,0,34,0" concept="4" trace="getMembers#()Ljava/util/Collection;" />
+      <node id="6276268823263870218" at="40,5,48,5" concept="10" />
+      <node id="6276268823263870218" at="35,0,51,0" concept="4" trace="getMember#(Ljava/lang/String;)Ljetbrains/mps/smodel/runtime/EnumerationDescriptor/MemberDescriptor;" />
+      <scope id="6276268823263870218" at="15,48,16,197" />
+      <scope id="6276268823263870218" at="25,62,26,24" />
+      <scope id="6276268823263870218" at="31,74,32,82" />
+      <scope id="6276268823263870218" at="38,25,39,18" />
+      <scope id="6276268823263870219" at="42,18,43,28" />
+      <scope id="6276268823263870220" at="44,25,45,35" />
+      <scope id="2453142626153004934" at="46,26,47,36" />
       <scope id="6276268823263870218" at="15,0,18,0" />
-      <scope id="6276268823263870218" at="22,0,27,0" />
-      <scope id="6276268823263870218" at="28,0,33,0" />
-      <scope id="6276268823263870218" at="36,84,46,16" />
-      <scope id="6276268823263870218" at="34,0,48,0">
+      <scope id="6276268823263870218" at="23,0,28,0" />
+      <scope id="6276268823263870218" at="29,0,34,0" />
+      <scope id="6276268823263870218" at="37,84,49,16" />
+      <scope id="6276268823263870218" at="35,0,51,0">
         <var name="string" id="6276268823263870218" />
       </scope>
-      <unit id="6276268823263870218" at="13,0,49,0" name="BCNNM_DSL.structure.EnumerationDescriptor_ConditionType" />
+      <unit id="6276268823263870218" at="13,0,52,0" name="BCNNM_DSL.structure.EnumerationDescriptor_ConditionType" />
     </file>
     <file name="StructureAspectDescriptor.java">
       <node id="6276268823263870218" at="33,0,34,0" concept="2" trace="myEnumerationConditionType" />
@@ -291,13 +294,14 @@
       <node id="6276268823263870224" at="131,153,132,33" concept="1" />
       <node id="6276268823263870224" at="132,33,133,96" concept="1" />
       <node id="6276268823263870224" at="133,96,134,17" concept="1" />
-      <node id="6276268823263870224" at="134,17,135,22" concept="6" />
-      <node id="6276268823263870224" at="130,0,137,0" concept="8" trace="createDescriptorForCondition#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
+      <node id="2453142626152997466" at="134,17,135,175" concept="1" />
+      <node id="6276268823263870224" at="135,175,136,22" concept="6" />
+      <node id="6276268823263870224" at="130,0,138,0" concept="8" trace="createDescriptorForCondition#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
       <scope id="6276268823263870224" at="64,43,65,34" />
-      <scope id="6276268823263870224" at="130,67,135,22">
+      <scope id="6276268823263870224" at="130,67,136,22">
         <var name="b" id="6276268823263870224" />
       </scope>
-      <scope id="6276268823263870224" at="130,0,137,0" />
+      <scope id="6276268823263870224" at="130,0,138,0" />
     </file>
   </root>
   <root nodeRef="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263870234">
@@ -320,20 +324,20 @@
     <file name="StructureAspectDescriptor.java">
       <node id="6276268823263870234" at="25,0,26,0" concept="2" trace="myConceptConditionReducer" />
       <node id="6276268823263870234" at="68,50,69,41" concept="6" />
-      <node id="6276268823263870234" at="148,74,149,160" concept="5" />
-      <node id="6276268823263870234" at="149,160,150,34" concept="1" />
-      <node id="6276268823263870234" at="150,34,151,109" concept="1" />
-      <node id="6276268823263870234" at="151,109,152,96" concept="1" />
-      <node id="6276268823263870234" at="152,96,153,17" concept="1" />
-      <node id="6276268823263870235" at="153,17,154,181" concept="1" />
-      <node id="6276268823263870242" at="154,181,155,202" concept="1" />
-      <node id="6276268823263870234" at="155,202,156,22" concept="6" />
-      <node id="6276268823263870234" at="148,0,158,0" concept="8" trace="createDescriptorForConditionReducer#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
+      <node id="6276268823263870234" at="149,74,150,160" concept="5" />
+      <node id="6276268823263870234" at="150,160,151,34" concept="1" />
+      <node id="6276268823263870234" at="151,34,152,109" concept="1" />
+      <node id="6276268823263870234" at="152,109,153,96" concept="1" />
+      <node id="6276268823263870234" at="153,96,154,17" concept="1" />
+      <node id="6276268823263870235" at="154,17,155,181" concept="1" />
+      <node id="6276268823263870242" at="155,181,156,202" concept="1" />
+      <node id="6276268823263870234" at="156,202,157,22" concept="6" />
+      <node id="6276268823263870234" at="149,0,159,0" concept="8" trace="createDescriptorForConditionReducer#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
       <scope id="6276268823263870234" at="68,50,69,41" />
-      <scope id="6276268823263870234" at="148,74,156,22">
+      <scope id="6276268823263870234" at="149,74,157,22">
         <var name="b" id="6276268823263870234" />
       </scope>
-      <scope id="6276268823263870234" at="148,0,158,0" />
+      <scope id="6276268823263870234" at="149,0,159,0" />
     </file>
   </root>
   <root nodeRef="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263870237">
@@ -562,20 +566,19 @@
     <file name="StructureAspectDescriptor.java">
       <node id="6276268823263920725" at="26,0,27,0" concept="2" trace="myConceptConditionWithFormula" />
       <node id="6276268823263920725" at="70,54,71,45" concept="6" />
-      <node id="6276268823263920725" at="158,78,159,164" concept="5" />
-      <node id="6276268823263920725" at="159,164,160,34" concept="1" />
-      <node id="6276268823263920725" at="160,34,161,109" concept="1" />
-      <node id="6276268823263920725" at="161,109,162,96" concept="1" />
-      <node id="6276268823263920725" at="162,96,163,17" concept="1" />
-      <node id="6276268823263920726" at="163,17,164,113" concept="1" />
-      <node id="6276268823263930033" at="164,113,165,175" concept="1" />
-      <node id="6276268823263920725" at="165,175,166,22" concept="6" />
-      <node id="6276268823263920725" at="158,0,168,0" concept="8" trace="createDescriptorForConditionWithFormula#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
+      <node id="6276268823263920725" at="159,78,160,164" concept="5" />
+      <node id="6276268823263920725" at="160,164,161,34" concept="1" />
+      <node id="6276268823263920725" at="161,34,162,109" concept="1" />
+      <node id="6276268823263920725" at="162,109,163,96" concept="1" />
+      <node id="6276268823263920725" at="163,96,164,17" concept="1" />
+      <node id="6276268823263920726" at="164,17,165,113" concept="1" />
+      <node id="6276268823263920725" at="165,113,166,22" concept="6" />
+      <node id="6276268823263920725" at="159,0,168,0" concept="8" trace="createDescriptorForConditionWithFormula#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
       <scope id="6276268823263920725" at="70,54,71,45" />
-      <scope id="6276268823263920725" at="158,78,166,22">
+      <scope id="6276268823263920725" at="159,78,166,22">
         <var name="b" id="6276268823263920725" />
       </scope>
-      <scope id="6276268823263920725" at="158,0,168,0" />
+      <scope id="6276268823263920725" at="159,0,168,0" />
     </file>
   </root>
 </debug-info>

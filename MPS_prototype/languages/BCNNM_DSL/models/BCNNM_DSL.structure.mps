@@ -100,14 +100,18 @@
   </node>
   <node concept="AxPO7" id="5spMjRtw7Oa">
     <property role="TrG5h" value="ConditionType" />
-    <ref role="M4eZT" to="tpck:fKAQMTB" resolve="boolean" />
+    <ref role="M4eZT" to="tpck:fKAOsGN" resolve="string" />
     <node concept="M4N5e" id="5spMjRtw7Ob" role="M5hS2">
-      <property role="1uS6qv" value="false" />
       <property role="1uS6qo" value="Rule" />
+      <property role="1uS6qv" value="rule" />
     </node>
     <node concept="M4N5e" id="5spMjRtw7Oc" role="M5hS2">
       <property role="1uS6qo" value="Probability" />
-      <property role="1uS6qv" value="true" />
+      <property role="1uS6qv" value="probability" />
+    </node>
+    <node concept="M4N5e" id="28bk3yvdZY6" role="M5hS2">
+      <property role="1uS6qo" value="Distribution" />
+      <property role="1uS6qv" value="distribution" />
     </node>
   </node>
   <node concept="1TIwiD" id="5spMjRtw7Of">
@@ -133,6 +137,11 @@
     <property role="TrG5h" value="Condition" />
     <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyi" id="28bk3yvdY9q" role="1TKVEl">
+      <property role="IQ2nx" value="2453142626152997466" />
+      <property role="TrG5h" value="type" />
+      <ref role="AX2Wp" node="5spMjRtw7Oa" resolve="ConditionType" />
+    </node>
   </node>
   <node concept="1TIwiD" id="5spMjRtw7Oq">
     <property role="EcuMT" value="6276268823263870234" />
@@ -196,11 +205,6 @@
       <property role="IQ2nx" value="6276268823263920726" />
       <property role="TrG5h" value="formula" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
-    </node>
-    <node concept="1TJgyi" id="5spMjRtwmqL" role="1TKVEl">
-      <property role="IQ2nx" value="6276268823263930033" />
-      <property role="TrG5h" value="type" />
-      <ref role="AX2Wp" node="5spMjRtw7Oa" resolve="ConditionType" />
     </node>
   </node>
   <node concept="1TIwiD" id="1_T0HJme0KW">
