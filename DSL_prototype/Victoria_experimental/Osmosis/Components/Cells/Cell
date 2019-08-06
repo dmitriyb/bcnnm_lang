@@ -1,0 +1,67 @@
+define immovable cell Cell from AnimalCell #define regular animal cell
+
+    constants:
+        #molecules
+        Na_o:   147                  #the extracellular sodium concentration (mM)
+        K_o:    3                    #the extracellular potassium concentration (mM)
+        Cl_o:   150                  #the extracellular chloride concentration (mM)
+
+        #other
+        g_Cl: 0.2                    #conductance of Cl ion (mS cm^(-2))
+        g_K:  0.3                    #conductance of K ion (mS cm^(-2))
+        g_Na: 0.01                   #conductance of Na ion (mS cm^(-2))
+        F:    9.648533 * (10 ^ 4)    #Faraday's constant (С/mol)
+        n:    3                      #number of Na ions pumped per Na/K ATPase cycle
+        q:    2                      #number of K ions pumped per Na/K ATPase cycle
+        p:    0.25                   #Na/K ATPase pump rate (C mm^(-2) s^(-1))
+        P_f:  7 * (10 ^ (-3))        #osmotic water permeability coefficient (cm s^(-1))
+        A:                           #membrane area (cm ^ 2)
+        R:    8.3144598 * (10 ^ 3)   #universal gas constant (m^2 g s^(-2) K^(-1) M^(-1))
+        T:    298.15                 #absolute temperature (K)
+        z:    -1                     #average charge of impermeant intracellular molecules
+        x:    2.6 * (10 ^ (-14))     #number of moles of the impermeant intracellular molecules
+
+
+    variables:
+        #molecules
+        Na:   22.7                  #the intracellular sodium concentration (mM) / red blood cell (nakayama2005)
+        K:    126                   #the intracellular potassium concentration (mM) / red blood cell (nakayama2005)
+        Cl:                         #the intracellular chloride concentration (mM)
+
+        #other
+        Os_o: 288                    #the extracellular osmolarity (mOsm / kg) / blood plasma
+        Os:                          #the intracellular osmolarity
+
+
+    compartments:
+        none
+
+
+    conditions:
+        none
+
+    mechanisms:
+        declaration:
+            cyclic IntracellularSodiumChange(duration: ) from Dynamic
+                parameters: (Na)
+                delta: (- A / w / F) * (g_Na * (V - (R * T / F) * ln(Na_o / Na)) + n * p) - (1 / w * v_w * P_f * A * (Os - Os_o)) * Na
+
+                #where the flow of water delta(w): v_w * P_f * A * (Os - Os_o)
+
+            cyclic IntracellularPotassiumChange(duration: ) from Dynamic
+                parameters: (K)
+                delta: (- A / w / F) * (g_K * (V - (R * T / F) * ln(K_o / K)) - q * p) - (1 / w * v_w * P_f * A * (Os - Os_o)) * K
+
+            cyclic IntracellularChlorideChange(duration: ) from Dynamic
+                parameters: (Cl)
+                delta: (A / w / F) * (g_Cl * (V - (R * T / F) * ln(Cl_o / Cl))) - (1 / w * v_w * P_f * A * (Os - Os_o)) * Cl
+
+
+
+        initial:
+            IntracellularSodiumChange
+            IntracellularPotassiumChange
+            IntracellularChlorideChange
+
+        mutually exclusive:
+           none
