@@ -25,12 +25,22 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptConditionReducer = createDescriptorForConditionReducer();
   /*package*/ final ConceptDescriptor myConceptConditionWithFormula = createDescriptorForConditionWithFormula();
   /*package*/ final ConceptDescriptor myConceptDivisionPathway = createDescriptorForDivisionPathway();
+  /*package*/ final ConceptDescriptor myConceptDynamicMechanism = createDescriptorForDynamicMechanism();
+  /*package*/ final ConceptDescriptor myConceptModelMechanism = createDescriptorForModelMechanism();
+  /*package*/ final ConceptDescriptor myConceptMolecule = createDescriptorForMolecule();
+  /*package*/ final ConceptDescriptor myConceptMoleculeDefinition = createDescriptorForMoleculeDefinition();
+  /*package*/ final ConceptDescriptor myConceptMoleculeDefinitionReference = createDescriptorForMoleculeDefinitionReference();
+  /*package*/ final ConceptDescriptor myConceptMoleculeReference = createDescriptorForMoleculeReference();
+  /*package*/ final ConceptDescriptor myConceptNamedConstant = createDescriptorForNamedConstant();
+  /*package*/ final ConceptDescriptor myConceptNamedConstantReference = createDescriptorForNamedConstantReference();
   /*package*/ final ConceptDescriptor myConceptSignalPathway = createDescriptorForSignalPathway();
   /*package*/ final ConceptDescriptor myConceptSpace = createDescriptorForSpace();
   /*package*/ final ConceptDescriptor myConceptSpikePathway = createDescriptorForSpikePathway();
-  /*package*/ final ConceptDescriptor myConceptSpikingCell = createDescriptorForSpikingCell();
+  /*package*/ final ConceptDescriptor myConceptStage = createDescriptorForStage();
   /*package*/ final ConceptDescriptor myConceptStemCell = createDescriptorForStemCell();
   /*package*/ final EnumerationDescriptor myEnumerationConditionType = new EnumerationDescriptor_ConditionType();
+  /*package*/ final EnumerationDescriptor myEnumerationMechanismType = new EnumerationDescriptor_MechanismType();
+  /*package*/ final EnumerationDescriptor myEnumerationMoleculeType = new EnumerationDescriptor_MoleculeType();
   /*package*/ final EnumerationDescriptor myEnumerationReduceType = new EnumerationDescriptor_ReduceType();
   private final LanguageConceptSwitch myIndexSwitch;
 
@@ -42,11 +52,13 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   @Override
   public void reportDependencies(jetbrains.mps.smodel.runtime.StructureAspectDescriptor.Dependencies deps) {
     deps.extendedLanguage(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, "jetbrains.mps.lang.core");
+    deps.extendedLanguage(0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, "org.mar9000.mps.ecmascript");
+    deps.aggregatedLanguage(0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, "org.mar9000.mps.ecmascript");
   }
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptApoptosisPathway, myConceptCell, myConceptCheckGradientCondigion, myConceptCheckSignalCondition, myConceptCondition, myConceptConditionDistribution, myConceptConditionReducer, myConceptConditionWithFormula, myConceptDivisionPathway, myConceptSignalPathway, myConceptSpace, myConceptSpikePathway, myConceptSpikingCell, myConceptStemCell);
+    return Arrays.asList(myConceptApoptosisPathway, myConceptCell, myConceptCheckGradientCondigion, myConceptCheckSignalCondition, myConceptCondition, myConceptConditionDistribution, myConceptConditionReducer, myConceptConditionWithFormula, myConceptDivisionPathway, myConceptDynamicMechanism, myConceptModelMechanism, myConceptMolecule, myConceptMoleculeDefinition, myConceptMoleculeDefinitionReference, myConceptMoleculeReference, myConceptNamedConstant, myConceptNamedConstantReference, myConceptSignalPathway, myConceptSpace, myConceptSpikePathway, myConceptStage, myConceptStemCell);
   }
 
   @Override
@@ -71,14 +83,30 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptConditionWithFormula;
       case LanguageConceptSwitch.DivisionPathway:
         return myConceptDivisionPathway;
+      case LanguageConceptSwitch.DynamicMechanism:
+        return myConceptDynamicMechanism;
+      case LanguageConceptSwitch.ModelMechanism:
+        return myConceptModelMechanism;
+      case LanguageConceptSwitch.Molecule:
+        return myConceptMolecule;
+      case LanguageConceptSwitch.MoleculeDefinition:
+        return myConceptMoleculeDefinition;
+      case LanguageConceptSwitch.MoleculeDefinitionReference:
+        return myConceptMoleculeDefinitionReference;
+      case LanguageConceptSwitch.MoleculeReference:
+        return myConceptMoleculeReference;
+      case LanguageConceptSwitch.NamedConstant:
+        return myConceptNamedConstant;
+      case LanguageConceptSwitch.NamedConstantReference:
+        return myConceptNamedConstantReference;
       case LanguageConceptSwitch.SignalPathway:
         return myConceptSignalPathway;
       case LanguageConceptSwitch.Space:
         return myConceptSpace;
       case LanguageConceptSwitch.SpikePathway:
         return myConceptSpikePathway;
-      case LanguageConceptSwitch.SpikingCell:
-        return myConceptSpikingCell;
+      case LanguageConceptSwitch.Stage:
+        return myConceptStage;
       case LanguageConceptSwitch.StemCell:
         return myConceptStemCell;
       default:
@@ -88,7 +116,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<DataTypeDescriptor> getDataTypeDescriptors() {
-    return Arrays.asList(myEnumerationConditionType, myEnumerationReduceType);
+    return Arrays.asList(myEnumerationConditionType, myEnumerationMechanismType, myEnumerationMoleculeType, myEnumerationReduceType);
   }
 
   /*package*/ int internalIndex(SAbstractConcept c) {
@@ -106,9 +134,14 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   private static ConceptDescriptor createDescriptorForCell() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "Cell", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57ca6a5dL);
     b.class_(false, true, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461");
     b.version(2);
-    b.aggregate("pathways", 0x5719c93ddd8119fcL).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d0fL).optional(true).ordered(true).multiple(true).origin("6276268823263910396").done();
+    b.aggregate("constants", 0x46aac9d4f4486badL).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f4483a03L).optional(true).ordered(true).multiple(true).origin("5092104245164403629").done();
+    b.aggregate("moleculeTypes", 0x46aac9d4f448c3a2L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f447b0c3L).optional(true).ordered(true).multiple(true).origin("5092104245164426146").done();
+    b.aggregate("molecules", 0x46aac9d4f4487836L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f448aa46L).optional(true).ordered(true).multiple(true).origin("5092104245164406838").done();
+    b.aggregate("conditions", 0x46c97db93e83bbaaL).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd814255L).optional(true).ordered(true).multiple(true).origin("5100746287545039786").done();
+    b.aggregate("mechanisms", 0x46c97db93e84d604L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e84b707L).optional(true).ordered(true).multiple(true).origin("5100746287545112068").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForCheckGradientCondigion() {
@@ -130,6 +163,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   private static ConceptDescriptor createDescriptorForCondition() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "Condition", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d10L);
     b.class_(false, true, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263870224");
     b.version(2);
     b.property("type", 0x220b50389f37e25aL).type(MetaIdFactory.dataTypeId(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d0aL)).origin("2453142626152997466").done();
@@ -162,7 +196,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("BCNNM_DSL.structure.Condition", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d10L);
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263920725");
     b.version(2);
-    b.property("formula", 0x5719c93ddd814256L).type(PrimitiveTypeId.STRING).origin("6276268823263920726").done();
+    b.aggregate("formula", 0x46c97db93e834056L).target(0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, 0x76eb757dfbac2099L).optional(false).ordered(true).multiple(false).origin("5100746287545008214").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForDivisionPathway() {
@@ -171,6 +205,83 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("BCNNM_DSL.structure.SignalPathway", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d0fL);
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263912137");
     b.version(2);
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForDynamicMechanism() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "DynamicMechanism", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e84b707L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545104135");
+    b.version(2);
+    b.property("duration", 0x46c97db93e84b70cL).type(PrimitiveTypeId.INTEGER).origin("5100746287545104140").done();
+    b.property("type", 0x46c97db93e84e5f2L).type(MetaIdFactory.dataTypeId(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e84e5f7L)).origin("5100746287545116146").done();
+    b.associate("baseMechanism", 0x46c97db93e84e665L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e8314a0L).optional(false).origin("5100746287545116261").done();
+    b.associate("parameters", 0x46c97db93e84b70aL).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f448aa46L).optional(false).origin("5100746287545104138").done();
+    b.aggregate("formula", 0x46c97db93e84b70eL).target(0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, 0x76eb757dfbac2099L).optional(false).ordered(true).multiple(false).origin("5100746287545104142").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForModelMechanism() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "ModelMechanism", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e8314a0L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287544997024");
+    b.version(2);
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForMolecule() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "Molecule", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f448aa46L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164419654");
+    b.version(2);
+    b.associate("defintion", 0x6101bf7b1aa43bb8L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f447b0c3L).optional(false).origin("6990078632104573880").done();
+    b.aggregate("concentration", 0x46c97db93e83ca25L).target(0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, 0x76eb757dfbac2099L).optional(false).ordered(true).multiple(false).origin("5100746287545043493").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForMoleculeDefinition() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "MoleculeDefinition", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f447b0c3L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164355779");
+    b.version(2);
+    b.property("type", 0x46aac9d4f447b0c4L).type(MetaIdFactory.dataTypeId(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f447b0c9L)).origin("5092104245164355780").done();
+    b.property("radius", 0x46aac9d4f447b0c6L).type(PrimitiveTypeId.INTEGER).origin("5092104245164355782").done();
+    b.alias("molecule reference");
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForMoleculeDefinitionReference() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "MoleculeDefinitionReference", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x6101bf7b1aa274b9L);
+    b.class_(false, false, false);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6990078632104457401");
+    b.version(2);
+    b.associate("definition", 0x6101bf7b1aa274c1L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f447b0c3L).optional(false).origin("6990078632104457409").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForMoleculeReference() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "MoleculeReference", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e84318eL);
+    b.class_(false, false, false);
+    b.super_("org.mar9000.mps.ecmascript.structure.JSExpression", 0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, 0x76eb757dfbac2099L);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545069966");
+    b.version(2);
+    b.associate("molecule", 0x46c97db93e843192L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f448aa46L).optional(false).origin("5100746287545069970").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForNamedConstant() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "NamedConstant", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f4483a03L);
+    b.class_(false, false, false);
+    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164390915");
+    b.version(2);
+    b.aggregate("value", 0x46c97db93e814c1cL).target(0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, 0x76eb757dfbac2099L).optional(false).ordered(true).multiple(false).origin("5100746287544880156").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForNamedConstantReference() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "NamedConstantReference", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e859c65L);
+    b.class_(false, false, false);
+    b.super_("org.mar9000.mps.ecmascript.structure.JSExpression", 0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, 0x76eb757dfbac2099L);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545162853");
+    b.version(2);
+    b.associate("ref", 0x46c97db93e859c66L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f4483a03L).optional(false).origin("5100746287545162854").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForSignalPathway() {
@@ -189,6 +300,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668885031263");
     b.version(2);
     b.aggregate("cells", 0x3831396a57cb1964L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57ca6a5dL).optional(true).ordered(true).multiple(true).origin("4049080668885031268").done();
+    b.aggregate("modelMechanisms", 0x46c97db93e8314adL).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e8314a0L).optional(true).ordered(true).multiple(true).origin("5100746287544997037").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForSpikePathway() {
@@ -199,18 +311,18 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.version(2);
     return b.create();
   }
-  private static ConceptDescriptor createDescriptorForSpikingCell() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "SpikingCell", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57cb1957L);
+  private static ConceptDescriptor createDescriptorForStage() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "Stage", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f447b0bdL);
     b.class_(false, false, false);
-    b.super_("BCNNM_DSL.structure.Cell", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57ca6a5dL);
-    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668885031255");
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164355773");
     b.version(2);
-    b.alias("spikingcell");
+    b.property("name", 0x46aac9d4f447b0beL).type(PrimitiveTypeId.STRING).origin("5092104245164355774").done();
+    b.property("duration", 0x46aac9d4f447b0c0L).type(PrimitiveTypeId.INTEGER).origin("5092104245164355776").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForStemCell() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "StemCell", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57cb18ebL);
-    b.class_(false, false, true);
+    b.class_(false, false, false);
     b.super_("BCNNM_DSL.structure.Cell", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57ca6a5dL);
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668885031147");
     b.version(2);

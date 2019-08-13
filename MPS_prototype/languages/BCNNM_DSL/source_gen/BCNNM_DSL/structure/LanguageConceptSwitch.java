@@ -18,11 +18,19 @@ public final class LanguageConceptSwitch {
   public static final int ConditionReducer = 6;
   public static final int ConditionWithFormula = 7;
   public static final int DivisionPathway = 8;
-  public static final int SignalPathway = 9;
-  public static final int Space = 10;
-  public static final int SpikePathway = 11;
-  public static final int SpikingCell = 12;
-  public static final int StemCell = 13;
+  public static final int DynamicMechanism = 9;
+  public static final int ModelMechanism = 10;
+  public static final int Molecule = 11;
+  public static final int MoleculeDefinition = 12;
+  public static final int MoleculeDefinitionReference = 13;
+  public static final int MoleculeReference = 14;
+  public static final int NamedConstant = 15;
+  public static final int NamedConstantReference = 16;
+  public static final int SignalPathway = 17;
+  public static final int Space = 18;
+  public static final int SpikePathway = 19;
+  public static final int Stage = 20;
+  public static final int StemCell = 21;
 
   public LanguageConceptSwitch() {
     LanguageConceptIndexBuilder builder = new LanguageConceptIndexBuilder(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL);
@@ -35,10 +43,18 @@ public final class LanguageConceptSwitch {
     builder.put(0x5719c93ddd807d1aL, ConditionReducer);
     builder.put(0x5719c93ddd814255L, ConditionWithFormula);
     builder.put(0x5719c93ddd8120c9L, DivisionPathway);
+    builder.put(0x46c97db93e84b707L, DynamicMechanism);
+    builder.put(0x46c97db93e8314a0L, ModelMechanism);
+    builder.put(0x46aac9d4f448aa46L, Molecule);
+    builder.put(0x46aac9d4f447b0c3L, MoleculeDefinition);
+    builder.put(0x6101bf7b1aa274b9L, MoleculeDefinitionReference);
+    builder.put(0x46c97db93e84318eL, MoleculeReference);
+    builder.put(0x46aac9d4f4483a03L, NamedConstant);
+    builder.put(0x46c97db93e859c65L, NamedConstantReference);
     builder.put(0x5719c93ddd807d0fL, SignalPathway);
     builder.put(0x3831396a57cb195fL, Space);
     builder.put(0x5719c93ddd8120c8L, SpikePathway);
-    builder.put(0x3831396a57cb1957L, SpikingCell);
+    builder.put(0x46aac9d4f447b0bdL, Stage);
     builder.put(0x3831396a57cb18ebL, StemCell);
     myIndex = builder.seal();
   }
