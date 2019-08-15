@@ -1,0 +1,4 @@
+<Model name="SofiaModel">
+  <modelMechanism name="Division"></modelMechanism>
+  <modelMechanism name="Dynamic"></modelMechanism><!TextGen not found for 'BCNNM_DSL.structure.StemCell'!>
+</Model>

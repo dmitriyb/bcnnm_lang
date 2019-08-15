@@ -6,7 +6,10 @@ import jetbrains.mps.smodel.language.LanguageRuntime;
 import jetbrains.mps.smodel.adapter.ids.SLanguageId;
 import java.util.Collection;
 import org.jetbrains.mps.openapi.language.SLanguage;
+import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import jetbrains.mps.smodel.runtime.ILanguageAspect;
+import jetbrains.mps.openapi.editor.descriptor.EditorAspectDescriptor;
+import BCNNM_DSL.editor.EditorAspectDescriptorImpl;
 import jetbrains.mps.smodel.runtime.StructureAspectDescriptor;
 import jetbrains.mps.smodel.runtime.ConceptPresentationAspect;
 import BCNNM_DSL.structure.ConceptPresentationAspectImpl;
@@ -34,10 +37,14 @@ public class Language extends LanguageRuntime {
 
   @Override
   protected void fillExtendedLanguages(Collection<SLanguage> extendedLanguages) {
+    extendedLanguages.add(MetaAdapterFactory.getLanguage(SLanguageId.deserialize("a4829704-6b1b-4b3f-8122-a4a2e6ac90ff"), "org.mar9000.mps.ecmascript"));
   }
 
   @Override
   protected <T extends ILanguageAspect> T createAspect(Class<T> aspectClass) {
+    if (aspectClass == EditorAspectDescriptor.class) {
+      return aspectClass.cast(new EditorAspectDescriptorImpl());
+    }
     if (aspectClass == StructureAspectDescriptor.class) {
       return aspectClass.cast(new BCNNM_DSL.structure.StructureAspectDescriptor());
     }

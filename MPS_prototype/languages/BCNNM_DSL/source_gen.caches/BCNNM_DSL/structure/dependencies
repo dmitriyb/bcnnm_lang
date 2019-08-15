@@ -22,6 +22,28 @@
     <classNode dependClassName="org.jetbrains.annotations.Nullable" />
     <classNode extendsClassName="jetbrains.mps.smodel.runtime.EnumerationDescriptorBase" />
   </dependency>
+  <dependency className="BCNNM_DSL.structure.EnumerationDescriptor_MechanismType">
+    <classNode dependClassName="java.lang.Override" />
+    <classNode dependClassName="java.lang.String" />
+    <classNode dependClassName="java.util.Arrays" />
+    <classNode dependClassName="java.util.Collection" />
+    <classNode dependClassName="jetbrains.mps.smodel.adapter.ids.PrimitiveTypeId" />
+    <classNode dependClassName="jetbrains.mps.smodel.runtime.EnumerationDescriptor" />
+    <classNode dependClassName="org.jetbrains.annotations.NotNull" />
+    <classNode dependClassName="org.jetbrains.annotations.Nullable" />
+    <classNode extendsClassName="jetbrains.mps.smodel.runtime.EnumerationDescriptorBase" />
+  </dependency>
+  <dependency className="BCNNM_DSL.structure.EnumerationDescriptor_MoleculeType">
+    <classNode dependClassName="java.lang.Override" />
+    <classNode dependClassName="java.lang.String" />
+    <classNode dependClassName="java.util.Arrays" />
+    <classNode dependClassName="java.util.Collection" />
+    <classNode dependClassName="jetbrains.mps.smodel.adapter.ids.PrimitiveTypeId" />
+    <classNode dependClassName="jetbrains.mps.smodel.runtime.EnumerationDescriptor" />
+    <classNode dependClassName="org.jetbrains.annotations.NotNull" />
+    <classNode dependClassName="org.jetbrains.annotations.Nullable" />
+    <classNode extendsClassName="jetbrains.mps.smodel.runtime.EnumerationDescriptorBase" />
+  </dependency>
   <dependency className="BCNNM_DSL.structure.EnumerationDescriptor_ReduceType">
     <classNode dependClassName="java.lang.Override" />
     <classNode dependClassName="java.lang.String" />
@@ -41,6 +63,8 @@
   </dependency>
   <dependency className="BCNNM_DSL.structure.StructureAspectDescriptor">
     <classNode dependClassName="BCNNM_DSL.structure.EnumerationDescriptor_ConditionType" />
+    <classNode dependClassName="BCNNM_DSL.structure.EnumerationDescriptor_MechanismType" />
+    <classNode dependClassName="BCNNM_DSL.structure.EnumerationDescriptor_MoleculeType" />
     <classNode dependClassName="BCNNM_DSL.structure.EnumerationDescriptor_ReduceType" />
     <classNode dependClassName="BCNNM_DSL.structure.LanguageConceptSwitch" />
     <classNode dependClassName="java.lang.Override" />

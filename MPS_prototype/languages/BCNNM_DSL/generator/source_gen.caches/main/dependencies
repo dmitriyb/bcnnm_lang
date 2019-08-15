@@ -12,9 +12,11 @@
     <classNode dependClassName="jetbrains.mps.generator.impl.query.PropertyValueQuery" />
     <classNode dependClassName="jetbrains.mps.generator.impl.query.QueryKey" />
     <classNode dependClassName="jetbrains.mps.generator.impl.query.QueryKeyImpl" />
+    <classNode dependClassName="jetbrains.mps.generator.impl.query.SourceNodeQuery" />
     <classNode dependClassName="jetbrains.mps.generator.impl.query.SourceNodesQuery" />
     <classNode dependClassName="jetbrains.mps.generator.runtime.Generated" />
     <classNode dependClassName="jetbrains.mps.generator.template.PropertyMacroContext" />
+    <classNode dependClassName="jetbrains.mps.generator.template.SourceSubstituteMacroNodeContext" />
     <classNode dependClassName="jetbrains.mps.generator.template.SourceSubstituteMacroNodesContext" />
     <classNode dependClassName="jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations" />
     <classNode dependClassName="jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations" />
