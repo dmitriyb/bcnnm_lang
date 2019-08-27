@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<product version="3" modelHash="-a6zunl8j7prtgq3x9ao4hzvfo9gtp3l">
-  <files names="map_Space.xml" />
+<product version="3" modelHash="d40qwgr1bdjguxajf5v7rsuhahonlex">
+  <files names="map_Space.xml:map_SpaceConditions.java" />
 </product>
 

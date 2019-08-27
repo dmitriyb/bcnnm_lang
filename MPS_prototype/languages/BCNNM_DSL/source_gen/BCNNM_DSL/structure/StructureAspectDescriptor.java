@@ -18,14 +18,10 @@ import jetbrains.mps.smodel.adapter.ids.PrimitiveTypeId;
 public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptApoptosisPathway = createDescriptorForApoptosisPathway();
   /*package*/ final ConceptDescriptor myConceptCell = createDescriptorForCell();
-  /*package*/ final ConceptDescriptor myConceptCheckGradientCondigion = createDescriptorForCheckGradientCondigion();
-  /*package*/ final ConceptDescriptor myConceptCheckSignalCondition = createDescriptorForCheckSignalCondition();
   /*package*/ final ConceptDescriptor myConceptCondition = createDescriptorForCondition();
-  /*package*/ final ConceptDescriptor myConceptConditionDistribution = createDescriptorForConditionDistribution();
-  /*package*/ final ConceptDescriptor myConceptConditionReducer = createDescriptorForConditionReducer();
   /*package*/ final ConceptDescriptor myConceptConditionWithFormula = createDescriptorForConditionWithFormula();
-  /*package*/ final ConceptDescriptor myConceptDivisionPathway = createDescriptorForDivisionPathway();
   /*package*/ final ConceptDescriptor myConceptDynamicMechanism = createDescriptorForDynamicMechanism();
+  /*package*/ final ConceptDescriptor myConceptGlobalParameters = createDescriptorForGlobalParameters();
   /*package*/ final ConceptDescriptor myConceptModelMechanism = createDescriptorForModelMechanism();
   /*package*/ final ConceptDescriptor myConceptMolecule = createDescriptorForMolecule();
   /*package*/ final ConceptDescriptor myConceptMoleculeDefinition = createDescriptorForMoleculeDefinition();
@@ -35,7 +31,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptNamedConstantReference = createDescriptorForNamedConstantReference();
   /*package*/ final ConceptDescriptor myConceptSignalPathway = createDescriptorForSignalPathway();
   /*package*/ final ConceptDescriptor myConceptSpace = createDescriptorForSpace();
-  /*package*/ final ConceptDescriptor myConceptSpikePathway = createDescriptorForSpikePathway();
   /*package*/ final ConceptDescriptor myConceptStage = createDescriptorForStage();
   /*package*/ final ConceptDescriptor myConceptStemCell = createDescriptorForStemCell();
   /*package*/ final EnumerationDescriptor myEnumerationConditionType = new EnumerationDescriptor_ConditionType();
@@ -58,7 +53,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptApoptosisPathway, myConceptCell, myConceptCheckGradientCondigion, myConceptCheckSignalCondition, myConceptCondition, myConceptConditionDistribution, myConceptConditionReducer, myConceptConditionWithFormula, myConceptDivisionPathway, myConceptDynamicMechanism, myConceptModelMechanism, myConceptMolecule, myConceptMoleculeDefinition, myConceptMoleculeDefinitionReference, myConceptMoleculeReference, myConceptNamedConstant, myConceptNamedConstantReference, myConceptSignalPathway, myConceptSpace, myConceptSpikePathway, myConceptStage, myConceptStemCell);
+    return Arrays.asList(myConceptApoptosisPathway, myConceptCell, myConceptCondition, myConceptConditionWithFormula, myConceptDynamicMechanism, myConceptGlobalParameters, myConceptModelMechanism, myConceptMolecule, myConceptMoleculeDefinition, myConceptMoleculeDefinitionReference, myConceptMoleculeReference, myConceptNamedConstant, myConceptNamedConstantReference, myConceptSignalPathway, myConceptSpace, myConceptStage, myConceptStemCell);
   }
 
   @Override
@@ -69,22 +64,14 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptApoptosisPathway;
       case LanguageConceptSwitch.Cell:
         return myConceptCell;
-      case LanguageConceptSwitch.CheckGradientCondigion:
-        return myConceptCheckGradientCondigion;
-      case LanguageConceptSwitch.CheckSignalCondition:
-        return myConceptCheckSignalCondition;
       case LanguageConceptSwitch.Condition:
         return myConceptCondition;
-      case LanguageConceptSwitch.ConditionDistribution:
-        return myConceptConditionDistribution;
-      case LanguageConceptSwitch.ConditionReducer:
-        return myConceptConditionReducer;
       case LanguageConceptSwitch.ConditionWithFormula:
         return myConceptConditionWithFormula;
-      case LanguageConceptSwitch.DivisionPathway:
-        return myConceptDivisionPathway;
       case LanguageConceptSwitch.DynamicMechanism:
         return myConceptDynamicMechanism;
+      case LanguageConceptSwitch.GlobalParameters:
+        return myConceptGlobalParameters;
       case LanguageConceptSwitch.ModelMechanism:
         return myConceptModelMechanism;
       case LanguageConceptSwitch.Molecule:
@@ -103,8 +90,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptSignalPathway;
       case LanguageConceptSwitch.Space:
         return myConceptSpace;
-      case LanguageConceptSwitch.SpikePathway:
-        return myConceptSpikePathway;
       case LanguageConceptSwitch.Stage:
         return myConceptStage;
       case LanguageConceptSwitch.StemCell:
@@ -144,22 +129,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.aggregate("mechanisms", 0x46c97db93e84d604L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e84b707L).optional(true).ordered(true).multiple(true).origin("5100746287545112068").done();
     return b.create();
   }
-  private static ConceptDescriptor createDescriptorForCheckGradientCondigion() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "CheckGradientCondigion", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd812817L);
-    b.class_(false, false, false);
-    b.super_("BCNNM_DSL.structure.ConditionWithFormula", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd814255L);
-    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263914007");
-    b.version(2);
-    return b.create();
-  }
-  private static ConceptDescriptor createDescriptorForCheckSignalCondition() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "CheckSignalCondition", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd812816L);
-    b.class_(false, false, false);
-    b.super_("BCNNM_DSL.structure.ConditionWithFormula", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd814255L);
-    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263914006");
-    b.version(2);
-    return b.create();
-  }
   private static ConceptDescriptor createDescriptorForCondition() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "Condition", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d10L);
     b.class_(false, true, false);
@@ -169,27 +138,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.property("type", 0x220b50389f37e25aL).type(MetaIdFactory.dataTypeId(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d0aL)).origin("2453142626152997466").done();
     return b.create();
   }
-  private static ConceptDescriptor createDescriptorForConditionDistribution() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "ConditionDistribution", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x197902dbd6380c3cL);
-    b.class_(false, false, false);
-    b.super_("BCNNM_DSL.structure.Condition", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d10L);
-    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/1835501466345278524");
-    b.version(2);
-    b.property("distribution", 0x197902dbd6380c3dL).type(PrimitiveTypeId.STRING).origin("1835501466345278525").done();
-    b.property("parameters", 0x197902dbd6380c3fL).type(PrimitiveTypeId.STRING).origin("1835501466345278527").done();
-    b.property("ligand", 0x197902dbd638b83cL).type(PrimitiveTypeId.STRING).origin("1835501466345322556").done();
-    return b.create();
-  }
-  private static ConceptDescriptor createDescriptorForConditionReducer() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "ConditionReducer", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d1aL);
-    b.class_(false, false, false);
-    b.super_("BCNNM_DSL.structure.Condition", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d10L);
-    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263870234");
-    b.version(2);
-    b.property("reduceRule", 0x5719c93ddd807d1bL).type(MetaIdFactory.dataTypeId(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d1dL)).origin("6276268823263870235").done();
-    b.aggregate("conditions", 0x5719c93ddd807d22L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d10L).optional(true).ordered(true).multiple(true).origin("6276268823263870242").done();
-    return b.create();
-  }
   private static ConceptDescriptor createDescriptorForConditionWithFormula() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "ConditionWithFormula", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd814255L);
     b.class_(false, false, false);
@@ -197,14 +145,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263920725");
     b.version(2);
     b.aggregate("formula", 0x46c97db93e834056L).target(0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, 0x76eb757dfbac2099L).optional(false).ordered(true).multiple(false).origin("5100746287545008214").done();
-    return b.create();
-  }
-  private static ConceptDescriptor createDescriptorForDivisionPathway() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "DivisionPathway", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd8120c9L);
-    b.class_(false, false, false);
-    b.super_("BCNNM_DSL.structure.SignalPathway", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d0fL);
-    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263912137");
-    b.version(2);
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForDynamicMechanism() {
@@ -218,6 +158,15 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.associate("baseMechanism", 0x46c97db93e84e665L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e8314a0L).optional(false).origin("5100746287545116261").done();
     b.associate("parameters", 0x46c97db93e84b70aL).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f448aa46L).optional(false).origin("5100746287545104138").done();
     b.aggregate("formula", 0x46c97db93e84b70eL).target(0xa48297046b1b4b3fL, 0x8122a4a2e6ac90ffL, 0x76eb757dfbac2099L).optional(false).ordered(true).multiple(false).origin("5100746287545104142").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForGlobalParameters() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "GlobalParameters", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5d892dceb2156728L);
+    b.class_(false, false, true);
+    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6739968683110917928");
+    b.version(2);
+    b.aggregate("constants", 0x5d892dceb2156729L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f4483a03L).optional(true).ordered(true).multiple(true).origin("6739968683110917929").done();
+    b.aggregate("molecules", 0x5d892dceb2165c53L).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f447b0c3L).optional(true).ordered(true).multiple(true).origin("6739968683110980691").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForModelMechanism() {
@@ -303,14 +252,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.aggregate("modelMechanisms", 0x46c97db93e8314adL).target(0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46c97db93e8314a0L).optional(true).ordered(true).multiple(true).origin("5100746287544997037").done();
     return b.create();
   }
-  private static ConceptDescriptor createDescriptorForSpikePathway() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "SpikePathway", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd8120c8L);
-    b.class_(false, false, false);
-    b.super_("BCNNM_DSL.structure.SignalPathway", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x5719c93ddd807d0fL);
-    b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263912136");
-    b.version(2);
-    return b.create();
-  }
   private static ConceptDescriptor createDescriptorForStage() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("BCNNM_DSL", "Stage", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x46aac9d4f447b0bdL);
     b.class_(false, false, false);
@@ -326,7 +267,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("BCNNM_DSL.structure.Cell", 0x9edcd71856d444c5L, 0xae868ea31c5d7fbbL, 0x3831396a57ca6a5dL);
     b.origin("r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668885031147");
     b.version(2);
-    b.property("divisionTime", 0x4a9dcbdb890a70fdL).type(PrimitiveTypeId.INTEGER).origin("5376677673907679485").done();
     b.alias("stemcell");
     return b.create();
   }

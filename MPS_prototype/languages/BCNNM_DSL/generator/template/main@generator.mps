@@ -20,6 +20,7 @@
         <child id="1137022507850" name="body" index="2VODD2" />
       </concept>
       <concept id="1070475926800" name="jetbrains.mps.baseLanguage.structure.StringLiteral" flags="nn" index="Xl_RD" />
+      <concept id="1068390468198" name="jetbrains.mps.baseLanguage.structure.ClassConcept" flags="ig" index="312cEu" />
       <concept id="1068580123155" name="jetbrains.mps.baseLanguage.structure.ExpressionStatement" flags="nn" index="3clFbF">
         <child id="1068580123156" name="expression" index="3clFbG" />
       </concept>
@@ -32,6 +33,10 @@
         <child id="1081773367579" name="rightExpression" index="3uHU7w" />
         <child id="1081773367580" name="leftExpression" index="3uHU7B" />
       </concept>
+      <concept id="1178549954367" name="jetbrains.mps.baseLanguage.structure.IVisible" flags="ng" index="1B3ioH">
+        <child id="1178549979242" name="visibility" index="1B3o_S" />
+      </concept>
+      <concept id="1146644602865" name="jetbrains.mps.baseLanguage.structure.PublicVisibility" flags="nn" index="3Tm1VV" />
     </language>
     <language id="479c7a8c-02f9-43b5-9139-d910cb22f298" name="jetbrains.mps.core.xml">
       <concept id="6666499814681515200" name="jetbrains.mps.core.xml.structure.XmlFile" flags="ng" index="2pMbU2">
@@ -185,6 +190,10 @@
     <node concept="3lhOvk" id="4r9vr$YxB9o" role="3lj3bC">
       <ref role="30HIoZ" to="1xcl:3wLemDnML_v" resolve="Space" />
       <ref role="3lhOvi" node="4r9vr$YxBEJ" resolve="map_Space" />
+    </node>
+    <node concept="3lhOvk" id="5Q9bsUM5lsT" role="3lj3bC">
+      <ref role="30HIoZ" to="1xcl:3wLemDnML_v" resolve="Space" />
+      <ref role="3lhOvi" node="5Q9bsUM5lsW" resolve="map_SpaceConditions" />
     </node>
   </node>
   <node concept="2pMbU2" id="4r9vr$YxBEJ">
@@ -806,6 +815,13 @@
           </node>
         </node>
       </node>
+    </node>
+  </node>
+  <node concept="312cEu" id="5Q9bsUM5lsW">
+    <property role="TrG5h" value="map_SpaceConditions" />
+    <node concept="3Tm1VV" id="5Q9bsUM5lsX" role="1B3o_S" />
+    <node concept="n94m4" id="5Q9bsUM5lsY" role="lGtFl">
+      <ref role="n9lRv" to="1xcl:3wLemDnML_v" resolve="Space" />
     </node>
   </node>
 </model>
