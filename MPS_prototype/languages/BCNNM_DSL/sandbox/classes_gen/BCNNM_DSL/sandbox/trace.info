@@ -2,7 +2,10 @@
 <debug-info version="2">
   <root nodeRef="r:6bcb3b44-32e3-46af-b334-30fc5dbf021b(BCNNM_DSL.sandbox)/5092104245164406833">
     <file name="map_Space.xml">
-      <unit id="5092104245164406833" at="1,0,4,12" name="BCNNM_DSL.sandbox.map_Space" />
+      <unit id="5092104245164406833" at="1,0,42,8" name="BCNNM_DSL.sandbox.map_Space" />
+    </file>
+    <file name="map_SpaceConditions.java">
+      <unit id="5092104245164406833" at="6,0,8,0" name="BCNNM_DSL.sandbox.map_SpaceConditions" />
     </file>
   </root>
 </debug-info>
