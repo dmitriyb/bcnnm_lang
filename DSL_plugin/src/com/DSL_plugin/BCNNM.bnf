@@ -1,0 +1,46 @@
+{
+  parserClass="com.DSL_plugin.parser.DSLParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="BCNNM"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.DSL_plugin.psi"
+  psiImplPackage="com.DSL_plugin.psi.impl"
+
+  elementTypeHolderClass="com.DSL_plugin.psi.DSLTypes"
+  elementTypeClass="com.DSL_plugin.psi.DSLElementType"
+  tokenTypeClass="com.DSL_plugin.psi.DSLTokenType"
+
+  tokens = [
+      IDENTIFIER = 'regexp:[a-zA-Z_][a-zA-Z0-9_]*'
+      WHITE_SPACE = 'regexp:\s+'
+      FLOAT_EXP = 'regexp:([-+]?\d*\.?\d+)(?:[eE]([-+]?\d+))?'
+      COMMENT_STRING = 'regexp:#.*'
+  ]
+}
+
+BDSLFile ::= 'define' CELL_TYPE 'cell' IDENTIFIER CELL_BLOCK
+
+CELL_TYPE ::= 'movable' | 'static'
+
+CELL_BLOCK ::= CONCENTRATIONS_BLOCK | CONSTANTS_BLOCK | COMPARTMENTS_BLOCK | CONDITIONS_BLOCK;
+
+NAMED_VALUE ::= IDENTIFIER ':' FLOAT_EXP (COMMENT_STRING?)
+
+COMPARTMENT ::= IDENTIFIER
+
+SINGLE_CONDITION ::= NAMED_VALUE
+
+CONCENTRATIONS_BLOCK ::= 'concentrations' ':' NAMED_VALUE*
+CONSTANTS_BLOCK ::= 'constants' ':' NAMED_VALUE*
+COMPARTMENTS_BLOCK ::= 'compartments' ':' COMPARTMENT
+CONDITIONS_BLOCK ::= 'conditions' ':' SINGLE_CONDITION*
+
+
+
+
+
+
+
+

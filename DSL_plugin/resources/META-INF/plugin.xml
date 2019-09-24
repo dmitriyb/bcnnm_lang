@@ -1,0 +1,34 @@
+<idea-plugin>
+  <id>com.your.company.unique.plugin.id</id>
+  <name>Plugin display name here</name>
+  <version>1.0</version>
+  <vendor email="vlad0922@yandex.ru" url="https://research.jetbrains.org/">JB Research</vendor>
+
+  <description><![CDATA[
+      DSL for BCBBM Framework
+    ]]></description>
+
+  <change-notes><![CDATA[
+        TODO
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation="com.DSL_plugin.DSLFileFactory"/>
+      <lang.parserDefinition language="BCNNMLanguage" implementationClass="com.DSL_plugin.DSLParserDefinition"/>
+      <completion.contributor language="BCNNMLanguage" implementationClass="com.DSL_plugin.BCNNMCompletionContributor"/>
+  </extensions>
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
