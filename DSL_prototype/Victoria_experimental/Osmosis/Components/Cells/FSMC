@@ -62,7 +62,7 @@ define immovable cell FSMC from AnimalCell #define frog sartorius muscle cell
 
             cyclic IntracellularOsmolarityChange(duration: 1000000) from Dynamic     #intracellular osmolarity change
                 parameters: (Os)
-                delta: delta(Na) + delta(K) - delta(Cl)
+                delta: ((- A / w / F) * (g_Na * (V - (R * T / F) * ln(Na_o / Na)) + n * p) - (1 / w * v_w * P_f * A * (Os - Os_o)) * Na) + ((- A / w / F) * (g_K * (V - (R * T / F) * ln(K_o / K)) - q * p) - (1 / w * v_w * P_f * A * (Os - Os_o)) * K) - ((A / w / F) * (g_Cl * (V - (R * T / F) * ln(Cl_o / Cl))) - (1 / w * v_w * P_f * A * (Os - Os_o)) * Cl)
 
             cyclic CellVolume(duration: 1000000) from Dynamic                      #cell volume change
                 parameters: (w)
