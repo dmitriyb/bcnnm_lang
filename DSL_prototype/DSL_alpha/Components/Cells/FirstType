@@ -24,17 +24,17 @@ define immovable cell FirstTypeCell from StemCell
             single SymmetricDivision(duration: 500) from Division
                 parameters: (_,_)
                 start on:
-                    SymmetricDivisionCondition
+                    <LogicalExpression>(SymmetricDivisionCondition)
 
             single ASymmetricDivision(duration: 500) from Division
                 parameters: (_,SecondTypeCell)
                 start on:
-                     ASymmetricDivisionCondition
+                     <LogicalExpression>(ASymmetricDivisionCondition)
 
             cyclic SpreadSymmetricFactor(duration: 250) from SpreadSignal
                 parameters: (FirstTypeFactor)
                 start on:
-                    FirstTypeFactorSpreadCondition
+                    <LogicalExpression>(FirstTypeFactorSpreadCondition)
 
 
         initial:

@@ -18,7 +18,7 @@ define immovable cell SecondTypeCell from StemCell
             cyclic SpreadASymmetricFactor(duration: 250) from SpreadSignal
                 parameters: (SecondTypeFactor)
                 start on:
-                    SecondTypeFactorSpreadCondition
+                    <LogicalExpression>(SecondTypeFactorSpreadCondition)
 
 
         initial:
