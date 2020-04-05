@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.18'
+}
+
+group 'org.intellij.sdk'
+version '2.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
+    }
+
+}
+
+test {
+    // This path value is machine-specific placeholder text.
+    // Set idea.home.path to the absolute path to the intellij-community source
+    // on your local machine.
+    systemProperty "idea.home.path", "/Users/vladka/projects/comm_src"
+}
+
+// Include the generated files in the source set
+sourceSets.main.java.srcDirs 'src/main/gen'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2019.3.4'
+    plugins 'java'
+    sameSinceUntilBuild = true
+}
+
+patchPluginXml {
+    version = project.version
+}

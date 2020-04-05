@@ -1,0 +1,6 @@
+rootProject.name = 'bcnnm_DSL_plugin'
+include 'java'
+include 'java'
+include 'jps-plugin'
+include 'src'
+

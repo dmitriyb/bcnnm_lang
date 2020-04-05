@@ -7,8 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef6e65c1-bec5-4598-8cc8-c1529fcd0194" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.mps/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mps/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.mps/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/languages/BCNNM_DSL/generator/template/main@generator.mps" beforeDir="false" afterPath="$PROJECT_DIR$/languages/BCNNM_DSL/generator/template/main@generator.mps" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +22,7 @@
         <TabState>
           <option name="title" value="Console" />
           <tab>
-            <model ref="cda45203-5aea-4485-a390-22640a72847a/r:7d885d3d-4054-4b0a-b19b-254bd73ff043(TempModulecda45203-5aea-4485-a390-22640a72847a/TempModel_136850200308020)">
+            <model ref="7da3895a-b4ac-47ec-a399-946e88d0c2ae/r:cefcbbfb-992a-4f3f-9fc3-4fb47e101a6f(TempModule7da3895a-b4ac-47ec-a399-946e88d0c2ae/TempModel_530669529424999)">
               <persistence version="9" />
               <languages>
                 <devkit ref="70d3d6da-af63-483d-a75f-9c8acf8de332(jetbrains.mps.console.devkit)" />
@@ -42,11 +42,11 @@
                   <concept id="757553790980850366" name="jetbrains.mps.console.base.structure.History" flags="ng" index="3balQm" />
                 </language>
               </registry>
-              <node concept="aymSD" id="3W8zmZ8bsZM">
-                <node concept="3balQm" id="3W8zmZ8bsZN" role="aymYE" />
-                <node concept="2Clz$F" id="3W8zmZ8bsZO" role="aymYO" />
-                <node concept="2_V_lH" id="3W8zmZ8bsZP" role="1PhJh3">
-                  <ref role="2_V_lI" node="3W8zmZ8bsZO" resolve="CommandHolder" />
+              <node concept="aymSD" id="5Myr1ioDCbk">
+                <node concept="3balQm" id="5Myr1ioDCbl" role="aymYE" />
+                <node concept="2Clz$F" id="5Myr1ioDCbm" role="aymYO" />
+                <node concept="2_V_lH" id="5Myr1ioDCbn" role="1PhJh3">
+                  <ref role="2_V_lI" node="5Myr1ioDCbm" resolve="CommandHolder" />
                 </node>
               </node>
             </model>
@@ -91,7 +91,7 @@
                 <foldable />
                 <restoreAlways />
               </memento>
-              <inspectorMemento currentlyEditedNode="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4542035735442477247" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+              <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
                 <selectionStack />
                 <errorMarkers />
                 <transactionalProperties />
@@ -105,18 +105,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.Zygote/GlobalParameters">
+        <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.Zygote/TestSpace">
           <provider selected="true" editor-type-id="MPSFileEditor">
             <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
               <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
                 <selectionStack>
                   <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
                     <property name="hasNonTrivialSelection" value="false" />
-                    <property name="caretX" value="119" />
+                    <property name="caretX" value="391" />
                     <property name="caretXRelative" value="8" />
                     <property name="sideSelectDirection" value="NONE" />
-                    <cellInfo cellId="constant_6">
-                      <node node_reference="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/1872637336423119591" />
+                    <cellInfo cellId="property_value">
+                      <node node_reference="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/6675016433432691427" />
                     </cellInfo>
                   </stackElement>
                 </selectionStack>
@@ -125,7 +125,7 @@
                 <foldable />
                 <restoreAlways />
               </memento>
-              <inspectorMemento currentlyEditedNode="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4542035735442477247" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+              <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
                 <selectionStack />
                 <errorMarkers />
                 <transactionalProperties />
@@ -137,19 +137,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.Zygote/TestSpace">
+      <file pinned="false" current-in-tab="false">
+        <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/NamedConstant">
           <provider selected="true" editor-type-id="MPSFileEditor">
-            <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
+            <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
               <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
                 <selectionStack>
                   <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
                     <property name="hasNonTrivialSelection" value="false" />
-                    <property name="caretX" value="535" />
-                    <property name="caretXRelative" value="0" />
+                    <property name="caretX" value="71" />
+                    <property name="caretXRelative" value="56" />
                     <property name="sideSelectDirection" value="NONE" />
-                    <cellInfo cellId="ALIAS_EDITOR_COMPONENT">
-                      <node node_reference="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4542035735442477247" />
+                    <cellInfo cellId="Constant_ueqr71_c0a">
+                      <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164390915" />
                     </cellInfo>
                   </stackElement>
                 </selectionStack>
@@ -158,7 +158,7 @@
                 <foldable />
                 <restoreAlways />
               </memento>
-              <inspectorMemento currentlyEditedNode="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4542035735442477247" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+              <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
                 <selectionStack />
                 <errorMarkers />
                 <transactionalProperties />
@@ -166,6 +166,182 @@
                 <restoreAlways />
                 <enabledHints />
               </inspectorMemento>
+              <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164390915" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/NamedConstantReference">
+          <provider selected="true" editor-type-id="MPSFileEditor">
+            <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+              <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack>
+                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                    <property name="hasNonTrivialSelection" value="false" />
+                    <property name="caretX" value="99" />
+                    <property name="caretXRelative" value="24" />
+                    <property name="sideSelectDirection" value="NONE" />
+                    <cellInfo cellId="property_name">
+                      <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545162854" />
+                    </cellInfo>
+                  </stackElement>
+                </selectionStack>
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+              </memento>
+              <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack />
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+                <enabledHints />
+              </inspectorMemento>
+              <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545162853" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/Cell">
+          <provider selected="true" editor-type-id="MPSFileEditor">
+            <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+              <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack>
+                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                    <property name="hasNonTrivialSelection" value="false" />
+                    <property name="caretX" value="15" />
+                    <property name="caretXRelative" value="0" />
+                    <property name="sideSelectDirection" value="NONE" />
+                    <cellInfo cellId="Constant_ueqr71_d0">
+                      <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" />
+                    </cellInfo>
+                  </stackElement>
+                </selectionStack>
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+              </memento>
+              <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack />
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+                <enabledHints />
+              </inspectorMemento>
+              <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mps://node://BCNNM_DSL#01/main@generator/main">
+          <provider selected="true" editor-type-id="MPSFileEditor">
+            <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
+              <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack>
+                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                    <property name="hasNonTrivialSelection" value="false" />
+                    <property name="caretX" value="297" />
+                    <property name="caretXRelative" value="24" />
+                    <property name="sideSelectDirection" value="NONE" />
+                    <cellInfo cellId="templateName">
+                      <node node_reference="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/5100746287545217624" />
+                    </cellInfo>
+                  </stackElement>
+                </selectionStack>
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable>
+                  <collapsedElement isCollapsed="false">
+                    <cellIdElement cellId="refNodeList_dropAttrubuteRule">
+                      <node node_reference="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/4049080668884986453" />
+                    </cellIdElement>
+                  </collapsedElement>
+                </foldable>
+                <restoreAlways />
+              </memento>
+              <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack />
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+                <enabledHints />
+              </inspectorMemento>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/Space">
+          <provider selected="true" editor-type-id="MPSFileEditor">
+            <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+              <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack>
+                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                    <property name="hasNonTrivialSelection" value="false" />
+                    <property name="caretX" value="31" />
+                    <property name="caretXRelative" value="0" />
+                    <property name="sideSelectDirection" value="NONE" />
+                    <cellInfo cellId="Constant_s96plr_a">
+                      <node node_reference="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/4924805476352118008" />
+                    </cellInfo>
+                  </stackElement>
+                </selectionStack>
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+              </memento>
+              <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack />
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+                <enabledHints />
+              </inspectorMemento>
+              <node node_ref="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/6739968683110913852" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/GlobalParameters">
+          <provider selected="true" editor-type-id="MPSFileEditor">
+            <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+              <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack>
+                  <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                    <property name="hasNonTrivialSelection" value="false" />
+                    <property name="caretX" value="315" />
+                    <property name="caretXRelative" value="8" />
+                    <property name="sideSelectDirection" value="NONE" />
+                    <cellInfo cellId="Constant_6h6dhy_e2a">
+                      <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6739968683110980691" />
+                    </cellInfo>
+                  </stackElement>
+                </selectionStack>
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+              </memento>
+              <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+                <selectionStack />
+                <errorMarkers />
+                <transactionalProperties />
+                <foldable />
+                <restoreAlways />
+                <enabledHints />
+              </inspectorMemento>
+              <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6739968683110917928" />
             </state>
           </provider>
         </entry>
@@ -272,25 +448,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="FileSystem" />
+      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="41944a12-5498-426f-9f56-d70de2e1579a" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Project" />
@@ -311,6 +471,72 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="41944a12-5498-426f-9f56-d70de2e1579a" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BCNNM_DSL" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote) in IdeaFile[file://C:/projects/bcnnm_lang/MPS_prototype/languages/BCNNM_DSL/sandbox/models/BCNNM_DSL.sandbox.Zygote.mps]" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="9edcd718-56d4-44c5-ae86-8ea31c5d7fbb(BCNNM_DSL)" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BCNNM_DSL#01" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator) in IdeaFile[file://C:/projects/bcnnm_lang/MPS_prototype/languages/BCNNM_DSL/generator/template/main@generator.mps]" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="41944a12-5498-426f-9f56-d70de2e1579a" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="41944a12-5498-426f-9f56-d70de2e1579a" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BCNNM_DSL" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Project" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="9edcd718-56d4-44c5-ae86-8ea31c5d7fbb(BCNNM_DSL)" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -321,29 +547,11 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="41944a12-5498-426f-9f56-d70de2e1579a" />
+              <option name="myItemId" value="9edcd718-56d4-44c5-ae86-8ea31c5d7fbb(BCNNM_DSL)" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BCNNM_DSL" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote) in IdeaFile[file://C:/projects/bcnnm_lang/MPS_prototype/languages/BCNNM_DSL/sandbox/models/BCNNM_DSL.sandbox.Zygote.mps]" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Project" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="41944a12-5498-426f-9f56-d70de2e1579a" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BCNNM_DSL" />
+              <option name="myItemId" value="BCNNM_DSL#01" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
@@ -353,25 +561,25 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="41944a12-5498-426f-9f56-d70de2e1579a" />
+              <option name="myItemId" value="9edcd718-56d4-44c5-ae86-8ea31c5d7fbb(BCNNM_DSL)" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BCNNM_DSL" />
+              <option name="myItemId" value="BCNNM_DSL#01" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote) in IdeaFile[file://C:/projects/bcnnm_lang/MPS_prototype/languages/BCNNM_DSL/sandbox/models/BCNNM_DSL.sandbox.Zygote.mps]" />
+              <option name="myItemId" value="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator) in IdeaFile[file://C:/projects/bcnnm_lang/MPS_prototype/languages/BCNNM_DSL/generator/template/main@generator.mps]" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="1872637336423119592" />
+              <option name="myItemId" value="6739968683110913852" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </SELECTED>
         </subPane>
       </pane>
-      <pane id="Favorites" />
+      <pane id="FileSystem" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -400,7 +608,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.23933902" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.24466951" />
       <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.19669509" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -508,43 +716,6 @@
             <enabledHints />
           </inspectorMemento>
           <node node_ref="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/5760966584270692066" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="mps://node://BCNNM_DSL#01/main@generator/main">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
-          <memento saveSessionState="false" viewPositionX="0" viewPositionY="7">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="361" />
-                <property name="caretXRelative" value="88" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="templateName">
-                  <node node_reference="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/6739968683110913849" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable>
-              <collapsedElement isCollapsed="false">
-                <cellIdElement cellId="refNodeList_dropAttrubuteRule">
-                  <node node_reference="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/4049080668884986453" />
-                </cellIdElement>
-              </collapsedElement>
-            </foldable>
-            <restoreAlways />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6276268823263914007" saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-            <enabledHints />
-          </inspectorMemento>
         </state>
       </provider>
     </entry>
@@ -680,38 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/NamedConstant">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
-          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="71" />
-                <property name="caretXRelative" value="56" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="Constant_ueqr71_c0a">
-                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164390915" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545104135" saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-            <enabledHints />
-          </inspectorMemento>
-          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164390915" />
-        </state>
-      </provider>
-    </entry>
     <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/SpikePathway" />
     <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/Stage">
       <provider selected="true" editor-type-id="MPSFileEditor">
@@ -776,74 +915,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/NamedConstantReference">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
-          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="71" />
-                <property name="caretXRelative" value="56" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="Constant_ueqr71_c0a">
-                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545162853" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545011845" saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-            <enabledHints />
-          </inspectorMemento>
-          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545162853" />
-        </state>
-      </provider>
-    </entry>
     <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/CheckGradientCondigion" />
     <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/CheckSignalCondition" />
     <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/ConditionDistribution" />
     <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/DivisionPathway" />
-    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/Space">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
-          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="179" />
-                <property name="caretXRelative" value="8" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="property_name">
-                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668885031268" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:a6de4fb4-ab44-4861-82a6-d3f54b9bd8db(BCNNM_DSL.editor)/5100746287545015465" saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-            <enabledHints />
-          </inspectorMemento>
-          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668885031263" />
-        </state>
-      </provider>
-    </entry>
     <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/StemCell">
       <provider selected="true" editor-type-id="MPSFileEditor">
         <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
@@ -908,70 +983,6 @@
             <enabledHints />
           </inspectorMemento>
           <node node_ref="r:a6de4fb4-ab44-4861-82a6-d3f54b9bd8db(BCNNM_DSL.editor)/5100746287545116125" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/Cell">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
-          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="183" />
-                <property name="caretXRelative" value="32" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="name">
-                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-            <enabledHints />
-          </inspectorMemento>
-          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/GlobalParameters">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
-          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="315" />
-                <property name="caretXRelative" value="8" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="Constant_6h6dhy_e2a">
-                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6739968683110980691" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6739968683110980691" saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-            <enabledHints />
-          </inspectorMemento>
-          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6739968683110917928" />
         </state>
       </provider>
     </entry>
@@ -1075,38 +1086,7 @@
     <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.SofiaModel/SofiaModel" />
     <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.ZygoteModel/&lt;no name&gt;[Space]" />
     <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.ZygoteModel/GlobalParameters" />
-    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/ModelMechanism">
-      <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
-          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack>
-              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
-                <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="31" />
-                <property name="caretXRelative" value="0" />
-                <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="Constant_ueqr71_h1c0">
-                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287544997024" />
-                </cellInfo>
-              </stackElement>
-            </selectionStack>
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-          </memento>
-          <inspectorMemento currentlyEditedNode="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4542035735442477247" saveSessionState="false" viewPositionX="0" viewPositionY="0">
-            <selectionStack />
-            <errorMarkers />
-            <transactionalProperties />
-            <foldable />
-            <restoreAlways />
-            <enabledHints />
-          </inspectorMemento>
-          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287544997024" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.Zygote/&lt;no name&gt;[Space]" />
     <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.Zygote/GlobalParameters">
       <provider selected="true" editor-type-id="MPSFileEditor">
         <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
@@ -1127,7 +1107,7 @@
             <foldable />
             <restoreAlways />
           </memento>
-          <inspectorMemento currentlyEditedNode="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4542035735442477247" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+          <inspectorMemento currentlyEditedNode="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4924805476352100573" saveSessionState="false" viewPositionX="0" viewPositionY="0">
             <selectionStack />
             <errorMarkers />
             <transactionalProperties />
@@ -1138,18 +1118,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.Zygote/&lt;no name&gt;[Space]">
+    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/ModelMechanism">
       <provider selected="true" editor-type-id="MPSFileEditor">
-        <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
+        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
           <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
             <selectionStack>
               <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
                 <property name="hasNonTrivialSelection" value="false" />
-                <property name="caretX" value="535" />
+                <property name="caretX" value="31" />
                 <property name="caretXRelative" value="0" />
                 <property name="sideSelectDirection" value="NONE" />
-                <cellInfo cellId="ALIAS_EDITOR_COMPONENT">
-                  <node node_reference="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4542035735442477247" />
+                <cellInfo cellId="Constant_ueqr71_h1c0">
+                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287544997024" />
                 </cellInfo>
               </stackElement>
             </selectionStack>
@@ -1158,7 +1138,7 @@
             <foldable />
             <restoreAlways />
           </memento>
-          <inspectorMemento currentlyEditedNode="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/4542035735442477247" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
             <selectionStack />
             <errorMarkers />
             <transactionalProperties />
@@ -1166,6 +1146,235 @@
             <restoreAlways />
             <enabledHints />
           </inspectorMemento>
+          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287544997024" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/Space">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="31" />
+                <property name="caretXRelative" value="0" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="Constant_s96plr_a">
+                  <node node_reference="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/4924805476352118008" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+            <enabledHints />
+          </inspectorMemento>
+          <node node_ref="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/6739968683110913852" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/GlobalParameters">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="315" />
+                <property name="caretXRelative" value="8" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="Constant_6h6dhy_e2a">
+                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6739968683110980691" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+            <enabledHints />
+          </inspectorMemento>
+          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/6739968683110917928" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://BCNNM_DSL#01/main@generator/main">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
+          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="297" />
+                <property name="caretXRelative" value="24" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="templateName">
+                  <node node_reference="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/5100746287545217624" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable>
+              <collapsedElement isCollapsed="false">
+                <cellIdElement cellId="refNodeList_dropAttrubuteRule">
+                  <node node_reference="r:441a19d2-b78d-4259-a204-3330fffa702a(main@generator)/4049080668884986453" />
+                </cellIdElement>
+              </collapsedElement>
+            </foldable>
+            <restoreAlways />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+            <enabledHints />
+          </inspectorMemento>
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://BCNNM_DSL.sandbox/BCNNM_DSL.sandbox.Zygote/TestSpace">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editor.BaseNodeEditor$BaseEditorState">
+          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="391" />
+                <property name="caretXRelative" value="8" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="property_value">
+                  <node node_reference="r:0e91879d-dde6-42e6-b680-c29131ba598f(BCNNM_DSL.sandbox.Zygote)/6675016433432691427" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+            <enabledHints />
+          </inspectorMemento>
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/NamedConstant">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="71" />
+                <property name="caretXRelative" value="56" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="Constant_ueqr71_c0a">
+                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164390915" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+            <enabledHints />
+          </inspectorMemento>
+          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5092104245164390915" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/NamedConstantReference">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="99" />
+                <property name="caretXRelative" value="24" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="property_name">
+                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545162854" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+            <enabledHints />
+          </inspectorMemento>
+          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/5100746287545162853" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="mps://node://BCNNM_DSL/BCNNM_DSL.structure/Cell">
+      <provider selected="true" editor-type-id="MPSFileEditor">
+        <state class="jetbrains.mps.ide.editor.tabs.TabbedEditor$TabbedEditorState">
+          <memento saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack>
+              <stackElement className="jetbrains.mps.nodeEditor.selection.EditorCellLabelSelection">
+                <property name="hasNonTrivialSelection" value="false" />
+                <property name="caretX" value="15" />
+                <property name="caretXRelative" value="0" />
+                <property name="sideSelectDirection" value="NONE" />
+                <cellInfo cellId="Constant_ueqr71_d0">
+                  <node node_reference="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" />
+                </cellInfo>
+              </stackElement>
+            </selectionStack>
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+          </memento>
+          <inspectorMemento currentlyEditedNode="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" saveSessionState="false" viewPositionX="0" viewPositionY="0">
+            <selectionStack />
+            <errorMarkers />
+            <transactionalProperties />
+            <foldable />
+            <restoreAlways />
+            <enabledHints />
+          </inspectorMemento>
+          <node node_ref="r:05aa5abd-b9a0-4735-80a0-d81e014acc83(BCNNM_DSL.structure)/4049080668884986461" />
         </state>
       </provider>
     </entry>

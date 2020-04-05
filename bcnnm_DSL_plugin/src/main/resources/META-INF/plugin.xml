@@ -1,0 +1,27 @@
+<idea-plugin>
+    <id>org.example.bcnnm_DSL_plugin</id>
+    <name>DSL for BCNNM configuration files</name>
+    <vendor email="test@test.com" url="http://www.yourcompany.com">BCNNM</vendor>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="BCNNM configuration file" implementationClass="com.synstorm.language.BCNNMFileType"
+                  fieldName="INSTANCE" language="BCNNM" extensions="simple"/>
+        <lang.parserDefinition language="BCNNM"
+                               implementationClass="com.synstorm.language.BCNNMParserDefinition"/>
+    </extensions>
+
+
+    <description>DSL for BCNNM configuration files to simplify its develop</description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>

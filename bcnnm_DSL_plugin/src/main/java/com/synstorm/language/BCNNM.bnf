@@ -1,0 +1,39 @@
+{
+  parserClass="com.synstorm.language.parser.BCNNMParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="BCNNM"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.synstorm.language.psi"
+  psiImplPackage="com.synstorm.language.psi.impl"
+
+  elementTypeHolderClass="com.synstorm.language.psi.BCNNMTypes"
+  elementTypeClass="com.synstorm.language.psi.BCNNMElementType"
+  tokenTypeClass="com.synstorm.language.psi.BCNNMTokenType"
+
+  psiImplUtilClass="com.synstorm.language.psi.impl.BCNNMPsiImplUtil"
+}
+
+//simpleFile ::= item_*
+//
+//private item_ ::= (property|COMMENT|CRLF)
+//
+//property ::= (KEY? SEPARATOR VALUE?) | KEY
+
+BDSLFile ::= 'define' CELL_TYPE 'cell' IDENTIFIER CELL_BLOCK
+
+CELL_TYPE ::= 'movable' | 'static'
+
+CELL_BLOCK ::= CONCENTRATIONS_BLOCK | CONSTANTS_BLOCK | COMPARTMENTS_BLOCK | CONDITIONS_BLOCK;
+
+NAMED_VALUE ::= IDENTIFIER ':' FLOAT_EXP (COMMENT_STRING?)
+
+COMPARTMENT ::= IDENTIFIER
+
+SINGLE_CONDITION ::= NAMED_VALUE
+
+CONCENTRATIONS_BLOCK ::= 'concentrations' ':' NAMED_VALUE*
+CONSTANTS_BLOCK ::= 'constants' ':' NAMED_VALUE*
+COMPARTMENTS_BLOCK ::= 'compartments' ':' COMPARTMENT
+CONDITIONS_BLOCK ::= 'conditions' ':' SINGLE_CONDITION*
