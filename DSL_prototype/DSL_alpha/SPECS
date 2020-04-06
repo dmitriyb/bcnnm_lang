@@ -1,0 +1,146 @@
+% Haskell
+
+SpecsNotation
+	# commentary
+	:: имя объекта, либо объявление внутренней структуры
+	-> входные и возвращаемые значения
+	>> наследование
+	[] стандартные действия, например, getter, setter, constructor_arg
+	{} в наличии нестандартные, определённые в модели действия
+	$ список
+	$$ мапа
+	@ ссылка на существующий объект
+TechnicalWords
+	internal = переменная используется для внутренних целей и ограничено мапится на конфиг
+	external = переменная является отображением внешней конфигурации
+	required = обязательная переменная
+Glossary
+	DES - discrete event system, где происходит обработка событий
+	Event / Событие - элементарный объект, с которым работает DES
+	Response - объект, возвращаемый DES как результат обработки события
+	LogicObject / логический объект - объект симуляции
+	Condition / условие - логическое выражение, от выполнения которого зависит запуск конкретной функции
+	Shell - специальный тип логического объекта, содержит в себе структуру Space. Объявляется в единственном экземпляре
+	MechanismDispatcher - диспетчер механизмов. Для каждого объекта свой. Содержит сопоставления механизмов и условий их исполнения, запускает и останавливает механизмы
+
+
+
+
+
+class Individual :: 
+	# Этот класс содержит все нужные данные по особи
+	# и о том, как её вычислять
+	variables ::
+		internal UUID :: uuid [getter, constructor_arg]
+		required external LogicObject>>Shell :: shell {}
+			# содержит всю машинерию специального объекта Shell 
+		required internal $$<Int, LogicObject> :: indLObjects [standard_map_interfaces]
+			# содержит актуальный список объектов особи во время моделирования
+		required internal @ModelConfig :: modelConfig {}
+			# содержит отображение конфигурации модели на внутренние сущности
+		required internal @EventsDispatcher :: eventsDispatcher {}
+			# компонент DES, используется для работы с эвентами
+		required internal Long :: nextTick
+		required internal @IndividualStatistics :: individualStatistics {}
+			# нужен для сохранения статистик
+
+	methods :: 
+		calculateState -> void -> void :: 
+		proceedSpatialResponces -> $IEventResponse -> $$<Int, List<ICondition>> ::
+			# обработка всех возможных событий из Space
+		unifyStateConditions -> $$<Int, List<ICondition>> -> $$<Int, List<ICondition>> -> $$<Int, List<ICondition>> ::
+			# объединяет коллекции изменённых кондишенов по объектам
+
+class LogicObject :: 
+	# сущность логического объекта хранит 
+	variables :: 
+		required internal Int :: objectId [getter, constructor_arg]
+		required internal Int :: parentId [getter, constructor_arg]
+		required internal Int :: type [constructor_arg]
+		required external $Int :: signals 
+		required internal @Shell :: spaceShell
+		required MechanismDispatcher :: mechanismDispatcher
+	methods ::
+		calculateConditions -> $ICondition -> $ModelEvent 
+		updateConditions -> Int -> Double -> ConditionType -> $ICondition
+
+class MechanismDispatcher ::
+	variables ::
+		required external $$<ICondition, $Mechanism> :: conditionsToMechanismMap [keyset_getter]
+		required external $$<Mechanism, $ICondition> :: mechanismToConditionMap
+	methods :: 
+		addMechanism -> Mechanism -> $ICondition -> void 
+		evaluate -> $ICondition -> $ModelEvent
+
+class Mechanism ::
+	variables :: 
+		required internal ModelEvent :: modelEvent [getter]
+	methods :: 
+		execute -> void -> IEventResponse
+
+enum ConditionType: 
+	OUTER_CHEM(0)
+    INNER_CHEM(1)
+    MATH(2)
+
+interface ICondition :: 
+	methods ::
+		getConditionType -> void -> ConditionType
+
+interface IMathCondition ::
+	methods :: 
+		recalculate -> $Int _coordinates_ -> void
+
+interface IChemCondition ::
+	methods ::
+		getChemicalCondition -> void -> IGeneratedChemicalCondition
+		getLigand -> void -> Int
+		recalculate -> void -> Boolean
+		getStatus -> void -> Boolean
+
+interface IGeneratedChemicalCondition :: 
+	# todo: этот интерфейс должен быть пересмотрен
+	# его должен имплементировать сгенерированный класс химического условия
+	methods ::
+		getLigand -> void -> Int
+		recalculate -> void -> Boolean
+		updateConcentration -> Double -> void
+
+class GradientCondition implements IMathCondition ::
+	variables :: 
+		required internal Int :: status [getter]
+		required external Boolean :: gradient [getter]
+			# вычисляем по градиенту или против? 
+		required external Int :: ligandId
+	methods ::
+		recalculate -> $Int _coordinates_ -> void
+		getConditionType -> void -> ConditionType.MATH
+
+class ConcentrationCondition implements IChemCondition ::
+	variables :: 
+		required external IGeneratedChemicalCondition :: getChemicalCondition [getter]
+		required internal ConditionType :: conditionType [getter]
+		required internal Double :: currentConcentration [getter, setter]
+		required internal Boolean :: status [getter]
+	methods ::
+		updateConcentration -> Double -> void
+			# todo: пересмотреть поведение: здесь реализовано обновление внутренней переменной 
+			# concentration через передачу дельты. Но если мы отдаём текущие значения концентрации
+			# в объект, то такая конструкция не валидна. Можно обойтись простым сеттером.
+		recalculate -> void -> Boolean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
