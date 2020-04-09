@@ -106,26 +106,28 @@ interface IChemCondition ::
 interface IGeneratedChemicalCondition :: # <- should be unified with IChemCondition
 	# todo: этот интерфейс должен быть пересмотрен
 	# его должен имплементировать сгенерированный класс химического условия
+	# if we want to update concentations from a condition, we need a reference to Shell
 	methods ::
 		getLigand -> void -> Int
 		recalculate -> void -> Boolean
-		updateConcentration -> Double -> void
+		updateConcentration -> Double -> void 
 
 class GradientCondition implements IMathCondition :: # <- maybe we should do this with Mechanism instead of Condition?
 	variables :: 
 		required internal Int :: status [getter]
 		required external Boolean :: gradient [getter]
-			# вычисляем по градиенту или против? 
+			# вычисляем по градиенту или против?
+			# ощущение что мы можем заменить это на коэффициент какой-нибудь
 		required external Int :: ligandId
 	methods ::
-		recalculate -> $Int _coordinates_ -> void
+		recalculate -> $Int _coordinates_ -> void # возвщащаем boolean аналогично с другими условиями
 		getConditionType -> void -> ConditionType.MATH
 
 class ConcentrationCondition implements IChemCondition ::
 	variables :: 
 		required external IGeneratedChemicalCondition :: getChemicalCondition [getter]
 		required internal ConditionType :: conditionType [getter]
-		required internal Double :: currentConcentration [getter, setter]
+		required internal Double :: currentConcentration [getter, setter] # не совсем понятно, мы повесим условия на каждую клетку пространства?
 		required internal Boolean :: status [getter]
 	methods ::
 		updateConcentration -> Double -> void
