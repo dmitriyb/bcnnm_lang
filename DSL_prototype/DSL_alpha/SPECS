@@ -36,7 +36,7 @@ class Individual ::
 			# содержит всю машинерию специального объекта Shell 
 		required internal $$<Int, LogicObject> :: indLObjects [standard_map_interfaces]
 			# содержит актуальный список объектов особи во время моделирования
-		required internal @ModelConfig :: modelConfig {}
+		required internal @ModelConfig :: modelConfig {} # <- this is entry point for linkage
 			# содержит отображение конфигурации модели на внутренние сущности
 		required internal @EventsDispatcher :: eventsDispatcher {}
 			# компонент DES, используется для работы с эвентами
@@ -74,9 +74,14 @@ class MechanismDispatcher ::
 
 class Mechanism ::
 	variables :: 
-		required internal ModelEvent :: modelEvent [getter]
+		required external MechanismParameters :: [constructor_arg]
+		required internal ModelEvent :: modelEvent [getter] # <- no getter, we have execute here
 	methods :: 
 		execute -> void -> IEventResponse
+
+class MechanismParameters ::
+	variables ::
+		required external $$<Int<Any>> :: parameters [getter, constructor_arg]
 
 enum ConditionType: 
 	OUTER_CHEM(0)
@@ -89,7 +94,7 @@ interface ICondition ::
 
 interface IMathCondition ::
 	methods :: 
-		recalculate -> $Int _coordinates_ -> void
+		recalculate -> $Int _coordinates_ -> void # <- return type should be Boolean
 
 interface IChemCondition ::
 	methods ::
@@ -98,7 +103,7 @@ interface IChemCondition ::
 		recalculate -> void -> Boolean
 		getStatus -> void -> Boolean
 
-interface IGeneratedChemicalCondition :: 
+interface IGeneratedChemicalCondition :: # <- should be unified with IChemCondition
 	# todo: этот интерфейс должен быть пересмотрен
 	# его должен имплементировать сгенерированный класс химического условия
 	methods ::
@@ -106,7 +111,7 @@ interface IGeneratedChemicalCondition ::
 		recalculate -> void -> Boolean
 		updateConcentration -> Double -> void
 
-class GradientCondition implements IMathCondition ::
+class GradientCondition implements IMathCondition :: # <- maybe we should do this with Mechanism instead of Condition?
 	variables :: 
 		required internal Int :: status [getter]
 		required external Boolean :: gradient [getter]
