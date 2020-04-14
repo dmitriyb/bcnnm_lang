@@ -8,7 +8,7 @@ define movable cell NeuralProgenitorCell from StemCell
 
     conditions: // conditionSets
         NPCApoptizeCondition: //condition set
-            receptor 5HT2a is active //atomic condition
+            receptor 5HT2a[5HT:0.4] is active //atomic condition
             mechanism NPCFSpread is active //atomic condition
             molecule NSCF is in [0, 0,01) //atomic condition
 
