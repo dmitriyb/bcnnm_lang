@@ -46,9 +46,9 @@ class Individual ::
 
 	methods :: 
 		calculateState -> void -> void :: 
-		proceedSpatialResponces -> $IEventResponse -> $$<Int, List<ICondition>> ::
+		proceedSpatialResponses -> $IEventResponse -> $$<Int, $<ICondition>> ::
 			# обработка всех возможных событий из Space
-		unifyStateConditions -> $$<Int, List<ICondition>> -> $$<Int, List<ICondition>> -> $$<Int, List<ICondition>> ::
+		unifyStateConditions -> $$<Int, $<ICondition>> -> $$<Int, List<ICondition>> -> $$<Int, $<ICondition>> ::
 			# объединяет коллекции изменённых кондишенов по объектам
 
 class LogicObject :: 
@@ -75,79 +75,32 @@ class MechanismDispatcher ::
 class Mechanism ::
 	variables :: 
 		required external MechanismParameters :: [constructor_arg]
-		required internal ModelEvent :: modelEvent [getter] # <- no getter, we have execute here
+		required internal ModelEvent :: modelEvent
 	methods :: 
 		execute -> void -> IEventResponse
 
 class MechanismParameters ::
 	variables ::
-		required external $$<Int<Any>> :: parameters [getter, constructor_arg]
+		required external $$<Int, Any> :: parameters [getter, constructor_arg]
 
 enum ConditionType: 
-	OUTER_CHEM(0)
-    INNER_CHEM(1)
-    MATH(2)
+	OUTER_CHEM
+    INNER_CHEM
 
 interface ICondition :: 
 	methods ::
 		getConditionType -> void -> ConditionType
-
-interface IMathCondition ::
-	methods :: 
-		recalculate -> $Int _coordinates_ -> void # <- return type should be Boolean
+		recalculate -> void -> Boolean # when we generate class in dsl this method must contain calculation of condition
 
 interface IChemCondition ::
 	methods ::
-		getChemicalCondition -> void -> IGeneratedChemicalCondition
-		getLigand -> void -> Int
-		recalculate -> void -> Boolean
-		getStatus -> void -> Boolean
+		getSignalType -> void -> Int
+		setSignalValue -> Double -> void
 
-interface IGeneratedChemicalCondition :: # <- should be unified with IChemCondition
-	# todo: этот интерфейс должен быть пересмотрен
-	# его должен имплементировать сгенерированный класс химического условия
-	# if we want to update concentations from a condition, we need a reference to Shell
+abstract class ChemicalCondition implements IChemCondition ::
+	variables ::
+		required internal ConditionType :: conditionType [getter, constructor_arg]
+		required internal Double :: signalValue [getter, setter] # не совсем понятно, мы повесим условия на каждую клетку пространства?
 	methods ::
-		getLigand -> void -> Int
+		setConcentration -> Double -> void
 		recalculate -> void -> Boolean
-		updateConcentration -> Double -> void 
-
-class GradientCondition implements IMathCondition :: # <- maybe we should do this with Mechanism instead of Condition?
-	variables :: 
-		required internal Int :: status [getter]
-		required external Boolean :: gradient [getter]
-			# вычисляем по градиенту или против?
-			# ощущение что мы можем заменить это на коэффициент какой-нибудь
-		required external Int :: ligandId
-	methods ::
-		recalculate -> $Int _coordinates_ -> void # возвщащаем boolean аналогично с другими условиями
-		getConditionType -> void -> ConditionType.MATH
-
-class ConcentrationCondition implements IChemCondition ::
-	variables :: 
-		required external IGeneratedChemicalCondition :: getChemicalCondition [getter]
-		required internal ConditionType :: conditionType [getter]
-		required internal Double :: currentConcentration [getter, setter] # не совсем понятно, мы повесим условия на каждую клетку пространства?
-		required internal Boolean :: status [getter]
-	methods ::
-		updateConcentration -> Double -> void
-			# todo: пересмотреть поведение: здесь реализовано обновление внутренней переменной 
-			# concentration через передачу дельты. Но если мы отдаём текущие значения концентрации
-			# в объект, то такая конструкция не валидна. Можно обойтись простым сеттером.
-		recalculate -> void -> Boolean
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
