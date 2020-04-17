@@ -92,15 +92,12 @@ interface ICondition ::
 		getConditionType -> void -> ConditionType
 		recalculate -> void -> Boolean # when we generate class in dsl this method must contain calculation of condition
 
-interface IChemCondition ::
+interface IChemCondition >> ICondition ::
 	methods ::
 		getSignalType -> void -> Int
 		setSignalValue -> Double -> void
 
-abstract class ChemicalCondition implements IChemCondition ::
+abstract class ChemicalCondition >> IChemCondition ::
 	variables ::
 		required internal ConditionType :: conditionType [getter, constructor_arg]
-		required internal Double :: signalValue [getter, setter] # не совсем понятно, мы повесим условия на каждую клетку пространства?
-	methods ::
-		setConcentration -> Double -> void
-		recalculate -> void -> Boolean
+		required internal Double :: signalValue [getter, setter]
