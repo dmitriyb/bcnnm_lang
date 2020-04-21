@@ -1,16 +1,4 @@
-abstract class ICondition
-{
-    public ICondition() {}
-
-    public ICondition(ConditionType type)
-    {
-        this.type = type;
-    }
-
-    public ConditionType getConditionType()
-    {
-        return this.type;
-    }
-
-    private ConditionType type;
+public interface ICondition {
+    ConditionType getConditionType();
+    boolean recalculate();
 }
