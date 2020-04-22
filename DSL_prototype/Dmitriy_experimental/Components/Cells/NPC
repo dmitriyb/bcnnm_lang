@@ -19,6 +19,7 @@ define movable cell NeuralProgenitorCell from StemCell
             molecule ApF   is in [1, infinity)
 
         NPCDivideSet:
+            junctions J1   is in [8, 8]
             molecule NSCF  is in (0.05, infinity)
 
         NPCDifferentiateSet:
@@ -28,7 +29,8 @@ define movable cell NeuralProgenitorCell from StemCell
     mechanisms:     # all mechanisms are cyclic while allowed section is satisfied
         NPCDivide(duration: 100) from Divide
             parameters:
-                (_, _)
+                type:       (_, _)
+                direction:  (J1, Any)
             allowed while:
                 NPCDivideSet
             restricted while:
