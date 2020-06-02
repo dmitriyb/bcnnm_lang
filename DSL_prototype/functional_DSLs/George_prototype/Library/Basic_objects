@@ -1,0 +1,27 @@
+Space:
+    Topology: cube
+    Size: 100
+
+    Possible_mechanisms:
+        Space_diffusion
+        Dynamic
+
+Abstract_cell:
+    Possible_mechanisms:
+        Division
+        Differentiation
+        Compartment_creation
+        Compartment_deletion
+        Apoptosis
+        Nectosis
+        Transfer_signal
+        Anchoring
+        Moving
+        Switch_moving
+        Dynamic
+
+Abstract_compartment:
+    Possible_mechanisms:
+        Compartment_growth
+        Transfer_signal
+        Dynamic
