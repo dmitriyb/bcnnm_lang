@@ -1,0 +1,9 @@
+define Cell :: Object {
+    state:
+        position :: Coordinate
+}
+
+define Axon :: Compartment {
+    state:
+        position :: Coordinate[]
+}

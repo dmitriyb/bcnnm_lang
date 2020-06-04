@@ -1,0 +1,52 @@
+# (дифференциация) - применяется к объекту типа клетка
+Differentiation based on CellDifferentiation {
+    Applied to: (Cell,)
+    Requires: (ObjectType,)
+    }
+
+# (деление) - применяется к объекту типа клетка
+Division based on CellDivision {
+    Applied to: (Cell,)
+    Requires: None
+    }
+    
+Apoptosis based on CellApoptosis {
+    Applied to: (Cell,)
+    Requires: None   
+    }
+    
+Move based on Relocation {
+    Applied to: (Object,)
+    Requies: (GradientType)
+    }
+
+CompartmentCreation based on CompartmentFormation {
+    Applied to: (Cell, Compartment)
+    Requires: (CompartmentType)
+}
+
+CompartmentRemoval based on CompartmentDeletion {
+    Applied to: (Cell, Compartment)
+    Requires: (CompartmentType)
+}
+
+ObjectDynamic based on Dynamic {
+    Applied to: (Object,)
+    Requires: (Expression)
+   }
+
+FactorSpread based on SignalDiffusion {
+    Applied to: (Object,)
+    Requires: (Factor,)
+}
+
+FactorGather based on SignalDiffusion {
+    Applied to: (Object,)
+    Requires: (Factor,)
+}
+    
+SignalTransfer based on SignalTransfer {
+    Applied to: (Object,Object)
+    Requires: (Signal,)
+}
+

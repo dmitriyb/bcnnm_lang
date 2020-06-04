@@ -1,0 +1,13 @@
+using Library
+using Cells.L1
+using Cells.NPC
+
+model BasicDivision :: Model {
+    space:
+        size :: (100, 100, 100)
+        degrade :: True
+    
+    initial state:
+        NPC:
+            position :: (50,50,50)
+}

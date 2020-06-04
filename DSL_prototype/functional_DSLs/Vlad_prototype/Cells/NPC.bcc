@@ -1,0 +1,5 @@
+define NPC :: Cell {
+        mechanisms:
+            Division $ GABA >= 0.3 -> (self)
+            FactorSpread $ Always -> (MT1)
+    }

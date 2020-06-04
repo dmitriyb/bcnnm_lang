@@ -1,0 +1,6 @@
+define L1Cell :: Cell {
+    mechanisms:
+        Move() $ M1T >= 0.3 AND GABA <= 0.5 -> (GradientPositive)
+        CompartmentCreation(Compartment) $  GABA >= 0.5 AND M1T <= 0.4 -> (Axon)
+        CompartmentGrowth(self.axons) $ GABA >= 0.3 AND GABA <= 0.8 -> (Axon)
+    }
