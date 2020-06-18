@@ -1,0 +1,3 @@
+define P1Dynamic::Dynamic => (P1)
+    over => (P1)
+    delta => (P1 * C1 + E1 / C0)

@@ -1,38 +1,4 @@
-define NSCSymmetricDivision::Pathway
-    constants:
-        C0 = 0.3
-        C1 = 2.5
-        C2 = 100
-
-    molecules:
-        P1 = 0.0
-        P2 = 0.2
-        E1 = 1.2
-        E2 = 0.5
-
-    mechanisms:
-        P1Dynamic::Dynamic => (P1)
-            over => (P1)
-            delta => (P1 * C1 + E1 / C0)
-
-        P2Dynamic::Dynamic => (P2)
-            over => (P2)
-            delta => (P2 / C3 + E2 / C0)
-
-        E1Dynamic::Dynamic => (E1)
-            over => (E1)
-            delta => (C2)
-
-        E2Dynamic::Dynamic => (E2)
-            over => (E1)
-            delta => (C2)
-
-        KDiffusion::Diffusion => (K)
-            over => (Space)
-
-        NSCDivision::Division => (NSC, NSC)
-            over => (NSC)
-
+define NSCDivision
     interactions:
         P1Dynamic -> E2Dynamic when (P1 is in (0;0.9])
         P1Dynamic -> P2Dynamic

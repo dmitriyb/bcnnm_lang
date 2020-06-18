@@ -1,0 +1,2 @@
+define NSCDivision::Division => (NSC, NSC)
+    over => (NSC)
