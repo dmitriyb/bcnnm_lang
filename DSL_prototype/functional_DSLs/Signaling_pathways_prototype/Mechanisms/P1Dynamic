@@ -1,3 +1,4 @@
-define P1Dynamic::Dynamic => (P1)
-    over => (P1)
-    delta => (P1 * C1 + E1 / C0)
+define P1Dynamic::Dynamic
+    (Cell) => (P1)
+    duration = 100
+    delta = (P1 * C1 + E1 / C0)

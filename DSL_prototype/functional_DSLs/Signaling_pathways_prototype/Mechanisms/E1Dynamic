@@ -1,3 +1,4 @@
-define E1Dynamic::Dynamic => (E1)
-    over => (E1)
-    delta => (C2)
+define E1Dynamic::Dynamic
+    (Cell) => (E1)
+    duration = 100
+    delta = (C2)

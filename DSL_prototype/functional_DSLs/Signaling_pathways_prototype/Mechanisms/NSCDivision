@@ -1,2 +1,3 @@
-define NSCDivision::Division => (NSC, NSC)
-    over => (NSC)
+define NSCDivision::Division
+    (Cell) => (Cell, Cell)
+    duration = 2000

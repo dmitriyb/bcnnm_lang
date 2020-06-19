@@ -1,0 +1,5 @@
+define P1MorphExpression
+    interactions:
+        P1Dynamic -> P1Release when (P1 is in [2.2;infinity))
+        P1Diffusion -| P1Release when (P1 is in [2.45;infinity))
+        KDiffusion -> P1Release when (grad(K) is in (0.1;0.15))
