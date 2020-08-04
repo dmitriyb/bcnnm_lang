@@ -1,0 +1,4 @@
+define P1Release::SignalTransfer
+    (Cell, Space) => (P1)
+    duration = 400
+    amount = (P1*0.35)

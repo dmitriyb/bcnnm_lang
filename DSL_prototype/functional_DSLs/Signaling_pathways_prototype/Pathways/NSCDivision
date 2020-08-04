@@ -1,0 +1,11 @@
+define NSCDivision
+    interactions:
+        P1Dynamic -> E2Dynamic when (P1 is in (0;0.9])
+        P1Dynamic -> P2Dynamic
+        P2Dynamic -| E1Dynamic when (P2 is in (0;0.2])
+        E1Dynamic -| E2Dynamic
+        E1Dynamic -> P2Dynamic
+        E2Dynamic -> NSCDivision
+        P2Dynamic -> NSCDivision
+        E1Dynamic -| NSCDivision when (E1 is in (0;0.5))
+        KDiffusion -> NSCDivision when (K is in [0.1;0.8])
