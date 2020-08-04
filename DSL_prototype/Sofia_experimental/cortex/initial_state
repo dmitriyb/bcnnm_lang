@@ -1,0 +1,16 @@
+Model
+    Space: 100 // x: 100, y: 100, z: 100 // size: 100, dimensions: 3
+    Ticks: 100_000
+    Export: {MoveObjectEvent, AddObjectEvent, DeleteObjectEvent, FailedConditionEvent}
+
+    Objects:
+        id: 0, x: 50, y: 50, z: 50, type: NeuralStemCell, molecules: {0: 0.0, 1: 0.5, 2: 0.4}
+        id: 1, x: 50, y: 50, z: 51, type: NeuralStemCell, molecules: {0: 0.1, 1: 0.3, 2: 0.2}
+        ....
+        ....
+        id: N, x: [x1; x2], y: [y1; y2], z: [z1; z2], type: BasalMembrane, molecules: {0: 0, 0: 0, 0: 0}
+
+        
+
+
+

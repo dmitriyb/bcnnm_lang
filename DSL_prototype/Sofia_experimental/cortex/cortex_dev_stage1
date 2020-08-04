@@ -1,5 +1,5 @@
 define movable cell NECell from StemCell
-    mulecules:
+    molecules:
         ?
     junctions:
         J1: 0.
