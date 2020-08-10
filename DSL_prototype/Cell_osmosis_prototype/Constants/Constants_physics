@@ -1,17 +1,21 @@
+#cell geometry
+        r = 2.5 * (10 ^ (-3))      #cell radius (cm)
+	A = 7.854 * (10 ^ (-5))    #membrane area (cm^2) / counted geometrically from cell radius
+	
+#cell physiology
+	n = 3                      #number of Na ions pumped per Na/K ATPase cycle
+        q = 2                      #number of K ions pumped per Na/K ATPase cycle
+        p = 25                     #Na/K ATPase pump rate (C сm^(-2) s^(-1))
+        P_f = 7 * (10 ^ (-3))        #osmotic water permeability coefficient (cm s^(-1))
+
 #other
-        r:    2.5 * (10 ^ (-3))      #cell radius (cm)
-        g_Cl: 0.2 * (10 ^ (-3))      #conductance of Cl ion (S cm^(-2))
-        g_K:  0.3 * (10 ^ (-3))      #conductance of K ion (S cm^(-2))
-        g_Na: 0.01 * (10 ^ (-3))     #conductance of Na ion (S cm^(-2))
-        F:    9.648533 * (10 ^ 4)    #Faraday's constant (С mol^(-1))
-        n:    3                      #number of Na ions pumped per Na/K ATPase cycle
-        q:    2                      #number of K ions pumped per Na/K ATPase cycle
-        p:    25                     #Na/K ATPase pump rate (C сm^(-2) s^(-1))
-        P_f:  7 * (10 ^ (-3))        #osmotic water permeability coefficient (cm s^(-1))
-        A:    7.854 * (10 ^ (-5))    #membrane area (cm^2) / counted geometrically from cell radius
-        R:    8.3144598 * (10 ^ 7)   #universal gas constant (cm^2 g s^(-2) K^(-1) M^(-1))
-        T:    298.15                 #absolute temperature (K)
-        z:    -1                     #average charge of impermeant intracellular molecules
-        v_w:  18                     #partial molar volume of water (cm^3 mol^(-1))
-        V:    -99 * (10 ^ (-3))      #resting membrane potential (Volt)
-	Os_o: 238 * (10 ^ -6)       #the extracellular osmolarity (Osmol cm^(-3)) / isotonic amphibian Ringer solution (muscle)
+        g_Cl = 0.2 * (10 ^ (-3))      #conductance of Cl ion (S cm^(-2))
+        g_K = 0.3 * (10 ^ (-3))      #conductance of K ion (S cm^(-2))
+        g_Na = 0.01 * (10 ^ (-3))     #conductance of Na ion (S cm^(-2))
+	z = -1                     #average charge of impermeant intracellular molecules
+        F = 9.648533 * (10 ^ 4)    #Faraday's constant (С mol^(-1))        
+        R = 8.3144598 * (10 ^ 7)   #universal gas constant (cm^2 g s^(-2) K^(-1) M^(-1))
+        T = 298.15                 #absolute temperature (K)
+        v_w = 18                     #partial molar volume of water (cm^3 mol^(-1))
+	Os_o = 238 * (10 ^ -6)       #the extracellular osmolarity (Osmol cm^(-3)) / isotonic amphibian Ringer solution (muscle)
+        V = -99 * (10 ^ (-3))      #resting membrane potential (Volt)
