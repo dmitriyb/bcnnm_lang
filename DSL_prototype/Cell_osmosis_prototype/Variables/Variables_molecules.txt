@@ -1,0 +1,4 @@
+#molecules
+        Na:   13 *  (10 ^ (-6))      #the intracellular sodium concentration (M cm^(-3))
+        K:    138 *  (10 ^ (-6))     #the intracellular potassium concentration (M cm^(-3))
+        Cl:   3 *  (10 ^ (-6))       #the intracellular chloride concentration (M cm^(-3))
