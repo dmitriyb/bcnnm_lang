@@ -1,3 +1,0 @@
-#other
-        Os:   238 * (10 ^ -6)       #the intracellular osmolarity
-         w:   6.554 * (10 ^ (-8))   #cell volume / initially counted geometrically from cell radius
