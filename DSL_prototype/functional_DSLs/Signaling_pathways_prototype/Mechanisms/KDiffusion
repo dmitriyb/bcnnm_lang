@@ -1,3 +1,3 @@
 define KDiffusion::Diffusion
-    (Space) => (K)
+    (Shell) => (K)
     duration = 100
