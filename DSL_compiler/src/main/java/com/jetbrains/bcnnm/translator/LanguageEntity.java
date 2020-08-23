@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class LanguageEntity {
-    public LanguageEntity()
+    public LanguageEntity(ProjectHandler parent, String name)
     {
+        this.parent = parent;
+        this.name = name;
         this.properties = new Hashtable<>();
     }
 
@@ -18,4 +20,11 @@ public abstract class LanguageEntity {
 
     @Getter
     protected Map<String, String> properties;
+
+    @Getter
+    private String name;
+
+    @Getter public ProjectHandler parent;
+
+
 }

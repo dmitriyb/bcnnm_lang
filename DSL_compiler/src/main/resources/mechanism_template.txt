@@ -1,0 +1,25 @@
+package com.synstorm.MOC.Mechanisms.Initial;
+
+import com.synstorm.MOC.InitialConfig;
+import com.synstorm.MOC.LogicObjects.PhysicalObject;
+import com.synstorm.MOC.MechanismResponses.DynamicResponse;
+import com.synstorm.MOC.MechanismResponses.IApplicableResponse;
+import com.synstorm.MOC.Mechanisms.DynamicMechanism;
+
+public final class {MECHANISM_NAME} extends {MECHANISM_TYPE} {
+    public {MECHANISM_NAME}(int {DURATION}, int {DELAY}) {
+        super({DURATION}, {DELAY});
+    }
+
+    @Override
+    protected final IApplicableResponse evaluate(Object[] arguments) {
+        final PhysicalObject logicObject = (PhysicalObject) arguments[0];
+        final long objectId = logicObject.getId();
+        //delta = {DELTA_COMMENT}
+
+        {SIGNAL_BLOCK}
+        {EXPRESSION_BLOCK}
+
+        return new DynamicResponse(logicObject::updateSignal, objectId, signal, delta);
+    }
+}

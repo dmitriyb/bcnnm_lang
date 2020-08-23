@@ -55,4 +55,9 @@ public class LangUtils {
 
         return result;
     }
+
+    public static String replaceInTemplate(String template, String blockName, String value)
+    {
+        return template.replaceAll(blockName, value);
+    }
 }

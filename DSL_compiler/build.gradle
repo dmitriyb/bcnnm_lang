@@ -15,5 +15,10 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
+    // https://mvnrepository.com/artifact/org.mariuszgromada.math/MathParser.org-mXparser
+    // https://mvnrepository.com/artifact/net.objecthunter/exp4j
+    compile group: 'net.objecthunter', name: 'exp4j', version: '0.4.4'
+
+
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
