@@ -1,0 +1,3 @@
+ #molecules_extracellular
+        Na_o = 145 *  (10 ^ (-6))   #the extracellular sodium concentration (M cm^(-3))
+        Cl_o = 110 *  (10 ^ (-6))    #the extracellular chloride concentration (M cm^(-3))
