@@ -1,0 +1,3 @@
+  define NSCApoptosis::Apoptosis
+    (NSC) => ()   #dead
+    duration = 100

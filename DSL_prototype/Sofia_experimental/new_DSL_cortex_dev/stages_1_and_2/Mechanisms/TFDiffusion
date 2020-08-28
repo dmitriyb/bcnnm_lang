@@ -1,0 +1,3 @@
+define RDiffusion::Diffusion
+    (Shell) => (TF)
+    duration = ???

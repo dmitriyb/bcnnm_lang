@@ -1,0 +1,4 @@
+#a proportion of the NECs becomes dormant stem cells (B1 astrocytes)
+
+define NSCDifferentiate::Differentiate
+    (NSC) => (B1A)

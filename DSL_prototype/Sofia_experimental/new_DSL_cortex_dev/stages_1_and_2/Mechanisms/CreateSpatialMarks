@@ -1,0 +1,3 @@
+define CreateSpatialMark::SignalTransfer
+    (Space) => (SpatialMark)
+    duration = 5       #how to determine its location? need to be evenly distributed
