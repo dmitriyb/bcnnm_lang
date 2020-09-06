@@ -32,23 +32,37 @@ public class ProjectHandler {
         return true;
     }
 
+    private void writeCode(String outputDir, String code, String name)
+    {
+        Path outFpath = Paths.get(outputDir, String.join(".", name, "java"));
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outFpath.toString()));
+            writer.write(code);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean compile(String outputDir)
     {
+        String initialConfigCode = this.compileConfig();
+        this.writeCode(outputDir, initialConfigCode, "InitialConfigTranslator");
+
         for(LanguageEntity entry: entities)
         {
             String translatedCode = entry.translate();
-            Path outFpath = Paths.get(outputDir, String.join(".", entry.getName(), "java"));
-
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(outFpath.toString()));
-                writer.write(translatedCode);
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            this.writeCode(outputDir, translatedCode, entry.getName());
         }
 
         return true;
+    }
+
+    private String compileConfig()
+    {
+        ConfigTranslator translator = new ConfigTranslator(this);
+        return translator.translate();
     }
 
     private LanguageEntity processSourceFile(Path fpath)
@@ -142,5 +156,6 @@ public class ProjectHandler {
     @Getter
     private Map<String, Double> moleculeValues;
 
+    @Getter
     private List<LanguageEntity> entities;
 }
