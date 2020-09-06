@@ -1,8 +1,12 @@
 package com.jetbrains.bcnnm.translator;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +36,27 @@ public class LangUtils {
         }
 
         return new ArrayList<>();
+    }
+
+    public static String readTemplate(String resourceName)
+    {
+        URI resourcePath = null;
+        try {
+            URL resourceURL = LangUtils.class.getResource(resourceName);
+            resourcePath = resourceURL.toURI();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        List<String> lines = null;
+
+        try {
+            lines = Files.readAllLines(Paths.get(resourcePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return String.join("\n", lines);
     }
 
     public static Double processFloatingValue(String value)

@@ -1,0 +1,11 @@
+    @Override
+    protected final IApplicableResponse evaluate(Object[] arguments) {
+        {VARIABLE_BLOCK}
+
+        //delta = {DELTA_COMMENT}
+
+        {SIGNAL_BLOCK}
+        {EXPRESSION_BLOCK}
+
+        {RETURN_BLOCK}
+    }

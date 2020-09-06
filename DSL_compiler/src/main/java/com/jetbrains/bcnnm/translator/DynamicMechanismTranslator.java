@@ -10,15 +10,43 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
 public class DynamicMechanismTranslator extends MechanismTranslator {
     public DynamicMechanismTranslator(Mechanism target) {
         super(target);
+
+        this.evaluate_template = LangUtils.readTemplate("/evaluate_template.txt");
+    }
+
+    public String getConstructorBlock()
+    {
+        return "";
+    }
+
+    public String getEvaluateBlock()
+    {
+        String signalBlock = this.getSignalBlock();
+        String variableBlock = this.getVariableBlock();
+        String functionblock = this.getFunctionBlock();
+        String returnBlock = this.getReturnBlock();
+
+        return this.evaluate_template.replaceAll("\\{VARIABLE_BLOCK\\}", variableBlock)
+                                     .replaceAll("\\{SIGNAL_BLOCK\\}", signalBlock)
+                                     .replaceAll("\\{EXPRESSION_BLOCK\\}", functionblock)
+                                     .replaceAll("\\{RETURN_BLOCK\\}", returnBlock);
     }
 
     public String getSignalBlock()
     {
-        String res = "final int signal = InitialConfig.molecules.get({MOLECULE_NAME});";
+        String res = "final int signal = InitialConfig.molecules.get(\"{MOLECULE_NAME}\");";
         return res.replaceFirst("\\{MOLECULE_NAME\\}", this.mechanism.getOutputArguments()[0]);
+    }
+
+    public String getVariableBlock()
+    {
+        String res = "final PhysicalObject logicObject = (PhysicalObject) arguments[0];\n" +
+                     "final long objectId = logicObject.getId();";
+        return res;
     }
 
     public String getFunctionBlock()
@@ -83,6 +111,11 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
         return res;
     }
 
+    public String getReturnBlock()
+    {
+        return "return new DynamicResponse(logicObject::updateSignal, objectId, signal, delta);";
+    }
+
     private String getConstantGetter(String name)
     {
         return String.format("InitialConfig.constantValues.get(\"%s\")", name);
@@ -92,4 +125,6 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
     {
         return String.format("logicObject.getSignal(InitialConfig.molecules.get(\"%s\"))", name);
     }
+
+    private String evaluate_template = "";
 }

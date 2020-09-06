@@ -1,10 +1,7 @@
 package com.jetbrains.bcnnm.core;
 
 
-import com.jetbrains.bcnnm.translator.DynamicMechanismTranslator;
-import com.jetbrains.bcnnm.translator.LanguageEntity;
-import com.jetbrains.bcnnm.translator.MechanismTranslator;
-import com.jetbrains.bcnnm.translator.ProjectHandler;
+import com.jetbrains.bcnnm.translator.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -65,60 +62,32 @@ public class Mechanism extends LanguageEntity {
     }
 
     public String translate() {
-        MechanismTranslator basicTranslator = this.getTranslator();
+        MechanismTranslator basicTranslator = TranslatorFabric.getTranslator(this);
+        String template = LangUtils.readTemplate("/mechanism_template.txt");
 
-        if(basicTranslator == null)
-        {
-            return "";
-        }
-
-        URI resourcePath = null;
-        try {
-            URL resourceURL = this.getClass().getResource("/mechanism_template.txt");
-            resourcePath = resourceURL.toURI();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
-        List<String> lines = null;
-
-        try {
-            lines = Files.readAllLines(Paths.get(resourcePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String template = String.join("\n", lines);
-        String signalBlock = basicTranslator.getSignalBlock();
-        String functionblock = basicTranslator.getFunctionBlock();
+        String constructorBlock = basicTranslator.getConstructorBlock();
+        String evaluateBlock = basicTranslator.getEvaluateBlock();
 
 
         String compiledCode = template.replaceAll("\\{MECHANISM_NAME\\}", this.mechanismName)
                                         .replaceAll("\\{MECHANISM_TYPE\\}", this.mechanismParent)
                                         .replaceAll("\\{DURATION\\}", this.properties.get("duration"))
                                         .replaceAll("\\{DELAY\\}", String.valueOf(0))
-                                        .replaceAll("\\{SIGNAL_BLOCK\\}", signalBlock)
-                                        .replaceAll("\\{EXPRESSION_BLOCK\\}", functionblock);
+                                        .replaceAll("\\{CONSTRUCTOR_BLOCK\\}", constructorBlock)
+                                        .replaceAll("\\{EVALUATE_BLOCK\\}", evaluateBlock);
 
         return compiledCode;
     }
 
-    private MechanismTranslator getTranslator()
-    {
-        if(this.mechanismParent.equals("Dynamic"))
-        {
-            return new DynamicMechanismTranslator(this);
-        }
-        else {
-            return null;
-//            throw new RuntimeException(String.format("Cannot find mechanism type %s", this.mechanismParent));
-        }
 
-    }
 
-    @Getter @Setter(AccessLevel.PROTECTED) private String mechanismName;
-    @Getter @Setter(AccessLevel.PROTECTED) private String mechanismParent;
-    @Getter @Setter(AccessLevel.PROTECTED) private String inputType;
-    @Getter @Setter(AccessLevel.PROTECTED) private String[] outputArguments;
+    @Getter @Setter(AccessLevel.PROTECTED)
+    private String mechanismName;
+    @Getter @Setter(AccessLevel.PROTECTED)
+    private String mechanismParent;
+    @Getter @Setter(AccessLevel.PROTECTED)
+    private String inputType;
+    @Getter @Setter(AccessLevel.PROTECTED)
+    private String[] outputArguments;
 
 }

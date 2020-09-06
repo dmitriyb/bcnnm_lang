@@ -7,19 +7,10 @@ import com.synstorm.MOC.MechanismResponses.IApplicableResponse;
 import com.synstorm.MOC.Mechanisms.DynamicMechanism;
 
 public final class {MECHANISM_NAME} extends {MECHANISM_TYPE} {
-    public {MECHANISM_NAME}(int {DURATION}, int {DELAY}) {
+    public {MECHANISM_NAME}(int duraion, int delay) {
         super({DURATION}, {DELAY});
+        {CONSTRUCTOR_BLOCK}
     }
 
-    @Override
-    protected final IApplicableResponse evaluate(Object[] arguments) {
-        final PhysicalObject logicObject = (PhysicalObject) arguments[0];
-        final long objectId = logicObject.getId();
-        //delta = {DELTA_COMMENT}
-
-        {SIGNAL_BLOCK}
-        {EXPRESSION_BLOCK}
-
-        return new DynamicResponse(logicObject::updateSignal, objectId, signal, delta);
-    }
+    {EVALUATE_BLOCK}
 }

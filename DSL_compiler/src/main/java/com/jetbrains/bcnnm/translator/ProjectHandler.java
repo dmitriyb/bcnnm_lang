@@ -2,6 +2,7 @@ package com.jetbrains.bcnnm.translator;
 
 import com.jetbrains.bcnnm.core.Mechanism;
 import com.jetbrains.bcnnm.core.Pathway;
+import com.jetbrains.bcnnm.utils.IndexedHashMap;
 import lombok.Getter;
 
 import java.io.BufferedWriter;
@@ -109,7 +110,7 @@ public class ProjectHandler {
     // TODO: move to separate class, same as other
     private Map<String, Double> gatherNamedEntities(String fname, String header)
     {
-        Map<String, Double> result = new Hashtable<>();
+        Map<String, Double> result = new IndexedHashMap<>();
 
         Path fpath = Paths.get(this.root, "Variables", fname);
         List<String> cleanLines = LangUtils.readCodeFile(fpath);
