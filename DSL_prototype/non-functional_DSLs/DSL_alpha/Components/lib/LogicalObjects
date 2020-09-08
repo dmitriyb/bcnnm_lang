@@ -1,5 +1,0 @@
-# Список доступных обхектов модели
-Define LogicalObjects:
-  # Cells
-  - FirstTypeCell
-  - SecondTypeCell

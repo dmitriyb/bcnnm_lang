@@ -1,0 +1,23 @@
+# List and description of classes used in both: core and dsl
+
+DSL types
+    # class for description of mechanism parameters
+    - Parameters
+
+    # class for
+    - Mechanism
+    - Condition
+
+class Parameters
+    # list of parameters values with type Any
+    # all elements must be defined in dsl representation
+    [Any]
+
+type Mechanism
+    lang:declaration
+        name(duration: int)
+    lang:sections
+        - parameters => ":(T1, T2, ...)"
+        - allowed while => ":ConditionSet"
+        - restricted while => (:ConditionSet)
+
