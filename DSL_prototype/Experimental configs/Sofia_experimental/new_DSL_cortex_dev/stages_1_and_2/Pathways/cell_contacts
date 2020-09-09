@@ -1,0 +1,9 @@
+# NSC Contact pw
+
+define СontactPW:
+    interactions:
+
+
+        ConnectBM -> NSCApoptosis  when (A == 0) !
+
+        ConnectBM -| NSCApoptosis  when (A != 0)

@@ -12,9 +12,9 @@ define SymDivPW:
 
         ConnectCell -| NSCSymmetricDivision when (J >= 8)
 
-        ConnectBM -> NSCApoptosis  when (A == 0)
+        ConnectBM -> NSCApoptosis  when (A == 0) !
 
-        ConnectBM -| NSCApoptosis  when (A != 0)
+        ConnectBM -| NSCApoptosis  when (A != 0)  !
 
         NSCApoptosis -| NSCSymmetricDivision
 
@@ -35,7 +35,7 @@ define SymDivPW:
 
         ReelinRelease -> ReelinDiffusion
 
-        ReelinDissusion -> NPCMove
+        ReelinDiffusion -> NPCMove
 
         ReelinDiffusion -> RemoveBasalExtension when (max Reelin < some_value)
 
