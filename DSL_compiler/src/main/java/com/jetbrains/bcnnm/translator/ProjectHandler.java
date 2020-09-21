@@ -3,7 +3,6 @@ package com.jetbrains.bcnnm.translator;
 import com.jetbrains.bcnnm.core.Mechanism;
 import com.jetbrains.bcnnm.core.Pathway;
 import com.jetbrains.bcnnm.utils.IndexedHashMap;
-import lombok.Getter;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -16,13 +15,34 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ProjectHandler {
+    private final String root;
+
+    private final String constantsFname = "Constants.bdef";
+    private final String moleculesFname = "Molecules.bdef";
+    private final String entityAssignSymbol = "=";
+
+    private Map<String, Double> constantValues;
+    private Map<String, Double> moleculeValues;
+    private List<LanguageEntity> entities;
+
     public ProjectHandler(String root)
     {
         this.root = root;
     }
 
-    public boolean prefetchData()
-    {
+    public Map<String, Double> getConstantValues() {
+        return constantValues;
+    }
+
+    public Map<String, Double> getMoleculeValues() {
+        return moleculeValues;
+    }
+
+    public List<LanguageEntity> getEntities() {
+        return entities;
+    }
+
+    public boolean prefetchData() {
         this.constantValues = this.gatherNamedEntities(this.constantsFname, "constants");
         this.moleculeValues = this.gatherNamedEntities(this.moleculesFname, "molecules");
 
@@ -32,10 +52,8 @@ public class ProjectHandler {
         return true;
     }
 
-    private void writeCode(String outputDir, String code, String name)
-    {
+    private void writeCode(String outputDir, String code, String name) {
         Path outFpath = Paths.get(outputDir, String.join(".", name, "java"));
-
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outFpath.toString()));
             writer.write(code);
@@ -45,13 +63,11 @@ public class ProjectHandler {
         }
     }
 
-    public boolean compile(String outputDir)
-    {
+    public boolean compile(String outputDir) {
         String initialConfigCode = this.compileConfig();
         this.writeCode(outputDir, initialConfigCode, "InitialConfigTranslator");
 
-        for(LanguageEntity entry: entities)
-        {
+        for(LanguageEntity entry: entities) {
             String translatedCode = entry.translate();
             this.writeCode(outputDir, translatedCode, entry.getName());
         }
@@ -144,18 +160,4 @@ public class ProjectHandler {
 
         return result;
     }
-
-    private String root;
-
-    private final String constantsFname = "Constants.bdef";
-    private final String moleculesFname = "Molecules.bdef";
-    private final String entityAssignSymbol = "=";
-
-    @Getter
-    private Map<String, Double> constantValues;
-    @Getter
-    private Map<String, Double> moleculeValues;
-
-    @Getter
-    private List<LanguageEntity> entities;
 }

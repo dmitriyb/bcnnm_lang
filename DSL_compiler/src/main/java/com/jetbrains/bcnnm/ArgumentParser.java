@@ -35,6 +35,6 @@ public class ArgumentParser {
     }
 
 
-    private Map<String, String> parsedValues;
-    private Set<String> argumentNames;
+    private final Map<String, String> parsedValues;
+    private final Set<String> argumentNames;
 }

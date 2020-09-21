@@ -1,17 +1,51 @@
 package com.jetbrains.bcnnm.translator;
 
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.nio.file.Path;
-import java.util.Hashtable;
 import java.util.List;
 
 public class Mechanism extends LanguageEntity {
-    public void processCodeBlock(List<String> lines)
-    {
+    private String mechanismName;
+    private String mechanismParent;
+    private String inputType;
+    private String[] outputArguments;
+
+    public Mechanism(ProjectHandler parent, String name) {
+        super(parent, name);
+    }
+
+    public String getMechanismName() {
+        return mechanismName;
+    }
+
+    public void setMechanismName(String mechanismName) {
+        this.mechanismName = mechanismName;
+    }
+
+    public String getMechanismParent() {
+        return mechanismParent;
+    }
+
+    public void setMechanismParent(String mechanismParent) {
+        this.mechanismParent = mechanismParent;
+    }
+
+    public String getInputType() {
+        return inputType;
+    }
+
+    public void setInputType(String inputType) {
+        this.inputType = inputType;
+    }
+
+    public String[] getOutputArguments() {
+        return outputArguments;
+    }
+
+    public void setOutputArguments(String[] outputArguments) {
+        this.outputArguments = outputArguments;
+    }
+
+    public void processCodeBlock(List<String> lines) {
         String header = lines.get(0);
         String mapProperties = lines.get(1);
 
@@ -55,8 +89,5 @@ public class Mechanism extends LanguageEntity {
         return result;
     }
 
-    @Getter @Setter(AccessLevel.PROTECTED) private String mechanismName;
-    @Getter @Setter(AccessLevel.PROTECTED) private String mechanismParent;
-    @Getter @Setter(AccessLevel.PROTECTED) private String inputType;
-    @Getter @Setter(AccessLevel.PROTECTED) private String[] outputArguments;
+
 }

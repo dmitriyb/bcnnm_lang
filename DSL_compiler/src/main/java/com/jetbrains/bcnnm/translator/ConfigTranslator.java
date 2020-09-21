@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigTranslator {
+    private String template = "";
+    private final ProjectHandler parent;
+
     public ConfigTranslator(ProjectHandler parent)
     {
         this.parent = parent;
@@ -88,7 +91,4 @@ public class ConfigTranslator {
 
         return res.toString();
     }
-
-    private String template = "";
-    private ProjectHandler parent;
 }

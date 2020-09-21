@@ -1,34 +1,41 @@
 package com.jetbrains.bcnnm.translator;
 
 import com.jetbrains.bcnnm.core.PathwayCondition;
-import lombok.Getter;
-import lombok.Setter;
+
 
 import java.util.*;
 
 public class Pathway extends LanguageEntity {
-    public Pathway()
-    {
-        super();
+    private String name;
+
+    private final String[] possibleBlocksValues = {"interactions:", };
+    private final Set<String> possibleBlocks;
+
+
+    public Pathway(ProjectHandler parent, String name) {
+        super(parent, name);
 
         possibleBlocks = new HashSet<>();
-
-        for(String val: possibleBlocksValues)
-        {
-            possibleBlocks.add(val);
-        }
+        possibleBlocks.addAll(Arrays.asList(possibleBlocksValues));
     }
 
-    public void processCodeBlock(List<String> lines)
-    {
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void processCodeBlock(List<String> lines) {
         String header = lines.get(0);
         this.processHeader(header);
 
         Map<String, Map<String, PathwayCondition>> entityBlocks = this.processBlocks(lines.subList(1, lines.size()));
     }
 
-    private void processHeader(String line)
-    {
+    private void processHeader(String line) {
         String[] tokens = line.split(" ");
         this.setName(tokens[1]);
     }
@@ -78,10 +85,4 @@ public class Pathway extends LanguageEntity {
         return result;
     }
 
-
-    @Getter @Setter
-    private String name;
-
-    private String[] possibleBlocksValues = {"interactions:", };
-    private Set<String> possibleBlocks;
 }

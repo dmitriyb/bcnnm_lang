@@ -88,6 +88,6 @@ public class IndexedHashMap<K, V> implements Map<K, V> {
     }
 
 
-    private Map<K,V> baseMap;
-    private Map<K, Integer> indexMap;
+    private final Map<K,V> baseMap;
+    private final Map<K, Integer> indexMap;
 }

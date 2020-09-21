@@ -1,13 +1,14 @@
 package com.jetbrains.bcnnm.translator;
 
-import lombok.Getter;
-
-import java.nio.file.Path;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 public abstract class LanguageEntity {
+    protected Map<String, String> properties;
+    private final String name;
+    public ProjectHandler parent;
+
     public LanguageEntity(ProjectHandler parent, String name)
     {
         this.parent = parent;
@@ -15,16 +16,22 @@ public abstract class LanguageEntity {
         this.properties = new Hashtable<>();
     }
 
+    public Map<String, String> getProperties() {
+        return properties;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ProjectHandler getParent() {
+        return parent;
+    }
+
     public abstract void processCodeBlock(List<String> lines);
     public abstract String translate();
 
-    @Getter
-    protected Map<String, String> properties;
 
-    @Getter
-    private String name;
-
-    @Getter public ProjectHandler parent;
 
 
 }
