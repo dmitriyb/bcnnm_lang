@@ -3,8 +3,6 @@ package com.jetbrains.bcnnm.core;
 import com.jetbrains.bcnnm.core.PathwayCondition;
 import com.jetbrains.bcnnm.translator.LanguageEntity;
 import com.jetbrains.bcnnm.translator.ProjectHandler;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.*;
 

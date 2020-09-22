@@ -1,7 +1,6 @@
 package com.jetbrains.bcnnm.translator;
 
 import com.jetbrains.bcnnm.core.Mechanism;
-import lombok.Getter;
 
 public abstract class MechanismTranslator {
     public MechanismTranslator(Mechanism target) {
@@ -11,6 +10,9 @@ public abstract class MechanismTranslator {
     public abstract String getEvaluateBlock();
     public abstract String getConstructorBlock();
 
-    @Getter
     protected Mechanism mechanism;
+
+    public Mechanism getMechanism() {
+        return mechanism;
+    }
 }
