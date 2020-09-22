@@ -1,3 +1,0 @@
-define CreateBasalExtension::CreateExtensions
-    (Cell, A) => (BExt)         # "A" is a connection with the BM (see ConnectBM mech.);
-    duration = 50?

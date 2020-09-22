@@ -1,5 +1,0 @@
-define ProteaseDynamic::Dynamic
-    (Cell) => (X_a)
-    duration = 1
-    delta = M_a * VM3 * (1 - X) / (K3 + (1 - X)) - V4 * X_a / (K4 + X_a)                             # V3 = M_a * VM3
-

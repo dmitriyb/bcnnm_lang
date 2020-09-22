@@ -1,3 +1,0 @@
-#other
-        Os = 300 * (10 ^ -6)       #the intracellular osmolarity
-        w = 4.849 * (10 ^ (-6))   #cell volume (cm^3) / initially counted geometrically from cell radius

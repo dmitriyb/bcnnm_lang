@@ -1,4 +1,0 @@
-define ReelinRelease::SignalTransfer
-    (SpatialMark, Space) => (TF)
-    duration = ??
-    amount = ??

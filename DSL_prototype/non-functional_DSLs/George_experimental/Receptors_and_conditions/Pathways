@@ -1,0 +1,7 @@
+Pathway p1:
+    duration: 500
+    conditions: c0,c3
+
+Pathway p2:
+    duration: 1000
+    conditions: c1,c2

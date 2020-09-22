@@ -1,6 +1,0 @@
-define CyclinDynamic::Dynamic
-    (Cell) => (C)
-    duration = 1
-    delta = vi - vd * X_a * C / (Kd + C) - Kd * C              # vi - vd * X_a * C / (Kd + C) - Kd * C when the protease X is inhibited (?)
-
-

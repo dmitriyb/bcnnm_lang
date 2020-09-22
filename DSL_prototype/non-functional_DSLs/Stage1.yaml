@@ -1,0 +1,201 @@
+####
+# Вам нужно объявить все пространство, сущности и их взаимодействия
+# Сущностями являются клетки, лиганды, сигнальные точки пространства
+# Взаимодействиями являются механизмы и сигнальные пути. Сигнальные пути изменяют состояние сущностей и используют их для своей работы.
+
+
+####Стадия 1#####
+
+#Объявить пространство
+Define space: edge=100
+
+#Объявление сущностей
+#Объявить клетки
+Define cell:
+  type: NeuralStemCell
+  movable: false
+  baseType: StemCell
+  signalingPathways:
+    - NSCToNPCDivideAndDifferentiate
+    - NSCFSpread
+
+Define cell:
+  type: NeuralProgenitorCell
+  movable: true
+  baseType: StemCell
+  signalingPathways:
+    - NPCDivide
+    - NPCToRGCDifferentiate
+    - NPCToBPCDifferentiate
+    - NSCFCheckSignals
+    - NPCFCheckSignals
+    - NPCDifferentiateCheckSignals
+    - NPCDifferentiateChoice
+    - NPCFSpread
+    - NPCApoptizeCheckSignals
+    - NPCApoptize
+
+Define cell:
+  type: RadialGliaCell
+  movable: false
+  baseType: StemCell
+
+Define cell:
+  type: BasalProgenitorCell
+  movable: false
+  baseType: StemCell
+
+
+
+#Объявление лигандов
+Define ligand:
+  id: NSCF
+  radius: 70
+  comment: "Neural Stem Cell Factor is secreted by the initial stem cell, regulates the size of resulting structure"
+
+Define ligand:
+  id: NPCF
+  radius: 2
+  comment: "Neuron Progenitor Cell Factor is secreted by NPCs, which have approached the NSC presence boundary. after this, NPCF emission is triggered in all NPCs of the structure. In such a way, transformation process into the successive cell lineage stages is triggered in the direction outside->inside"
+
+
+#Объявление точек пространства
+  #### В ДАННОЙ КОНФИГУРАЦИИ ИХ НЕТ
+
+
+
+#Объявление взаимодействий
+#Объявить механизмы и параметризующие их сигнальные пути
+Define mechanism:
+  type: Divide
+  signalingPathways:
+    - NPCDivide:
+        duration: 100
+        initial: false
+
+
+Define mechanism:
+  type: DivideAndDifferentiate
+  signalingPathways:
+    - NSCToNPCDivideAndDifferentiate:
+        duration: 1000
+        initial: true
+        executeParameter:
+          createObject: NeuralProgenitorCell
+        cascade:
+          - default:
+              - execute: NSCToNPCDivideAndDifferentiate
+
+Define mechanism:
+  type: Differentiate
+  signalingPathways:
+    - NPCToRGCDifferentiate:
+        duration: 100
+        initial: false
+        executeParameter:
+          createObject: RadialGliaCell
+    - NPCToBPCDifferentiate:
+        duration: 100
+        initial: false
+        executeParameter:
+          createObject: BasalProgenitorCell
+
+
+Define mechanism:
+  type: CheckSignals
+  signalingPathways:
+    - NSCFCheckSignals:
+        duration: 500
+        initial: true
+        condition:
+          - rule: "NSCF > 0.05"
+        cascade:
+          - onConditionTrue:
+              - execute: NPCDivide
+              - execute: NSCFCheckSignals
+          - onConditionFalse:
+              - execute: NPCFSpread
+              - execute: NSCFCheckSignals #execute itself
+    - NPCFCheckSignals:
+        duration: 200
+        initial: true
+        condition:
+          - rule: "NPCF > 0"
+        cascade:
+          - onConditionTrue:
+              - execute: NPCFSpread
+              - execute: NPCDifferentiateCheckSignals
+          - onConditionFalse:
+              - execute: NPCFCheckSignals
+    - NPCDifferentiateCheckSignals:
+        duration: 500
+        initial: false
+        condition:
+          - rule: "NPCF >= 4.15 & NSCF < 0.9"
+        cascade:
+          - onConditionTrue:
+              - execute: NPCDifferentiateChoice
+          - onConditionFalse:
+              - execute: NPCDifferentiateCheckSignals #execute itself
+
+Define mechanism:
+  type: CheckSignalsWithDisruptAll
+  signalingPathways:
+    - NPCApoptizeCheckSignals:
+        duration: 69000
+        initial: false
+        condition:
+          - rule: "NSCF < 0.1"
+        cascade:
+          - onConditionTrue:
+              - execute: NPCApoptize
+          - onConditionFalse:
+              - execute: NPCApoptizeCheckSignals #execute itself
+    - NPCDifferentiateChoice:
+        duration: 2000
+        initial: false
+        condition:
+          - rule: "NPCF > 0"
+          - probability:
+              distribution: Gaussian
+              ligand: NPCF
+              expectation: 3.25
+              dispersion: 0.59
+        cascade:
+          - onConditionTrue:
+              - execute: NPCToRGCDifferentiate
+          - onConditionFalse:
+              - execute: NPCToBPCDifferentiate
+
+
+
+Define mechanism:
+  type: Apoptize
+  signalingPathways:
+    - NPCApoptize:
+        duration: 10
+        initial: false
+
+
+Define mechanism:
+  type: SpreadChemicalSignal
+  signalingPathways:
+    - NSCFSpread:
+        commment: "Long-distance stem cell factor emission"
+        duration: 200
+        initial: true
+        executeParatemer:
+          spreadLigand: NSCF
+        cascade:
+          - default:
+              execute: NSCFSpread #execute itself by default (cyclic execution)
+    - NPCFSpread:
+        comment: "Neural Progenitor factor emission at the sphere surface and in all its volume"
+        duration: 100
+        initial: false
+        executeParameter:
+          spreadLigand: NPCF
+        cascade:
+          - default:
+              execute: NPCFSpread #execute itself by default (cyclic execution)
+

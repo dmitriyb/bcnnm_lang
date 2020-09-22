@@ -1,9 +1,0 @@
-#mammalian neuron-specific
-
-#physiology
-	V = -70 * (10 ^ (-3))      #resting membrane potential (Volt)
-	Os_o = 300 * (10 ^ -6)       #the extracellular osmolarity (Osmol cm^(-3)) / artificial cerebrospinal fluid (ACSF)
-	
-#geometry
-	r = 1.05 * (10 ^ (-2))      #cell radius (cm) (rat CA1 pyramidal cell)
-	A = 1.3854 * (10 ^ (-3))    #membrane area (cm^2) / counted geometrically from cell radius

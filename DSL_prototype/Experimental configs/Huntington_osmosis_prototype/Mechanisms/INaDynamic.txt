@@ -1,6 +1,0 @@
-define INaDynamic::Dynamic #intracellular sodium concentration change
-	(Cell) => (Na)
-	duration = 1000000
-	delta = (- A / w / F) * (g_Na * (V - (R * T / F) * ln(Na_o / Na)) + n * p) - (1 / w * v_w * P_f * A * (Os - Os_o)) * Na
-
-                #where (v_w * P_f * A * (Os - Os_o)) is the delta(w)

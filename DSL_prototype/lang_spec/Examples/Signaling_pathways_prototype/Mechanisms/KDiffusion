@@ -1,3 +1,0 @@
-define KDiffusion::Diffusion
-    (Space) => (K)
-    duration = 100

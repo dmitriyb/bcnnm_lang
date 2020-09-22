@@ -1,0 +1,17 @@
+#Список доступных механизмов модели
+Define mechanism:
+  id: Divide
+  parameters:
+  	- cellType1
+  	- cellType2
+  comment: "Mechanism for dividing 1 cell into 2. Cell types could be the same potency or lower for both symmetric and asymetric division"
+
+Define mechanism:
+  id: Differentiate
+  parameters:
+  	- cellType
+  comment: "Mechanism for differentiating cell into another type. Cell types should be lower potency"
+
+Define mechanism:
+  id: Apoprize
+  comment: "Mechanism for apoptizing cell without producing of any additional signals in space"

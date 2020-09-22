@@ -1,3 +1,0 @@
-define NSCDivision::Division
-    (Cell<=>Space) => (Cell, Cell)
-    duration = 2000

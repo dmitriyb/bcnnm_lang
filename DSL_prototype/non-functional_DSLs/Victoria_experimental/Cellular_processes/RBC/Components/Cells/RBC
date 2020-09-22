@@ -1,0 +1,53 @@
+define immovable cell Eritrocite from BloodCell
+    molecules:
+        ATP:
+
+    constants:
+        #parameters for gamma-glutamyl cysteine synthetase
+        VmG:        141.57    #mM/h
+        aG:         0.2       #
+        KmGluG:     1.8       #mM
+        KmCysG:     0.1       #mM
+        KiGSH:      3.4       #mM
+        KmATPG:     0.4       #mM
+
+        #parameters for glutathione synthetase
+        VmGlu:      88.4      #mM/h
+        aGlu:       2.6       #
+        KmGlyGlu:   1.37      #mM
+        KmATPGlu:   0.23      #mM
+        KmyGCGlu:   0.99      #mM
+
+        #parameters for gamma-glutamyl cysteine synthetase
+                VmG: 141.57       #mM/h
+                aG: 0.2           #
+                KmGluG: 1.8       #mM
+                KmCysG: 0.1       #mM
+                KiGSH: 3.4        #mM
+                KmATPG: 0.4       #mM
+
+    compartments:
+        none
+
+    conditions:
+        #L2NeuronCompartmentsFormCondition
+            #molecule GNF is in [0.5, infinity)
+
+    mechanisms:
+        declaration:
+            #single L2NeuronAxonForm(duration: 50) from CompartmentForm
+                parameters: (L2NeuronAxon)
+                constants
+                start on:
+                    L2NeuronCompartmentsFormCondition
+
+            #single L2NeuronDendriteTreeForm(duration: 50) from CompartmentForm
+                parameters: (L2NeuronDendriteTree)
+                start on:
+                    L2NeuronCompartmentsFormCondition
+
+        initial:
+            #none
+
+        mutually exclusive:
+            #none

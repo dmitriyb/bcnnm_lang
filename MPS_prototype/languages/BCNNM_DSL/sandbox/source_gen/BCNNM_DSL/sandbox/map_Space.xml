@@ -1,0 +1,42 @@
+<Model name="SofiaModel">
+  <modelMechanism name="Dynamic"></modelMechanism>
+  <modelMechanism name="Divide"></modelMechanism>
+  <cell name="Zygote">
+    <namedConstants>
+      <constant name="MT">4.0</constant>
+      <constant name="XT">4.0</constant>
+    </namedConstants>
+    <moleculeTypes></moleculeTypes>
+    <molecules>
+      <molecule name="C">
+        <concentration>0.01</concentration>
+      </molecule>
+      <molecule name="M_a">
+        <concentration>0.01</concentration>
+      </molecule>
+      <molecule name="X_a">
+        <concentration>0.01</concentration>
+      </molecule>
+    </molecules>
+    <conditions>
+      <condition name="CleavageCondtition">M_a == 0.5</condition>
+    </conditions>
+    <mechanisms>
+      <mechanism name="CyclinDynamic">
+        <type>cyclic</type>
+        <duration>1</duration>
+        <delta>JSBinaryExpression - JSBinaryExpression * X_a * C / (JSNumericLiteral + C) - JSNumericLiteral * C</delta>
+      </mechanism>
+      <mechanism name="CdK2Dynamic">
+        <type>cyclic</type>
+        <duration>1</duration>
+        <delta>C / (JSNumericLiteral + C) * JSBinaryExpression * (1 - M_a) / (JSNumericLiteral + 1 - M_a) - JSBinaryExpression * M_a / (JSNumericLiteral + M_a)</delta>
+      </mechanism>
+      <mechanism name="ProteaseDynamic">
+        <type>cyclic</type>
+        <duration>1</duration>
+        <delta>M_a * JSBinaryExpression * (1 - X_a) / (JSNumericLiteral + 1 - X_a) - JSBinaryExpression * X_a / (JSNumericLiteral + X_a)</delta>
+      </mechanism>
+    </mechanisms>
+  </cell>
+</Model>

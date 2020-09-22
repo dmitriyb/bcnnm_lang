@@ -1,3 +1,0 @@
-define NPCMove::Move
-    # NPC ---> where [Reelin] is >
-    duration = 50

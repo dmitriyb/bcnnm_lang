@@ -1,3 +1,0 @@
-define BasalExtensionExtension::Growth
-    # extends the basal processes according to the number of NPCs that have migrated between the NSC(NEC) and the BM (NSC stay connected with the BM, but their extensions grow)
-    duration = 50

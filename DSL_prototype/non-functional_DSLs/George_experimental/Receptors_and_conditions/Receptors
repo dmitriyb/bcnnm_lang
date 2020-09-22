@@ -1,0 +1,11 @@
+Receptor 5HT2a:
+    ligand 5HT[concentration_value] -> activation
+    ligand 5HT[concentration_value] -> partial_activation
+    ligand 5HT[concentration_value] -> block
+
+Receptor D1:
+    ligand DOPA[concentration_value] -> activation
+
+Receptor D2:
+    ligand DOPA[concentration_value] -> activation
+    ligand NET[concentration_value] -> block
