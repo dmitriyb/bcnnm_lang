@@ -1,0 +1,4 @@
+define ReelinRelease::SignalTransfer
+    (SpatialMark, Space) => (Reelin)
+    duration = ??
+    amount = ??

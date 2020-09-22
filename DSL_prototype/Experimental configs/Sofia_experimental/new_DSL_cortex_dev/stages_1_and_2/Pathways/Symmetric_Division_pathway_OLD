@@ -1,0 +1,51 @@
+# NSC Symmetric Division pw
+
+define SymDivPW:
+    interactions:
+        #STAGE 1
+
+        NSCSymmetricDivision -> ConnectBM when (A == 0) #нужно создать контакт с БМ только у той клетки, у которой его еще нет, НО: не будет ли это условие одновременно запускать апоптоз??
+
+        NSCSymmetricDivision -> ConnectCell when (J < 8)
+
+        ConnectBM -| NSCSymmetricDivision when (A == 0)
+
+        ConnectCell -| NSCSymmetricDivision when (J >= 8)
+
+        ConnectBM -> NSCApoptosis  when (A == 0) !
+
+        ConnectBM -| NSCApoptosis  when (A != 0)  !
+
+        NSCApoptosis -| NSCSymmetricDivision
+
+
+        #STAGE2
+
+        ConnectCell -> CreateSpatialMarks when #no more space left to divide in 2D, делать их по одной там где уже кончилось место, тогда не нужно эксплицитно выключать симметричное деление на этом шаге, переход будет плавный
+
+        CreateSpatialMarks -> TransitionFactorRelease
+
+        TransitionFactorRelease -> TFDiffusion
+
+        TFDiffusion -| NSCSymmetricDivision when (TF > some_value)
+
+        TFDiffusion -> NSCAsymmetricDivision when (TF > some_value)
+
+        CreateSpatialMarks -> ReelinRelease
+
+        ReelinRelease -> ReelinDiffusion
+
+        ReelinDiffusion -> NPCMove
+
+        ReelinDiffusion -> RemoveBasalExtension when (max Reelin < some_value)
+
+        NSCAsymmetricDivision -> NSCDifferentiate when #(probability!!!!)
+
+        TFDiffusion -| NSCAsymmetricDivision when (TF < some_value) this value has to be reached at some point because the structure thickens and the [TF] in the marginal zone falls
+
+        #Stage 2 ends here. A fraction of the NSC has to become glial progenitors, others will remain as B1 astrocytes (adult neural stem cells).
+
+
+
+
+

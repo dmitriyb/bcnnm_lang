@@ -1,0 +1,4 @@
+
+define ConnectCell::Contacts
+    (NSC, NSC) => (J)       #need to specify creation of junctions (J) ONLY with
+    duration = 10       #those neighbors where contacts are currently absent

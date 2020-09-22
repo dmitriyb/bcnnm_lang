@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="MPSProject">
-    <projectModules>
-      <modulePath path="$PROJECT_DIR$/languages/BCNNM_DSL/BCNNM_DSL.mpl" folder="" />
-      <modulePath path="$PROJECT_DIR$/languages/BCNNM_DSL/sandbox/BCNNM_DSL.sandbox.msd" folder="" />
-    </projectModules>
-  </component>
-</project>

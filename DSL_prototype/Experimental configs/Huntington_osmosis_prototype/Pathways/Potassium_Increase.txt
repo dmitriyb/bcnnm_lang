@@ -1,0 +1,4 @@
+define Potassium_Increase
+	interactions:
+		IKDynamic -> EKDynamic1 when (K_o is in [2.5;6.5])
+		IKDynamic -> EKDynamic2 when (K_o is in [6.5;13])

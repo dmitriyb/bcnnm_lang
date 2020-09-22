@@ -1,0 +1,3 @@
+  define RemoveBasalExtension::RemoveCompartment
+    (BExt) => ()   #delete
+    duration = 10

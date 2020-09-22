@@ -1,0 +1,8 @@
+molecules:
+
+    # Block for cleavage division pathway
+    C: 0.01                 # uM, initial
+    M_a: 0.01               # fraction of the active enzyme, initial
+    X_a: 0.01               # fraction of the active enzyme, initial
+    MT: 4                   # uM, total enzyme M (M_in + M_a)
+    XT: 4                   # uM, total enzyme X (X_in + X_a)
