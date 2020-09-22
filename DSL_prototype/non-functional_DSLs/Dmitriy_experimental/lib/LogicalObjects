@@ -1,0 +1,19 @@
+# Список доступных обхектов модели
+Define LogicalObjects:
+  # Cells
+  - StemCell
+  - NeuronCell
+  - GlialCell
+
+  # Compartments
+  - Axon
+  - AxonalTerminal
+  - DendriteTree
+  - DendriticSpine
+
+  # Connections
+  - Synapse
+  - GapJunction
+
+  # SignalPoints
+  - SignalPoint

@@ -1,8 +1,0 @@
-# NSC Symmetric Division pw
-
-define SymDivPW:
-    interactions:
-
-        ReelinDiffusion -> NPCMove
-
-        ReelinDiffusion -> RemoveBasalExtension when (max Reelin < some_value)

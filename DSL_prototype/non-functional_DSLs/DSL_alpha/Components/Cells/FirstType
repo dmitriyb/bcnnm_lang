@@ -1,0 +1,44 @@
+define immovable cell FirstTypeCell from StemCell
+    molecules:
+        none
+
+    constants:
+        none
+
+    compartments:
+        none
+
+    conditions:
+        SymmetricDivisionCondition
+            molecule SecondTypeFactor is in [0.4, 0.7]
+
+        ASymmetricDivisionCondition
+            molecule FirstTypeFactor is in [0.4, 0.7]
+
+        FirstTypeFactorSpreadCondition
+            molecule FirstTypeFactor is in [0, 0.5]
+
+
+    mechanisms:
+        declaration:
+            single SymmetricDivision(duration: 500) from Division
+                parameters: (_,_)
+                start on:
+                    <LogicalExpression>(SymmetricDivisionCondition)
+
+            single ASymmetricDivision(duration: 500) from Division
+                parameters: (_,SecondTypeCell)
+                start on:
+                     <LogicalExpression>(ASymmetricDivisionCondition)
+
+            cyclic SpreadSymmetricFactor(duration: 250) from SpreadSignal
+                parameters: (FirstTypeFactor)
+                start on:
+                    <LogicalExpression>(FirstTypeFactorSpreadCondition)
+
+
+        initial:
+            SpreadSymmetricFactor
+
+        mutually exclusive:
+            #none

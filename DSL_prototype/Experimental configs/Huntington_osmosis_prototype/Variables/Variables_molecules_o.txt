@@ -1,2 +1,0 @@
-#molecules_extracellular
-        K_o = 3 *  (10 ^ (-6))   #the extracellular potassium concentration (M cm^(-3))

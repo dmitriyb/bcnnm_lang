@@ -1,0 +1,25 @@
+#define molecules
+
+molecule Na_o:              #the extracellular sodium
+    type: ion
+    radius: 0
+
+molecule K_o:               #the extracellular potassium
+    type: ion
+    radius: 0
+
+molecule Cl_o:              #the extracellular chloride
+    type: ion
+    radius: 0
+
+molecule Na:                #the intracellular sodium
+    type: ion
+    radius: 0
+
+molecule K:                 #the intracellular potassium
+    type: ion
+    radius: 0
+
+molecule Cl:                #the intracellular chloride
+    type: ion
+    radius: 0

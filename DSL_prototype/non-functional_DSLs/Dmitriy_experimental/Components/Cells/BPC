@@ -1,0 +1,23 @@
+define movable cell BasalProgenitorCell from StemCell
+    molecules:
+        none
+
+    compartments:
+        none
+
+    conditions:
+        BPCToNRPDifferentiateCondition
+            molecule NSCF is in [0, infinity)
+
+    mechanisms:
+        declaration:
+            single BPCToNRPDifferentiate(duration: 100) from Differentiate
+                parameters: (NeuronalRestrictedProgenitorCell)
+                start on:
+                    BPCToNRPDifferentiateCondition
+
+        initial:
+            none
+
+        mutually exclusive:
+            none

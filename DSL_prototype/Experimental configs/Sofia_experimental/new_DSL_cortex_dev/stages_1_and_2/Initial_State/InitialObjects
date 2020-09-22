@@ -1,7 +1,0 @@
-Objects:
-    id: 0, x: 50, y: 50, z: 99, type: NeuralStemCell
-    id: 1, x: 50, y: 51, z: 99, type: NeuralStemCell
-    id: 2, x: 51, y: 50, z: 99, type: NeuralStemCell
-    id: 3, x: 49, y: 50, z: 99, type: NeuralStemCell
-    id: 4, x: 50, y: 49, z: 99, type: NeuralStemCell
-    id: 5, x: [0; 100], y: [0; 100], z: 100, type: BasalMembrane

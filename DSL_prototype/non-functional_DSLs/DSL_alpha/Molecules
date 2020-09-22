@@ -1,0 +1,9 @@
+#define molecules
+
+molecule SymmetricFactor:
+    type: factor
+    radius: 0
+
+molecule AsymmeticFactor:
+    type: factor
+    radius: 0

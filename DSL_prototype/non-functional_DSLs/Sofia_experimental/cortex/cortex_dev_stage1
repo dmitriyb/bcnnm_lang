@@ -1,0 +1,38 @@
+define movable cell NECell from StemCell
+    molecules:
+        ?
+    junctions:
+        J1: 0.
+    compartments:
+        None
+    cell_pop_size:                                  # or where is the initial cell count defined? what about their arrangement and basal membrane?
+        100
+
+    conditionSets:
+        NECDivideSet:                               # condition set
+            junctions J1   is in [8, 8]
+        NECMoveSet:                                 # condition set
+            ??
+        #NECapoptizeSet:                            # condition set
+            #junctions J1   is in [0, 0]
+
+    mechanisms:                                     # all mechanisms are cyclic while allowed section is satisfied
+        NECDivide(duration: 100) from Divide
+            parameters:
+                type:       (_, _)
+                direction:  (J1, Any)
+            allowed while:
+                NECDivideSet
+            #restricted while:
+                #NECapoptizeSet
+
+        NECMove(duration: 100) from Move
+            parameters:
+                (NPCF, Min)                         # maybe a special word "always" as the opposite for "with probability"
+            allowed while:
+                NECMoveSet
+
+        CreateJunsctions(duration: ?) from ?        #for a cell after model initiation, division or move has to check where are its neighbors and create junctions with them
+            parameters:
+                (?, ?)
+

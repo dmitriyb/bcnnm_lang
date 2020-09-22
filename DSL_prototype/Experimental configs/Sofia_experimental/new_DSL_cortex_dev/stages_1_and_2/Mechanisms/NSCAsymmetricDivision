@@ -1,3 +1,0 @@
-define NSCASymmetricDivision::Division
-    (NSC) => (NPC, NSC)
-    duration = 100

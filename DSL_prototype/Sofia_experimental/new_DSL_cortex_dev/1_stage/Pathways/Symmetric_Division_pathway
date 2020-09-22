@@ -1,0 +1,10 @@
+# NSC Symmetric Division pw
+
+define SymDivPW:
+    interactions:
+
+        NSCSymmetricDivision -> JunctionCreation when (contacts: ((),(),(),(),(0),(m)))
+
+        -| NSCSymmetricDivision when (contacts: ((j),(j),(j),(j),(),(m))) OR  (contacts: ((),(),(),(),(),(0)))   #((front),(right),(back),(left),(up),(down))
+                                                                                                                     #must have a connection with BM, no connection on the side opposite to BM, not all connections on all other sides
+        -> NSCApoptosis  when (contacts: ((),(),(),(),(0),(0))) OR (contacts: ((),(),(),(),(0),(1)))       #apoptize cell if connects with a cell below OR if loses contact with BM                                                                                                  #empty bracket means any value

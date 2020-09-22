@@ -1,3 +1,0 @@
-define ConnectBM::Contacts
-    (NSC) => (A)       #creation of adhesion (A) element with basal membrane
-    duration = 10

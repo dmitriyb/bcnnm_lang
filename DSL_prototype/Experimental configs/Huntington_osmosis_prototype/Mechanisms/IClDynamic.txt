@@ -1,6 +1,0 @@
-define IClDynamic: :Dynamic #intracellular chloride concentration change
-	(Cell) => (Cl)
-	duration = 1000000
-	delta = (A / w / F) * (g_Cl * (V - (R * T / F) * ln(Cl_o / Cl))) - (1 / w * v_w * P_f * A * (Os - Os_o)) * Cl
-
-                #where (v_w * P_f * A * (Os - Os_o)) is the delta(w)

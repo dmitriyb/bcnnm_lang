@@ -1,4 +1,0 @@
-define P2Dynamic::Dynamic
-    (Cell) => (P2)
-    duration = 100
-    delta => (P2 / C3 + E2 / C0)

@@ -1,2 +1,0 @@
- #molecules_intracellular
-        x = 2.6 * (10 ^ (-14))   #number of moles of the impermeant intracellular molecules (M)
