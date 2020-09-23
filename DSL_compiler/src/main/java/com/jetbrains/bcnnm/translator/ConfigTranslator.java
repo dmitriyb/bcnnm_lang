@@ -1,9 +1,12 @@
 package com.jetbrains.bcnnm.translator;
 
+import com.jetbrains.bcnnm.core.Mechanism;
 import com.jetbrains.bcnnm.utils.IndexedHashMap;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ConfigTranslator {
     public ConfigTranslator(ProjectHandler parent)
@@ -84,6 +87,44 @@ public class ConfigTranslator {
 
             res.append(String.format("DSLLibrary.DSLMechanism %s = DSLLibrary.INSTANCE.getDSLMechanismById(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel(\"%s\"));\n", varName, mechName));
             res.append(String.format("DSLLibrary.INSTANCE.linkMechanismToClass(\"%s\", new %s(%s.getDuration(), %s.getDelay()));\n\n", mechName, mechName, varName, varName));
+        }
+
+        return res.toString();
+    }
+
+    //        DSLLibrary.DSLObject shell = DSLLibrary.INSTANCE.getDSLObjectByType(DSLLibrary.INSTANCE.getDSLObjectTypeByLabel("Shell"));
+//        shell.addApplicableMechanism(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel("P1Diffusion"));
+//
+//        DSLLibrary.DSLObject cell = DSLLibrary.INSTANCE.getDSLObjectByType(DSLLibrary.INSTANCE.getDSLObjectTypeByLabel("Cell"));
+//        cell.addApplicableMechanism(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel("E1Dynamic"));
+//        cell.addApplicableMechanism(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel("P1Dynamic"));
+//
+//        DSLLibrary.DSLObject cellShellConnection = DSLLibrary.INSTANCE.getDSLObjectByType(DSLLibrary.INSTANCE.getDSLObjectTypeByLabel("Cell=>Shell"));
+//        cellShellConnection.addApplicableMechanism(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel("NSCDivision"));
+//        cellShellConnection.addApplicableMechanism(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel("P1Release"));
+
+    private String addMechanismsBlock()
+    {
+        StringBuilder res = new StringBuilder();
+
+        Map<String, List<LanguageEntity>> mechsByMapping = this.parent.getEntities().stream().collect(Collectors.groupingBy(entity -> ((Mechanism) entity).getInputType()));
+
+        for(Map.Entry<String, List<LanguageEntity>> entry : mechsByMapping.entrySet())
+        {
+            String inputType = entry.getKey().replaceAll("=>", "to");
+            String varName = inputType + "Object";
+
+            String getObjectLine = String.format("DSLLibrary.DSLObject %s = DSLLibrary.INSTANCE.getDSLObjectByType(DSLLibrary.INSTANCE.getDSLObjectTypeByLabel(\"%s\"));\n", varName, inputType);
+
+            res.append(getObjectLine);
+
+            for(LanguageEntity entity : entry.getValue())
+            {
+                String mechName = entity.getName();
+                String addLine = String.format("%s.addApplicableMechanism(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel(\"%s\"));\n", varName, mechName);
+
+                res.append(addLine);
+            }
         }
 
         return res.toString();

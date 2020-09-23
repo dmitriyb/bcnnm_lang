@@ -54,7 +54,7 @@ public class Mechanism extends LanguageEntity {
     {
         String[] tokens = mapProperties.split("=>");
 
-        String inputType = tokens[0].trim().replaceAll("\\(|\\)", "");
+        String inputType = tokens[0].trim().replaceAll("\\(|\\)|\\s", "").replaceAll(",", "=>");
         String[] outputArguments = tokens[1].trim().replaceAll("\\(|\\)", "").split(",");
 
         this.setInputType(inputType);
