@@ -1,4 +1,4 @@
 define EKDynamic: :Dynamic #extracellular potassium concentration change
 	(Space) => (K_o)
-	duration = 1000000000
+	duration = 1_000_000_000
 	delta = 0.5 * (10 ^ -6)
