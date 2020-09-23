@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 public class ProjectHandler {
     private final String root;
 
-    private final String constantsFname = "Constants";
-    private final String moleculesFname = "Molecules";
+    private final String constantsFname = "Constants.bdef";
+    private final String moleculesFname = "Molecules.bdef";
     private final String entityAssignSymbol = "=";
 
     private Map<String, Double> constantValues;
