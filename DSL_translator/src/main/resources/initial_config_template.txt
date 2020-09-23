@@ -1,0 +1,51 @@
+package com.synstorm.DSLCommons;
+
+import com.synstorm.MOC.LibraryFunctions.LibraryFunctions;
+import com.synstorm.MOC.LogicObjects.Connection;
+import com.synstorm.MOC.LogicObjects.PhysicalObject;
+import com.synstorm.MOC.LogicObjects.Shell;
+import com.synstorm.DSLCommons.GeneratedMechanisms.*;
+
+public enum InitialConfigTranslatorExample {
+    INSTANCE;
+
+    public void initAll() {
+        initMolecules();
+        initObjectsTypes();
+        initIntraObjectConcentration();
+        initMechanisms();
+        linkMechanisms();
+        transformPathwaysToConditions();
+        addMechanismsToObjects();
+    }
+
+    private void initMolecules() {
+        {MOLECULES_BLOCK}
+    }
+
+    private void initObjectsTypes() {
+        DSLLibrary.INSTANCE.addDSLObjectType("Shell");
+        DSLLibrary.INSTANCE.addDSLObjectType("Cell");
+        DSLLibrary.INSTANCE.addDSLObjectType("Cell=>Shell");
+    }
+
+    private void initIntraObjectConcentration() {
+        {INTRA_CONCENTRATIONS_BLOCK}
+    }
+
+    private void initMechanisms() {
+        {MECHANISMS_BLOCK}
+    }
+
+    private void linkMechanisms() {
+        {LINKS_BLOCK}
+    }
+
+    private void addMechanismsToObjects() {
+        {MECHANISMS_TO_OBJECTS_BLOCK}
+    }
+
+    private void transformPathwaysToConditions() {
+        {PATHWAY_TO_CONDITION_BLOCK}
+    }
+}
