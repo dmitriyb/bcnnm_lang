@@ -9,8 +9,10 @@ import java.util.*;
 public class Pathway extends LanguageEntity {
     private String name;
 
-    private final String[] possibleBlocksValues = {"interactions:", };
+    private final String[] possibleBlocksValues = {"interactions", };
     private final Set<String> possibleBlocks;
+
+    private Map<String, List<PathwayCondition>> entityBlocks;
 
     public Pathway(ProjectHandler parent, String name) {
         super(parent, name);
@@ -31,7 +33,8 @@ public class Pathway extends LanguageEntity {
         String header = lines.get(0);
         this.processHeader(header);
 
-        Map<String, Map<String, PathwayCondition>> entityBlocks = this.processBlocks(lines.subList(1, lines.size()));
+        this.entityBlocks = this.processBlocks(lines.subList(1, lines.size()));
+
     }
 
     private void processHeader(String line) {
@@ -39,33 +42,60 @@ public class Pathway extends LanguageEntity {
         this.setName(tokens[1]);
     }
 
-    private Map<String, Map<String, PathwayCondition>> processBlocks(List<String> allLines) {
-        Map<String, Map<String, PathwayCondition>> result = new HashMap<>();
+    private Map<String, List<PathwayCondition>> processBlocks(List<String> allLines) {
+        Map<String, List<PathwayCondition>> result = new HashMap<>();
 
         String currentBlock = "";
-        Map<String, PathwayCondition> currentConditions = new HashMap<>();
+        List<PathwayCondition> currentConditions = new ArrayList<>();
 
         for(String line : allLines) {
-            if (possibleBlocks.contains(line)) {
+            String blockName = line.replaceAll("^[: \t]+|[: \t]+$", "");
+            if (possibleBlocks.contains(blockName)) {
                 // resetting block state
                 if(!currentBlock.isEmpty())
                     result.put(currentBlock, currentConditions);
 
-                currentBlock = line;
-                currentConditions = new HashMap<>();
+                currentBlock = blockName;
+                currentConditions = new ArrayList<>();
             }
             else {
-                String[] tokens = line.split("->");
-                currentConditions.put(tokens[0].trim(), this.processConditionString(tokens[1].trim()));
+                PathwayCondition condition  = this.processConditionString(line);
+                currentConditions.add(condition);
+//                currentConditions.put(tokens[0].trim(), this.processConditionString(tokens[1].trim()));
             }
         }
+
+        if(!currentConditions.isEmpty())
+        {
+            result.put(currentBlock, currentConditions);
+        }
+
         return result;
     }
 
-    private PathwayCondition processConditionString(String line) {
-        String[] tokens = line.split("when");
+    private PathwayCondition processConditionString(String line)
+    {
+        String[] tokens = line.split(" ");
 
-        return new PathwayCondition(tokens[0].trim(), tokens[1].trim().replaceAll("\\(|\\)", ""));
+        String conditionName = tokens[0];
+        String conditionTypeName = tokens[1];
+        String conditionString = String.join(" ", Arrays.copyOfRange(tokens, 2, tokens.length));
+
+        PathwayConditionType conditionType = (conditionTypeName.equals("->")) ? PathwayConditionType.CONDITION_START : PathwayConditionType.CONDITION_INHIBIT;
+
+        return new PathwayCondition(conditionName, conditionString, conditionType);
+    }
+
+    public Map<String, List<PathwayCondition>> groupByMechanism()
+    {
+        Map<String, List<PathwayCondition>> res = new HashMap<>();
+
+        for(PathwayCondition condition : this.entityBlocks.get("interactions"))
+        {
+            res.computeIfAbsent(condition.getParent(), (key) -> new ArrayList<>()).add(condition);
+        }
+
+        return res;
     }
 
     public String translate() {

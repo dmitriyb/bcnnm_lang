@@ -3,7 +3,10 @@ package com.synstorm.translator.core;
 
 import com.synstorm.translator.translator.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Mechanism extends LanguageEntity {
     private String mechanismName;
@@ -75,10 +78,10 @@ public class Mechanism extends LanguageEntity {
 
     private void processMapping(String mapProperties)
     {
-        String[] tokens = mapProperties.split("=>");
+        List<String> tokens = LangUtils.getBetweenParenthesis(mapProperties);
 
-        String inputType = tokens[0].trim().replaceAll("\\(|\\)", "");
-        String[] outputArguments = tokens[1].trim().replaceAll("\\(|\\)", "").split(",");
+        String inputType = tokens.get(0);
+        String[] outputArguments = tokens.get(1).split(",");
 
         this.setInputType(inputType);
         this.setOutputArguments(outputArguments);

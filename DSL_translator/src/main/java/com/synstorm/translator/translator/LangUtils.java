@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class LangUtils {
@@ -84,5 +86,20 @@ public class LangUtils {
     public static String replaceInTemplate(String template, String blockName, String value)
     {
         return template.replaceAll(blockName, value);
+    }
+
+    public static List<String> getBetweenParenthesis(String line)
+    {
+        List<String> res = new ArrayList<>();
+
+        Pattern regex = Pattern.compile("\\((.*?)\\)");
+        Matcher regexMatcher = regex.matcher(line);
+
+        while(regexMatcher.find())
+        {
+            res.add(regexMatcher.group(1).trim().replaceAll("\\(|\\)", ""));
+        }
+
+        return res;
     }
 }

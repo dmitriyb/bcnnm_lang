@@ -24,6 +24,7 @@ public class ProjectHandler {
     private Map<String, Double> constantValues;
     private Map<String, Double> moleculeValues;
     private List<LanguageEntity> entities;
+    private List<LanguageEntity> pathways;
 
     public ProjectHandler(String root)
     {
@@ -42,12 +43,17 @@ public class ProjectHandler {
         return entities;
     }
 
+    public List<LanguageEntity> getPathways() { return pathways; }
+
     public boolean prefetchData() {
         this.constantValues = this.gatherNamedEntities(this.constantsFname, "constants");
         this.moleculeValues = this.gatherNamedEntities(this.moleculesFname, "molecules");
 
         List<Path> mechanismSourceFiles = this.getSourceFiles("Mechanisms");
+        List<Path> pathwaySourceFiles = this.getSourceFiles("Pathways");
+
         this.entities = mechanismSourceFiles.stream().map(fpath -> processSourceFile(fpath)).collect(Collectors.toList());
+        this.pathways = pathwaySourceFiles.stream().map(fpath -> processSourceFile(fpath)).collect(Collectors.toList());
 
         return true;
     }
