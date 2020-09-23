@@ -1,4 +1,4 @@
 define CVDynamic::Dynamic #cell volume change
 	(Cell) => (w)
-	duration = 1000000
+	duration = 1_000_000
 	delta = v_w * P_f * A * (Os - Os_o)
