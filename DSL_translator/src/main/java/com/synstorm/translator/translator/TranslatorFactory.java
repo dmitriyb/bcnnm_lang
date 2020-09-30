@@ -2,20 +2,20 @@ package com.synstorm.translator.translator;
 
 import com.synstorm.translator.core.Mechanism;
 
-public class TranslatorFabric {
+public class TranslatorFactory {
     public static MechanismTranslator getTranslator(Mechanism mech)
     {
         String parentName = mech.getMechanismParent();
 
         switch(parentName)
         {
-            case "Dynamic":
+            case "DynamicMechanism":
                 return new DynamicMechanismTranslator(mech);
-            case "Division":
+            case "DivisionMechanism":
                 return new DivisionMechanismTranslator(mech);
-            case "Diffusion":
+            case "DiffusionMechanism":
                 return new DiffusionMechanismTranslator(mech);
-            case "SignalTransfer":
+            case "SignalTransferMechanism":
                 return new SignalTransferTranslator(mech);
             default:
                 throw new RuntimeException(String.format("Cannot find mechanism type %s", parentName));

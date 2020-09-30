@@ -3,8 +3,8 @@ package com.synstorm.DSLCommons;
 import com.synstorm.MOC.LibraryFunctions.LibraryFunctions;
 import com.synstorm.MOC.LogicObjects.Connection;
 import com.synstorm.MOC.LogicObjects.PhysicalObject;
-import com.synstorm.MOC.LogicObjects.Shell;
 import com.synstorm.DSLCommons.GeneratedMechanisms.*;
+import com.synstorm.MOC.LogicObjects.Space;
 
 public enum InitialConfigTranslatorExample {
     INSTANCE;

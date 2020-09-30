@@ -3,10 +3,7 @@ package com.synstorm.translator.core;
 
 import com.synstorm.translator.translator.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Mechanism extends LanguageEntity {
     private String mechanismName;
@@ -88,7 +85,7 @@ public class Mechanism extends LanguageEntity {
     }
 
     public String translate() {
-        MechanismTranslator basicTranslator = TranslatorFabric.getTranslator(this);
+        MechanismTranslator basicTranslator = TranslatorFactory.getTranslator(this);
         String template = LangUtils.readTemplate("/mechanism_template.txt");
 
         String constructorBlock = basicTranslator.getConstructorBlock();

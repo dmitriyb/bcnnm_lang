@@ -2,16 +2,15 @@
     protected final IApplicableResponse evaluate(Object[] arguments) {
         final Connection connection = (Connection) arguments[0];
         final PhysicalObject cell = (PhysicalObject) connection.getObj1();
-        final Shell shell = (Shell) connection.getObj2();
+        final Space space = (Space) connection.getObj2();
         //amount = (P1*0.35)
         final int signal = {SIGNAL_ID}; // see InitialConfigTranslatorExample
         final double amount = cell.getSignal(signal) * {COEFFICIENT};
 
         return new SignalTransferResponse(
-                cell::updateSignal,
-                shell::updateSignal,
+                connection::updateSignal,
                 cell.getId(),
-                shell.getId(),
+                space.getId(),
                 signal,
                 amount
         );
