@@ -24,4 +24,9 @@ public class DiffusionMechanismTranslator extends MechanismTranslator {
 
         return result;
     }
+
+    public String getImportBlock()
+    {
+        return "import com.synstorm.MOC.Mechanisms.Diffusion;\n";
+    }
 }

@@ -26,5 +26,17 @@ public class SignalTransferTranslator extends MechanismTranslator {
                                     .replaceAll("\\{COEFFICIENT\\}", coefficient);
     }
 
+    public String getImportBlock()
+    {
+        String res = "import com.synstorm.MOC.LogicObjects.Connection;\n" +
+                "import com.synstorm.MOC.LogicObjects.PhysicalObject;\n" +
+                "import com.synstorm.MOC.LogicObjects.Space;\n" +
+                "import com.synstorm.MOC.MechanismResponses.IApplicableResponse;\n" +
+                "import com.synstorm.MOC.MechanismResponses.SignalTransferResponse;\n" +
+                "import com.synstorm.MOC.Mechanisms.SignalTransfer;\n";
+
+        return res;
+    }
+
     private String evaluateTemplate = "";
 }

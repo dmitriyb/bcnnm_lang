@@ -9,6 +9,7 @@ public abstract class MechanismTranslator {
 
     public abstract String getEvaluateBlock();
     public abstract String getConstructorBlock();
+    public abstract String getImportBlock();
 
     protected Mechanism mechanism;
 

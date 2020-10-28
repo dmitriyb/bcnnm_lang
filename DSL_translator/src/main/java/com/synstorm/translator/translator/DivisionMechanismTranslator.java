@@ -12,4 +12,18 @@ public class DivisionMechanismTranslator extends MechanismTranslator {
     {
         return "";
     }
+
+    public String getImportBlock()
+    {
+        String res = "import com.synstorm.DES.IEventResponse;\n" +
+                "import com.synstorm.MOC.LogicObjects.Connection;\n" +
+                "import com.synstorm.MOC.LogicObjects.PhysicalObject;\n" +
+                "import com.synstorm.MOC.MechanismResponses.DivisionResponse;\n" +
+                "import com.synstorm.MOC.MechanismResponses.DynamicResponse;\n" +
+                "import com.synstorm.MOC.MechanismResponses.IApplicableResponse;\n" +
+                "import com.synstorm.MOC.Mechanisms.Division;\n" +
+                "import org.jetbrains.annotations.NotNull;\n";
+
+        return res;
+    }
 }

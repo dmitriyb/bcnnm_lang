@@ -9,13 +9,13 @@ public class TranslatorFactory {
 
         switch(parentName)
         {
-            case "DynamicMechanism":
+            case "Dynamic":
                 return new DynamicMechanismTranslator(mech);
-            case "DivisionMechanism":
+            case "Division":
                 return new DivisionMechanismTranslator(mech);
-            case "DiffusionMechanism":
+            case "Diffusion":
                 return new DiffusionMechanismTranslator(mech);
-            case "SignalTransferMechanism":
+            case "SignalTransfer":
                 return new SignalTransferTranslator(mech);
             default:
                 throw new RuntimeException(String.format("Cannot find mechanism type %s", parentName));

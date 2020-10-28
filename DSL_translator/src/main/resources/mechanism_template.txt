@@ -1,15 +1,6 @@
 package com.synstorm.MOC.Mechanisms.Initial;
 
-import com.synstorm.MOC.LogicObjects.Connection;
-import com.synstorm.MOC.LogicObjects.PhysicalObject;
-import com.synstorm.MOC.MechanismResponses.DynamicResponse;
-import com.synstorm.MOC.MechanismResponses.IApplicableResponse;
-import com.synstorm.MOC.MechanismResponses.SignalTransferResponse;
-import com.synstorm.MOC.Mechanisms.DynamicMechanism;
-import com.synstorm.MOC.Mechanisms.DivisionMechanism;
-import com.synstorm.MOC.Mechanisms.DiffusionMechanism;
-import com.synstorm.MOC.Mechanisms.SignalTransferMechanism;
-import com.synstorm.MOC.LogicObjects.Space;
+{IMPORT_BLOCK}
 
 public final class {MECHANISM_NAME} extends {MECHANISM_TYPE} {
     public {MECHANISM_NAME}(int duraion, int delay) {

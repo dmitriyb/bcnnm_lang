@@ -126,5 +126,17 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
         return String.format("logicObject.getSignal(InitialConfig.molecules.get(\"%s\"))", name);
     }
 
+    public String getImportBlock()
+    {
+        String res = "import com.synstorm.MOC.LogicObjects.PhysicalObject;\n" +
+                "import com.synstorm.MOC.MechanismResponses.DynamicResponse;\n" +
+                "import com.synstorm.MOC.MechanismResponses.IApplicableResponse;\n" +
+                "import com.synstorm.MOC.Mechanisms.Dynamic;\n";
+
+        return res;
+    }
+
     private String evaluate_template = "";
+
+
 }

@@ -71,6 +71,13 @@ public class ProjectHandler {
 
     public boolean compile(String outputDir) {
         String initialConfigCode = this.compileConfig();
+
+        try {
+            Files.createDirectories(Paths.get(outputDir));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         this.writeCode(outputDir, initialConfigCode, "InitialConfigTranslator");
 
         for(LanguageEntity entry: entities) {

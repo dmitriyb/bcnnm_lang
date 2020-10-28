@@ -90,6 +90,7 @@ public class Mechanism extends LanguageEntity {
 
         String constructorBlock = basicTranslator.getConstructorBlock();
         String evaluateBlock = basicTranslator.getEvaluateBlock();
+        String importBlock = basicTranslator.getImportBlock();
 
 
         String compiledCode = template.replaceAll("\\{MECHANISM_NAME\\}", this.mechanismName)
@@ -97,7 +98,8 @@ public class Mechanism extends LanguageEntity {
                                         .replaceAll("\\{DURATION\\}", this.properties.get("duration"))
                                         .replaceAll("\\{DELAY\\}", String.valueOf(0))
                                         .replaceAll("\\{CONSTRUCTOR_BLOCK\\}", constructorBlock)
-                                        .replaceAll("\\{EVALUATE_BLOCK\\}", evaluateBlock);
+                                        .replaceAll("\\{EVALUATE_BLOCK\\}", evaluateBlock)
+                                        .replaceAll("\\{IMPORT_BLOCK\\}", importBlock);
 
         return compiledCode;
     }
