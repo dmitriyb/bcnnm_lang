@@ -2,3 +2,4 @@
 
 define NSCDifferentiate::Differentiate
     (NSC) => (B1A)
+    probability = random.uniform(0, 1)      #random exit from asym. division cell cycle

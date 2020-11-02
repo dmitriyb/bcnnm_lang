@@ -39,7 +39,9 @@ define SymDivPW:
 
         ReelinDiffusion -> RemoveBasalExtension when (max Reelin < some_value)
 
-        NSCAsymmetricDivision -> NSCDifferentiate when #(probability!!!!)
+        NSCAsymmetricDivision -> NSCDifferentiate #(probability!!!!)
+
+        NSCDifferentiate -| NSCAsymmetricDivision
 
         TFDiffusion -| NSCAsymmetricDivision when (TF < some_value) this value has to be reached at some point because the structure thickens and the [TF] in the marginal zone falls
 

@@ -9,3 +9,4 @@ define SymDivPW:
 
         TFDiffusion -| NSCAsymmetricDivision when (TF < some_value) this value has to be reached at some point because the structure thickens and the [TF] in the marginal zone falls
 
+        NSCDifferentiate -| NSCAsymmetricDivision

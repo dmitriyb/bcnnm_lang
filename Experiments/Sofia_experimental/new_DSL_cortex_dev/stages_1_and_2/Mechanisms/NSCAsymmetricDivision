@@ -1,3 +1,4 @@
 define NSCASymmetricDivision::Division
     (NSC) => (NPC, NSC)
     duration = 100
+    #introduce molecular clock
