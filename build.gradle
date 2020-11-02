@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+mainClassName = 'com.synstorm.translator.CompilerRunner'
+
+idea {
+    module { excludeDirs = [file(".idea")] }
+    project {
+        jdkName = '11'
+        languageLevel = '11'
+        vcs = 'Git'
+    }
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'application'
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+}
+
+project(':Translator') {
+    mainClassName = 'com.synstorm.translator.CompilerRunner'
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+        compile group: 'net.objecthunter', name: 'exp4j', version: '0.4.4'
+    }
+}
