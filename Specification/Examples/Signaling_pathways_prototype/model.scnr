@@ -1,11 +1,13 @@
 InitialState:
     Space:
-        100x100x100
-    Cell:
-        position = (50,50,50)
-        volume = 1.
-    Cell<=>Space:
-        direction = bi
+        Grid:
+            Edge = 100
+
+        Objects:
+            Cell:
+                id = 1
+                position = (50,50,50)
+                volume = 1.
 
 FinishCondition:
     Time:
