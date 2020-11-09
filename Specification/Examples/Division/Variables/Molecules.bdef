@@ -1,0 +1,6 @@
+molecules:
+
+    # Block for division pathway
+    P1 = 0.0
+    P2 = 0.0
+    E1 = 1.2

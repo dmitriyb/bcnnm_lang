@@ -1,0 +1,7 @@
+constants:
+
+    # Block for division pathway
+    C0 = 0.3
+    C1 = 2.5
+    C2 = 100
+    C3 = 1
