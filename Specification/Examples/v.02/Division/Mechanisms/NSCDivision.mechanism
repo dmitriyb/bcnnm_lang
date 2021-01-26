@@ -1,0 +1,3 @@
+def object mechanism NSCDivision::Division
+    object = Cell<=>Space
+    duration = 200

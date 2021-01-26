@@ -1,0 +1,10 @@
+define P2Dynamic::Dynamic
+    (Cell) => (P2)
+    duration = 300
+    delta = (C3)
+
+def signal mechanism P2Dynamic::Dynamic
+    objectType = Cell
+    signal = P2
+    duration = 300
+    delta = C3

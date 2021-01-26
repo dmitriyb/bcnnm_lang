@@ -1,0 +1,5 @@
+def signal mechanism E1Dynamic::Dynamic
+    objectType = Cell
+    signal = E1
+    duration = 100
+    delta = C2

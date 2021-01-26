@@ -1,0 +1,5 @@
+def signal mechanism P1Dynamic::Dynamic
+    objectType = Cell
+    signal = P1
+    duration = 100
+    delta = P1 * C1 + E1 / C0

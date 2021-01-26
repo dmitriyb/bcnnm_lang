@@ -1,0 +1,17 @@
+define NSCDivision
+    interactions:
+
+        # Conditions for E1 dynamic
+        E1Dynamic -> E1Dynamic when (E1 >= 0.0)
+        P1Dynamic -| E1Dynamic when (P1 >= 1.0)
+
+        # Condition for P1 dynamic
+        P1Dynamic -> P1Dynamic when (P1 >= 0.0)
+
+        # Condition for P2 dynamic
+        P2Dynamic -> P2Dynamic when (P2 is in [0.0;1.0))
+        E1Dynamic -> P2Dynamic when (E1 > 0.0)
+
+        # Conditions for NSCDivision
+        E1Dynamic -> NSCDivision when (E1 > 0.0)
+        P2Dynamic -| NSCDivision when (P2 >= 1.0)
