@@ -1,3 +1,5 @@
-def object mechanism NSCDivision::Division
-    object = Cell<=>Space
-    duration = 200
+def mechanism NSCDivision::Division {
+    ObjectType = Cell<=>Space
+    Duration = 200
+    Delay = 0
+}

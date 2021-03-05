@@ -1,5 +1,7 @@
-def signal mechanism P1Dynamic::Dynamic
-    objectType = Cell
-    signal = P1
-    duration = 100
-    delta = P1 * C1 + E1 / C0
+def mechanism P1Dynamic::Dynamic {
+    ObjectType = Cell
+    Duration = 100
+    Delay = 0
+    DeltaSignal = P1
+    DeltaFormula = P1 * C1 + E1 / C0
+}
