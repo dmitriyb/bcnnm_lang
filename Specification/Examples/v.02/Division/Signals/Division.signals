@@ -1,8 +1,8 @@
 # Block for division pathway constants
-def const signal C0 = 0.3
-def const signal C1 = 2.5
-def const signal C2 = 100
-def const signal C3 = 1
+def const C0 = 0.3
+def const C1 = 2.5
+def const C2 = 100
+def const C3 = 1
 
 # Block for division pathway molecules
 def signal P1 = 0.0
