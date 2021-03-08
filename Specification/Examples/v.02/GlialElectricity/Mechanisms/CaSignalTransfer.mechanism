@@ -1,0 +1,8 @@
+def mechanism CaSignalTransfer::SignalTransfer {
+    ObjectType = GJ
+    Duration = 100
+    Delay = 0
+    DeltaSignal = CaGJTransferConst
+    #DeltaModifier =
+    DeltaFormula = CaGJTransfer
+}

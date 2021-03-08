@@ -1,0 +1,11 @@
+# Block for division pathway constants
+# def const C0 = 0.3
+# def const C1 = 2.5
+# def const C2 = 100
+# def const C3 = 1
+
+# Block for division pathway molecules
+def signal Na = 0.0
+def signal K = 0.0
+def signal Cl = 0.0
+def signal Ca = 0.0

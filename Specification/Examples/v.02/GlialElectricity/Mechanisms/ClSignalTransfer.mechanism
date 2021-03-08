@@ -1,0 +1,8 @@
+def mechanism ClSignalTransfer::SignalTransfer {
+    ObjectType = GJ
+    Duration = 100
+    Delay = 0
+    DeltaSignal = ClGJTransferConst
+    #DeltaModifier =
+    DeltaFormula = ClGJTransfer
+}

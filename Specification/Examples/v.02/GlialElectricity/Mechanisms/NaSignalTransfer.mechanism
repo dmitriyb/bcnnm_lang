@@ -1,0 +1,8 @@
+def mechanism NaSignalTransfer::SignalTransfer {
+    ObjectType = GJ
+    Duration = 100
+    Delay = 0
+    DeltaSignal = NaGJTransferConst
+    #DeltaModifier =
+    DeltaFormula = NaGJTransfer
+}

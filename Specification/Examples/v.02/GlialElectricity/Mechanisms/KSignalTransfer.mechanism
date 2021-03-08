@@ -1,0 +1,8 @@
+def mechanism KSignalTransfer::SignalTransfer {
+    ObjectType = GJ
+    Duration = 100
+    Delay = 0
+    DeltaSignal = KGJTransferConst
+    #DeltaModifier =
+    DeltaFormula = KGJTransfer
+}

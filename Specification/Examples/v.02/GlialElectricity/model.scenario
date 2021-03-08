@@ -1,0 +1,22 @@
+InitialState:
+    Space:
+        Grid:
+            Edge = 100
+
+        Objects:
+            Cell:
+                id = 1
+                position = (50,50,50)
+                volume = 1.
+            Cell:
+                id = 2
+                position = (50,50,51)
+                volume = 1.
+            Cell:
+                id = 3
+                position = (50,50,52)
+                volume = 1.
+
+FinishCondition:
+    Time:
+        t >= 10000
