@@ -183,12 +183,12 @@ public class ConfigTranslator {
         for(PathwayCondition condition : nonEmptyConditions)
         {
             String moleculeName = condition.getMoleculeName().toLowerCase();
-            String[] boundaryTokens = condition.getBounds().split(";");
-
-            String lowerBound = boundaryTokens[0];
-            String upperBound = boundaryTokens[1];
-
-            expressionList.addAll(this.generateExpression(moleculeName, lowerBound, upperBound));
+//            String[] boundaryTokens = condition.getBounds().split(";");
+//
+//            String lowerBound = boundaryTokens[0];
+//            String upperBound = boundaryTokens[1];
+//
+            expressionList.addAll(this.generateExpression(moleculeName, condition));
         }
 
         res += String.join(" && \n", expressionList);
@@ -197,21 +197,28 @@ public class ConfigTranslator {
         return res;
     }
 
-    private List<String> generateExpression(String moleculeName, String lowerBound, String upperBound)
+    private List<String> generateExpression(String moleculeName, PathwayCondition condition)
     {
         List<String> expressions = new ArrayList<>();
         String signalExpression = this.getSignalExpression(moleculeName);
 
-        if(!lowerBound.contains("infinity"))
+        double value = 0.0;
+        String expr = "";
+
+        if(!Double.isNaN(value = condition.getBoundary(0)))
         {
-            String op = lowerBound.startsWith("(") ? ">" : ">=";
-            expressions.add(String.format("%s %s %s", signalExpression, op, lowerBound.substring(1)));
+            String op = condition.getStrictness(0) ? ">" : ">=";
+            expr = String.format("%s %s %.2f", signalExpression, op, value);
+
+            expressions.add(expr);
         }
 
-        if(!upperBound.contains("infinity"))
+        if(!Double.isNaN(value = condition.getBoundary(1)))
         {
-            String op = upperBound.endsWith(")") ? "<" : "<=";
-            expressions.add(String.format("%s %s %s", signalExpression, op, upperBound.substring(0, upperBound.length()-1)));
+            String op = condition.getStrictness(1) ? "<" : "<=";
+            expr = String.format("%s %s %.2f", signalExpression, op, value);
+
+            expressions.add(expr);
         }
 
         return expressions;

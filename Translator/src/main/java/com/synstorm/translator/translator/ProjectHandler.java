@@ -4,7 +4,10 @@ import com.synstorm.translator.core.Mechanism;
 import com.synstorm.translator.core.Pathway;
 import com.synstorm.translator.utils.IndexedHashMap;
 
+import javafx.util.Pair;
+
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -14,11 +17,13 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 public class ProjectHandler {
     private final String root;
 
-    private final String constantsFname = "Constants.bdef";
-    private final String moleculesFname = "Molecules.bdef";
+    private final String  configurationOutpath = "Configuration";
+    private final String mechanismsOutpath = "Mechanisms";
+    private final String constantsPath = "Signals";
     private final String entityAssignSymbol = "=";
 
     private Map<String, Double> constantValues;
@@ -46,8 +51,7 @@ public class ProjectHandler {
     public List<LanguageEntity> getPathways() { return pathways; }
 
     public boolean prefetchData() {
-        this.constantValues = this.gatherNamedEntities(this.constantsFname, "constants");
-        this.moleculeValues = this.gatherNamedEntities(this.moleculesFname, "molecules");
+        this.gatherNamedEntities(Paths.get(this.root, this.constantsPath));
 
         List<Path> mechanismSourceFiles = this.getSourceFiles("Mechanisms");
         List<Path> pathwaySourceFiles = this.getSourceFiles("Pathways");
@@ -72,20 +76,37 @@ public class ProjectHandler {
     public boolean compile(String outputDir) {
         String initialConfigCode = this.compileConfig();
 
+        this.createProjectStructure(outputDir);
+
+        this.writeCode(Paths.get(outputDir, this.configurationOutpath).toString(), initialConfigCode, "GeneratedConfig");
+
+        for(LanguageEntity entry: entities) {
+            String translatedCode = entry.translate();
+            this.writeCode(Paths.get(outputDir, this.mechanismsOutpath).toString(), translatedCode, entry.getName());
+        }
+
+        return true;
+    }
+
+    private void createProjectStructure(String outputDir)
+    {
         try {
             Files.createDirectories(Paths.get(outputDir));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        this.writeCode(outputDir, initialConfigCode, "InitialConfigTranslator");
-
-        for(LanguageEntity entry: entities) {
-            String translatedCode = entry.translate();
-            this.writeCode(outputDir, translatedCode, entry.getName());
+        try {
+            Files.createDirectories(Paths.get(outputDir, this.configurationOutpath));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return true;
+        try {
+            Files.createDirectories(Paths.get(outputDir, this.mechanismsOutpath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String compileConfig()
@@ -98,7 +119,7 @@ public class ProjectHandler {
     {
         System.out.println(fpath);
         LanguageEntity entity;
-        if(fpath.toString().endsWith("bmec"))
+        if(fpath.toString().endsWith("mechanism"))
         {
             entity = this.processMechanism(fpath);
         }
@@ -151,26 +172,52 @@ public class ProjectHandler {
     }
 
     // TODO: move to separate class, same as other
-    private Map<String, Double> gatherNamedEntities(String fname, String header)
+    private void gatherNamedEntities(Path dirPath)
     {
-        Map<String, Double> result = new IndexedHashMap<>();
+        List<Path> constantFiles;
 
-        Path fpath = Paths.get(this.root, "Variables", fname);
+        try {
+            constantFiles = Files.list(dirPath).collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Cannot fine files with constants!");
+        }
+
+        this.constantValues = new IndexedHashMap<>();
+        this.moleculeValues = new IndexedHashMap<>();
+
+        for(Path fpath : constantFiles)
+        {
+            Pair<Map<String, Double>, Map<String, Double>> fileData = gatherSingleScope(fpath);
+
+            fileData.getKey().entrySet().forEach(pair -> {this.constantValues.put(pair.getKey(), pair.getValue());});
+            fileData.getValue().entrySet().forEach(pair -> {this.moleculeValues.put(pair.getKey(), pair.getValue());});
+        }
+
+    }
+
+    private Pair<Map<String, Double>, Map<String, Double>> gatherSingleScope(Path fpath)
+    {
+        Map<String, Double> constants = new IndexedHashMap<>();
+        Map<String, Double> molecules = new IndexedHashMap<>();
+
         List<String> cleanLines = LangUtils.readCodeFile(fpath);
 
         for(String line : cleanLines)
         {
-            if(line.contains(header))
-            {
-                // ignore header
-                continue;
-            }
-            String[] tokens = line.split(this.entityAssignSymbol);
-            Double value = LangUtils.processFloatingValue(tokens[1]);
+            String[] tokens = line.split(" ");
+            Double value = LangUtils.processFloatingValue(tokens[4]);
 
-            result.put(tokens[0].trim(), value);
+            if(tokens[1].equals("const"))
+            {
+                constants.put(tokens[2].trim(), value);
+            }
+            else
+            {
+                molecules.put(tokens[2].trim(), value);
+            }
         }
 
-        return result;
+        return new Pair<>(constants, molecules);
     }
 }

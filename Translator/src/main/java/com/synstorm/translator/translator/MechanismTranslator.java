@@ -7,13 +7,21 @@ public abstract class MechanismTranslator {
         this.mechanism = target;
     }
 
-    public abstract String getEvaluateBlock();
-    public abstract String getConstructorBlock();
-    public abstract String getImportBlock();
+    public abstract String getFunctionsBlock();
 
     protected Mechanism mechanism;
 
     public Mechanism getMechanism() {
         return mechanism;
+    }
+
+    protected String getValueTemplate()
+    {
+        String template =  "@Override\n" +
+                "public int get%s() {\n" +
+                "return %s;\n" +
+                "};\n\n";
+
+        return template;
     }
 }

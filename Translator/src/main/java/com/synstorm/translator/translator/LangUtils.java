@@ -103,4 +103,9 @@ public class LangUtils {
         return res;
     }
 
+    public static boolean isComment(String line)
+    {
+        return line.trim().startsWith("#");
+    }
+
 }

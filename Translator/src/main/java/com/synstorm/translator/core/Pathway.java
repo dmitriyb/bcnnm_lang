@@ -1,6 +1,7 @@
 package com.synstorm.translator.core;
 
 import com.synstorm.translator.core.PathwayCondition;
+import com.synstorm.translator.translator.LangUtils;
 import com.synstorm.translator.translator.LanguageEntity;
 import com.synstorm.translator.translator.ProjectHandler;
 
@@ -48,7 +49,15 @@ public class Pathway extends LanguageEntity {
         String currentBlock = "";
         List<PathwayCondition> currentConditions = new ArrayList<>();
 
-        for(String line : allLines) {
+//        for(String line : allLines) {
+        for(int i = 0; i < allLines.size() - 1; ++i)
+        {
+            String line = allLines.get(i);
+            if(LangUtils.isComment(line))
+            {
+                continue;
+            }
+
             String blockName = line.replaceAll("^[: \t]+|[: \t]+$", "");
             if (possibleBlocks.contains(blockName)) {
                 // resetting block state
@@ -90,7 +99,7 @@ public class Pathway extends LanguageEntity {
     {
         Map<String, List<PathwayCondition>> res = new HashMap<>();
 
-        for(PathwayCondition condition : this.entityBlocks.get("interactions"))
+        for(PathwayCondition condition : this.entityBlocks.get(""))
         {
             res.computeIfAbsent(condition.getParent(), (key) -> new ArrayList<>()).add(condition);
         }

@@ -52,10 +52,10 @@ public class Mechanism extends LanguageEntity {
         String mapProperties = lines.get(1);
 
         this.processHeader(header);
-        this.processMapping(mapProperties);
+//        this.processMapping(mapProperties);
 
         // processing properties
-        for(int i = 2; i < lines.size(); ++i)
+        for(int i = 1; i < lines.size() - 1; ++i)
         {
             String line = lines.get(i);
             String[] tokens = line.split("=");
@@ -67,7 +67,7 @@ public class Mechanism extends LanguageEntity {
     private void processHeader(String header)
     {
         String[] tokens = header.split(" ");
-        String[] mechanismInfo = tokens[1].split("::");
+        String[] mechanismInfo = tokens[2].split("::");
 
         this.setMechanismName(mechanismInfo[0]);
         this.setMechanismParent(mechanismInfo[1]);
@@ -88,18 +88,11 @@ public class Mechanism extends LanguageEntity {
         MechanismTranslator basicTranslator = TranslatorFactory.getTranslator(this);
         String template = LangUtils.readTemplate("/mechanism_template.txt");
 
-        String constructorBlock = basicTranslator.getConstructorBlock();
-        String evaluateBlock = basicTranslator.getEvaluateBlock();
-        String importBlock = basicTranslator.getImportBlock();
-
+        String functionsBlock = basicTranslator.getFunctionsBlock();
 
         String compiledCode = template.replaceAll("\\{MECHANISM_NAME\\}", this.mechanismName)
                                         .replaceAll("\\{MECHANISM_TYPE\\}", this.mechanismParent)
-                                        .replaceAll("\\{DURATION\\}", this.properties.get("duration"))
-                                        .replaceAll("\\{DELAY\\}", String.valueOf(0))
-                                        .replaceAll("\\{CONSTRUCTOR_BLOCK\\}", constructorBlock)
-                                        .replaceAll("\\{EVALUATE_BLOCK\\}", evaluateBlock)
-                                        .replaceAll("\\{IMPORT_BLOCK\\}", importBlock);
+                                        .replaceAll("\\{FUNCTION_BLOCK\\}", functionsBlock);
 
         return compiledCode;
     }

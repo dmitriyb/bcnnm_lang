@@ -1,12 +1,9 @@
-package com.synstorm.MOC.Mechanisms.Initial;
+package com.synstorm.Generated.Mechanisms;
 
-{IMPORT_BLOCK}
+import com.synstorm.MOC.LogicObjects.PhysicalObject;
+import com.synstorm.MOC.Mechanisms.Dynamic;
+import com.synstorm.MOC.Mechanisms.Division;
 
 public final class {MECHANISM_NAME} extends {MECHANISM_TYPE} {
-    public {MECHANISM_NAME}(int duraion, int delay) {
-        super({DURATION}, {DELAY});
-        {CONSTRUCTOR_BLOCK}
-    }
-
-    {EVALUATE_BLOCK}
+    {FUNCTION_BLOCK}
 }

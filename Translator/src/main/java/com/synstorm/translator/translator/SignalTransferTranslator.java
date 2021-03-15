@@ -10,6 +10,12 @@ public class SignalTransferTranslator extends MechanismTranslator {
         this.evaluateTemplate = LangUtils.readTemplate("/transfer_evaluate_template.txt");
     }
 
+    public String getFunctionsBlock()
+    {
+        String res = "";
+        return res;
+    }
+
     public String getConstructorBlock()
     {
         return "";
@@ -24,18 +30,6 @@ public class SignalTransferTranslator extends MechanismTranslator {
 
         return this.evaluateTemplate.replaceAll("\\{SIGNAL_ID\\}", signalId.toString())
                                     .replaceAll("\\{COEFFICIENT\\}", coefficient);
-    }
-
-    public String getImportBlock()
-    {
-        String res = "import com.synstorm.MOC.LogicObjects.Connection;\n" +
-                "import com.synstorm.MOC.LogicObjects.PhysicalObject;\n" +
-                "import com.synstorm.MOC.LogicObjects.Space;\n" +
-                "import com.synstorm.MOC.MechanismResponses.IApplicableResponse;\n" +
-                "import com.synstorm.MOC.MechanismResponses.SignalTransferResponse;\n" +
-                "import com.synstorm.MOC.Mechanisms.SignalTransfer;\n";
-
-        return res;
     }
 
     private String evaluateTemplate = "";

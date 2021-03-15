@@ -1,6 +1,7 @@
 package com.synstorm.translator.translator;
 
 import com.synstorm.translator.core.Mechanism;
+import com.synstorm.translator.utils.IndexedHashMap;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
 import net.objecthunter.exp4j.tokenizer.*;
@@ -14,48 +15,61 @@ import java.util.Set;
 public class DynamicMechanismTranslator extends MechanismTranslator {
     public DynamicMechanismTranslator(Mechanism target) {
         super(target);
-
-        this.evaluate_template = LangUtils.readTemplate("/evaluate_template.txt");
     }
 
-    public String getConstructorBlock()
+    public String getFunctionsBlock()
     {
-        return "";
-    }
+        StringBuilder res = new StringBuilder();
+        String template;
 
-    public String getEvaluateBlock()
-    {
-        String signalBlock = this.getSignalBlock();
-        String variableBlock = this.getVariableBlock();
-        String functionblock = this.getFunctionBlock();
-        String returnBlock = this.getReturnBlock();
+        for (Map.Entry<String,String> entry : this.mechanism.properties.entrySet())
+        {
+            String property = entry.getKey();
+            String value = entry.getValue();
 
-        return this.evaluate_template.replaceAll("\\{VARIABLE_BLOCK\\}", variableBlock)
-                                     .replaceAll("\\{SIGNAL_BLOCK\\}", signalBlock)
-                                     .replaceAll("\\{EXPRESSION_BLOCK\\}", functionblock)
-                                     .replaceAll("\\{RETURN_BLOCK\\}", returnBlock);
-    }
+            switch(property)
+            {
+                case "Delay":
+                case "Duration":
+                    template = this.getValueTemplate();
+                    res.append(String.format(template, property, value));
 
-    public String getSignalBlock()
-    {
-        String res = "final int signal = InitialConfig.molecules.get(\"{MOLECULE_NAME}\");";
-        return res.replaceFirst("\\{MOLECULE_NAME\\}", this.mechanism.getOutputArguments()[0]);
-    }
+                    break;
+                case "DeltaSignal":
+                    template = this.getValueTemplate();
 
-    public String getVariableBlock()
-    {
-        String res = "final PhysicalObject logicObject = (PhysicalObject) arguments[0];\n" +
-                     "final long objectId = logicObject.getId();";
-        return res;
+                    IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) this.mechanism.parent.getMoleculeValues();
+                    int id = moleculeValues.getIndex(value);
+
+                    res.append(String.format(template, property, id));
+
+                    break;
+                case "DeltaFormula":
+                    template = getFormulaTemplate();
+                    String formula = getFunctionBlock();
+
+                    res.append(String.format(template, formula));
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        return res.toString();
     }
 
     public String getFunctionBlock()
     {
-        String res = "final double delta = ";
-        String delta = this.mechanism.getProperties().get("delta");
+        String res = "";
+        String delta = this.mechanism.getProperties().get("DeltaFormula");
 
-        Set<String> possibleConstants = this.mechanism.getParent().getConstantValues().keySet();
-        Set<String> possibleMolecules = this.mechanism.getParent().getMoleculeValues().keySet();
+        Map<String, Double> constantValues = this.mechanism.getParent().getConstantValues();
+        IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) this.mechanism.getParent().getMoleculeValues();
+
+        Set<String> possibleConstants = constantValues.keySet();
+        Set<String> possibleMolecules = moleculeValues.keySet();
 
         Set<String> allVariables = new HashSet<String>() {{
                                                             addAll(possibleConstants);
@@ -78,11 +92,13 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
 
                     if(possibleMolecules.contains(name))
                     {
-                        processedName = String.format("logicObject.getSignal(InitialConfig.molecules.get(\"%s\"))", name);
+                        int signalId = moleculeValues.getIndex(name);
+                        processedName = String.format("o.getSignal(%d)", signalId);
                     }
                     else if (possibleConstants.contains(name))
                     {
-                        processedName = String.format("InitialConfig.constantValues.get(\"%s\")", name);
+                        Double constantValue = constantValues.get(name);
+                        processedName = String.format("%.2f", constantValue);
                     }
 
                     res += processedName;
@@ -111,32 +127,16 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
         return res;
     }
 
-    public String getReturnBlock()
+
+    private String getFormulaTemplate()
     {
-        return "return new DynamicResponse(logicObject::updateSignal, objectId, signal, delta);";
+        String template = "    @Override\n" +
+                "    public double calculateDeltaFormula(final PhysicalObject o) {\n" +
+                "        return %s;\n" +
+                "    };\n\n";
+
+        return template;
     }
-
-    private String getConstantGetter(String name)
-    {
-        return String.format("InitialConfig.constantValues.get(\"%s\")", name);
-    }
-
-    private String getMoleculeGetter(String name)
-    {
-        return String.format("logicObject.getSignal(InitialConfig.molecules.get(\"%s\"))", name);
-    }
-
-    public String getImportBlock()
-    {
-        String res = "import com.synstorm.MOC.LogicObjects.PhysicalObject;\n" +
-                "import com.synstorm.MOC.MechanismResponses.DynamicResponse;\n" +
-                "import com.synstorm.MOC.MechanismResponses.IApplicableResponse;\n" +
-                "import com.synstorm.MOC.Mechanisms.Dynamic;\n";
-
-        return res;
-    }
-
-    private String evaluate_template = "";
 
 
 }
