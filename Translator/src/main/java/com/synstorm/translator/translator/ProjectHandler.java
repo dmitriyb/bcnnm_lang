@@ -3,8 +3,8 @@ package com.synstorm.translator.translator;
 import com.synstorm.translator.core.Mechanism;
 import com.synstorm.translator.core.Pathway;
 import com.synstorm.translator.utils.IndexedHashMap;
+import org.apache.commons.math3.util.Pair;
 
-import javafx.util.Pair;
 
 import java.io.BufferedWriter;
 import java.io.File;
