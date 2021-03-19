@@ -13,69 +13,57 @@ public class PathwayCondition {
     private double[] bounds;
     private boolean[] strictness;
 
-    public PathwayCondition(String name, String condition, PathwayConditionType type) {
+    public PathwayCondition(final String name, final String condition, final PathwayConditionType type) {
         this.name = name;
         this.condition = condition.trim();
         this.type = type;
-
         this.processConditionString();
     }
 
-    private void processConditionString()
-    {
-        String[] tokens = this.condition.split(" ");
+    private void processConditionString() {
+        final String[] tokens = this.condition.split(" ");
         this.parent = tokens[0];
 
-        if(tokens.length == 1)
-        {
-            this.alwaysRun = true;
+        if (tokens.length == 1) {
+            alwaysRun = true;
             return;
         }
 
-        this.moleculeName = tokens[2].substring(1);
-        this.processBounds(tokens);
+        moleculeName = tokens[2].substring(1);
+        processBounds(tokens);
     }
 
-    private void processBounds(String[] tokens)
-    {
-        this.bounds = new double[] {0.0, 0.0};
-        this.strictness =  new boolean[] {true, true};
+    private void processBounds(String[] tokens) {
+        bounds = new double[] {0.0, 0.0};
+        strictness =  new boolean[] {true, true};
 
-        if(tokens[3].equals("is"))
-        {
-            this.processRange(tokens);
-        }
-        else
-        {
+        if (tokens[3].equals("is")) {
+            processRange(tokens);
+        } else {
             this.processInequality(tokens);
         }
     }
 
-    private void processRange(String[] tokens)
-    {
+    private void processRange(String[] tokens) {
         String[] values = tokens[5].substring(1, tokens[5].length() - 2).split(";");
-
-        this.bounds[0] = Double.parseDouble(values[0]);
-        this.bounds[1] = Double.parseDouble(values[1]);
-
-        this.strictness[0] = (tokens[5].charAt(0) == '(');
-        this.strictness[1] = (tokens[5].charAt(1) == ')');
+        bounds[0] = Double.parseDouble(values[0]);
+        bounds[1] = Double.parseDouble(values[1]);
+        strictness[0] = (tokens[5].charAt(0) == '(');
+        strictness[1] = (tokens[5].charAt(1) == ')');
     }
 
-    private void processInequality(String[] tokens)
-    {
-        String operator = tokens[3];
+    private void processInequality(String[] tokens) {
+        final String operator = tokens[3];
 
-        switch(operator)
-        {
+        switch(operator) {
             case ">=":
-                this.strictness[0] = false;
+                strictness[0] = false;
             case ">":
-                this.bounds[0] = Double.parseDouble(tokens[4].substring(0, tokens[4].length() - 1));
-                this.bounds[1] = Double.NaN;
+                bounds[0] = Double.parseDouble(tokens[4].substring(0, tokens[4].length() - 1));
+                bounds[1] = Double.NaN;
                 break;
             case "<=":
-                this.strictness[1] = false;
+                strictness[1] = false;
             case "<":
                 bounds[1] = Double.parseDouble(tokens[4].substring(0, tokens[4].length() - 1));
                 bounds[0] = Double.NaN;

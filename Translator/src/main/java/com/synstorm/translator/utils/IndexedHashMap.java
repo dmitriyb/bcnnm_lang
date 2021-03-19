@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+// зачем изобретаешь, не мог обойтись штатными коллекциями?
 public class IndexedHashMap<K, V> implements Map<K, V> {
     public IndexedHashMap()
     {

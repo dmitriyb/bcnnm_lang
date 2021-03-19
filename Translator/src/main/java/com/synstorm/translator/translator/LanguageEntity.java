@@ -9,14 +9,13 @@ public abstract class LanguageEntity {
     private final String name;
     public ProjectHandler parent;
 
-    public LanguageEntity(ProjectHandler parent, String name)
-    {
+    public LanguageEntity(final ProjectHandler parent, final String name) {
         this.parent = parent;
         this.name = name;
         this.properties = new Hashtable<>();
     }
 
-    public Map<String, String> getProperties() {
+    public final Map<String, String> getProperties() {
         return properties;
     }
 

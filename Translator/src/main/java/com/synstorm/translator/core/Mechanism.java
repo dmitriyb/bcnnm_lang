@@ -47,41 +47,37 @@ public class Mechanism extends LanguageEntity {
         this.outputArguments = outputArguments;
     }
 
-    public void processCodeBlock(List<String> lines) {
-        String header = lines.get(0);
-        String mapProperties = lines.get(1);
+    public void processCodeBlock(final List<String> lines) {
+        final String header = lines.get(0);
+        final String mapProperties = lines.get(1);
 
-        this.processHeader(header);
+        processHeader(header);
 //        this.processMapping(mapProperties);
 
         // processing properties
-        for(int i = 1; i < lines.size() - 1; ++i)
-        {
-            String line = lines.get(i);
-            String[] tokens = line.split("=");
+        lines.forEach(line -> {
+            final String[] tokens = line.split("=");
+            properties.put(tokens[0].trim(), tokens[1].trim());
+        });
 
-            this.properties.put(tokens[0].trim(), tokens[1].trim());
-        }
     }
 
-    private void processHeader(String header)
-    {
-        String[] tokens = header.split(" ");
-        String[] mechanismInfo = tokens[2].split("::");
+    private void processHeader(String header) {
+        final String[] tokens = header.split(" ");
+        final String[] mechanismInfo = tokens[2].split("::");
 
-        this.setMechanismName(mechanismInfo[0]);
-        this.setMechanismParent(mechanismInfo[1]);
+        setMechanismName(mechanismInfo[0]);
+        setMechanismParent(mechanismInfo[1]);
     }
 
-    private void processMapping(String mapProperties)
-    {
-        List<String> tokens = LangUtils.getBetweenParenthesis(mapProperties);
+    private void processMapping(final String mapProperties) {
+        final List<String> tokens = LangUtils.getBetweenParenthesis(mapProperties);
 
-        String inputType = tokens.get(0);
-        String[] outputArguments = tokens.get(1).split(",");
+        final String inputType = tokens.get(0);
+        final String[] outputArguments = tokens.get(1).split(",");
 
-        this.setInputType(inputType);
-        this.setOutputArguments(outputArguments);
+        setInputType(inputType);
+        setOutputArguments(outputArguments);
     }
 
     public String translate() {

@@ -11,7 +11,7 @@ public class DiffusionMechanismTranslator extends MechanismTranslator {
     // TODO: implement it
     public String getFunctionsBlock()
     {
-        String res = "";
+        final String res = "";
         return res;
     }
 

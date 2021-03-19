@@ -17,119 +17,94 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
         super(target);
     }
 
-    public String getFunctionsBlock()
-    {
-        StringBuilder res = new StringBuilder();
-        String template;
-
-        for (Map.Entry<String,String> entry : this.mechanism.properties.entrySet())
-        {
-            String property = entry.getKey();
-            String value = entry.getValue();
-
-            switch(property)
-            {
+    public final String getFunctionsBlock() {
+        final StringBuilder res = new StringBuilder();
+        mechanism.properties.forEach((property, value) -> {
+            switch(property) {
                 case "Delay":
                 case "Duration":
-                    template = this.getValueTemplate();
-                    res.append(String.format(template, property, value));
-
+                    res.append(String.format(getValueTemplate(), property, value));
                     break;
                 case "DeltaSignal":
-                    template = this.getValueTemplate();
-
-                    IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) this.mechanism.parent.getMoleculeValues();
+                    final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) this.mechanism.parent.getMoleculeValues();
                     int id = moleculeValues.getIndex(value);
-
-                    res.append(String.format(template, property, id));
-
+                    res.append(String.format(getValueTemplate(), property, id));
                     break;
                 case "DeltaFormula":
-                    template = getFormulaTemplate();
-                    String formula = getFunctionBlock();
-
-                    res.append(String.format(template, formula));
-
+                    res.append(String.format(getFormulaTemplate(), getFunctionBlock()));
                     break;
                 default:
                     break;
             }
-        }
-
-
+        });
         return res.toString();
     }
 
-    public String getFunctionBlock()
-    {
-        String res = "";
-        String delta = this.mechanism.getProperties().get("DeltaFormula");
+    public final String getFunctionBlock() {
+        final StringBuilder res = new StringBuilder();
+        final String delta = mechanism.getProperties().get("DeltaFormula");
 
-        Map<String, Double> constantValues = this.mechanism.getParent().getConstantValues();
-        IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) this.mechanism.getParent().getMoleculeValues();
+        final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
+        final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
 
-        Set<String> possibleConstants = constantValues.keySet();
-        Set<String> possibleMolecules = moleculeValues.keySet();
+        final Set<String> possibleConstants = constantValues.keySet();
+        final Set<String> possibleMolecules = moleculeValues.keySet();
 
-        Set<String> allVariables = new HashSet<String>() {{
-                                                            addAll(possibleConstants);
-                                                            addAll(possibleMolecules);
-                                                          }};
+        final Set<String> allVariables = new HashSet<>() {{
+            addAll(possibleConstants);
+            addAll(possibleMolecules);
+        }};
 
         final Map<String, Function> userFunctions = new HashMap<>(4);
         final Map<String, Operator> userOperators = new HashMap<>(4);
 
-        Tokenizer tokenizer = new Tokenizer(delta, userFunctions, userOperators, allVariables);
+        final Tokenizer tokenizer = new Tokenizer(delta, userFunctions, userOperators, allVariables);
         while (tokenizer.hasNext()) {
-            Token token = tokenizer.nextToken();
+            final Token token = tokenizer.nextToken();
             switch (token.getType()) {
                 case Token.TOKEN_NUMBER:
-                    res += String.valueOf(((NumberToken) token).getValue());
+                    res.append(((NumberToken) token).getValue());
                     break;
                 case Token.TOKEN_VARIABLE:
-                    String name = ((VariableToken) token).getName();
+                    final String name = ((VariableToken) token).getName();
                     String processedName = "";
 
-                    if(possibleMolecules.contains(name))
-                    {
-                        int signalId = moleculeValues.getIndex(name);
+                    if (possibleMolecules.contains(name)) {
+                        final int signalId = moleculeValues.getIndex(name);
                         processedName = String.format("o.getSignal(%d)", signalId);
-                    }
-                    else if (possibleConstants.contains(name))
-                    {
-                        Double constantValue = constantValues.get(name);
+                    } else if (possibleConstants.contains(name)) {
+                        double constantValue = constantValues.get(name);
                         processedName = String.format("%.2f", constantValue);
                     }
 
-                    res += processedName;
+                    res.append(processedName);
                     break;
                 case Token.TOKEN_FUNCTION:
-                    FunctionToken func = (FunctionToken) token;
+                    final FunctionToken func = (FunctionToken) token;
                     String funcName = func.getFunction().getName();
                     break;
                 case Token.TOKEN_SEPARATOR:
                     break;
                 case Token.TOKEN_OPERATOR:
-                    OperatorToken o1 = (OperatorToken) token;
-                    res += o1.getOperator().getSymbol();
+                    final OperatorToken o1 = (OperatorToken) token;
+                    res.append(o1.getOperator().getSymbol());
                     break;
                 case Token.TOKEN_PARENTHESES_OPEN:
-                    res += "(";
+                    res.append("(");
                     break;
                 case Token.TOKEN_PARENTHESES_CLOSE:
-                    res += ")";
+                    res.append(")");
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown Token type encountered. This should not happen");
             }
         }
 
-        return res;
+        return res.toString();
     }
 
 
-    private String getFormulaTemplate()
-    {
+    private String getFormulaTemplate() {
         String template = "    @Override\n" +
                 "    public double calculateDeltaFormula(final PhysicalObject o) {\n" +
                 "        return %s;\n" +

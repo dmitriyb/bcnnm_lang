@@ -9,29 +9,21 @@ public class DivisionMechanismTranslator extends MechanismTranslator {
         super(target);
     }
 
-    public String getFunctionsBlock()
-    {
-        StringBuilder res = new StringBuilder();
-        String template;
-
-        for (Map.Entry<String,String> entry : this.mechanism.properties.entrySet())
-        {
-            String property = entry.getKey();
-            String value = entry.getValue();
-
-            switch(property)
-            {
+    public final String getFunctionsBlock() {
+        final StringBuilder res = new StringBuilder();
+        mechanism.properties.forEach((property, value) -> {
+            switch(property) {
                 case "Delay":
                 case "Duration":
-                    template = this.getValueTemplate();
-                    res.append(String.format(template, property, value));
-
+                    res.append(String.format(
+                            this.getValueTemplate(),
+                            property,
+                            value));
                     break;
                 default:
                     break;
             }
-        }
-
+        });
         return res.toString();
     }
 }

@@ -3,12 +3,10 @@ package com.synstorm.translator.translator;
 import com.synstorm.translator.core.Mechanism;
 
 public class TranslatorFactory {
-    public static MechanismTranslator getTranslator(Mechanism mech)
-    {
-        String parentName = mech.getMechanismParent();
+    public static MechanismTranslator getTranslator(Mechanism mech) {
+        final String parentName = mech.getMechanismParent();
 
-        switch(parentName)
-        {
+        switch(parentName) {
             case "Dynamic":
                 return new DynamicMechanismTranslator(mech);
             case "Division":

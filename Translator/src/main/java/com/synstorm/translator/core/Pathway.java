@@ -1,6 +1,5 @@
 package com.synstorm.translator.core;
 
-import com.synstorm.translator.core.PathwayCondition;
 import com.synstorm.translator.translator.LangUtils;
 import com.synstorm.translator.translator.LanguageEntity;
 import com.synstorm.translator.translator.ProjectHandler;
@@ -22,7 +21,7 @@ public class Pathway extends LanguageEntity {
     }
 
     @Override
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
@@ -30,17 +29,17 @@ public class Pathway extends LanguageEntity {
         this.name = name;
     }
 
-    public void processCodeBlock(List<String> lines) {
+    public void processCodeBlock(final List<String> lines) {
         String header = lines.get(0);
-        this.processHeader(header);
+        processHeader(header);
 
-        this.entityBlocks = this.processBlocks(lines.subList(1, lines.size()));
+        entityBlocks = processBlocks(lines.subList(1, lines.size()));
 
     }
 
-    private void processHeader(String line) {
+    private void processHeader(final String line) {
         String[] tokens = line.split(" ");
-        this.setName(tokens[1]);
+        setName(tokens[1]);
     }
 
     private Map<String, List<PathwayCondition>> processBlocks(List<String> allLines) {
@@ -49,6 +48,7 @@ public class Pathway extends LanguageEntity {
         String currentBlock = "";
         List<PathwayCondition> currentConditions = new ArrayList<>();
 
+        // рефактори этот код, невозможно понять что делаешь
 //        for(String line : allLines) {
         for(int i = 0; i < allLines.size() - 1; ++i)
         {
@@ -82,28 +82,20 @@ public class Pathway extends LanguageEntity {
         return result;
     }
 
-    private PathwayCondition processConditionString(String line)
-    {
-        String[] tokens = line.split(" ");
+    private PathwayCondition processConditionString(String line) {
+        final String[] tokens = line.split(" ");
+        final String conditionName = tokens[0];
+        final String conditionTypeName = tokens[1];
+        final String conditionString = String.join(" ", Arrays.copyOfRange(tokens, 2, tokens.length));
 
-        String conditionName = tokens[0];
-        String conditionTypeName = tokens[1];
-        String conditionString = String.join(" ", Arrays.copyOfRange(tokens, 2, tokens.length));
-
-        PathwayConditionType conditionType = (conditionTypeName.equals("->")) ? PathwayConditionType.CONDITION_START : PathwayConditionType.CONDITION_INHIBIT;
+        final PathwayConditionType conditionType = (conditionTypeName.equals("->")) ? PathwayConditionType.CONDITION_START : PathwayConditionType.CONDITION_INHIBIT;
 
         return new PathwayCondition(conditionName, conditionString, conditionType);
     }
 
-    public Map<String, List<PathwayCondition>> groupByMechanism()
-    {
-        Map<String, List<PathwayCondition>> res = new HashMap<>();
-
-        for(PathwayCondition condition : this.entityBlocks.get(""))
-        {
-            res.computeIfAbsent(condition.getParent(), (key) -> new ArrayList<>()).add(condition);
-        }
-
+    public Map<String, List<PathwayCondition>> groupByMechanism() {
+        final Map<String, List<PathwayCondition>> res = new HashMap<>();
+        entityBlocks.get("").forEach(condition -> res.computeIfAbsent(condition.getParent(), (key) -> new ArrayList<>()).add(condition));
         return res;
     }
 
