@@ -1,0 +1,4 @@
+define CdK2Dynamic::Dynamic
+    (Cell) => (M_a)
+    duration = 1
+    delta = C / (Kc + C) * VM1 * (1 - M_a) / (K1 + (1 - M_a)) - V2 * M_a / (K2 + M_a)                # V1 = C / (Kc + C) * VM1

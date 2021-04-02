@@ -1,0 +1,3 @@
+define MitosisPW:
+    interactions:
+        CDK2Dynamic -> CleavageDivision when (M_a >= 0.5)
