@@ -1,0 +1,5 @@
+def mechanism P1Diffusion::Diffusion {
+    ObjectType = Space
+    Duration = 50
+    Delay = 0
+}

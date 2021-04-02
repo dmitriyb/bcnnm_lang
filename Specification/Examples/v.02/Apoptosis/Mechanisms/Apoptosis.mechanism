@@ -1,0 +1,5 @@
+def mechanism NSCApoptosis::Apoptosis {
+    ObjectType = Cell
+    Duration = 10000
+    Delay = 0
+}

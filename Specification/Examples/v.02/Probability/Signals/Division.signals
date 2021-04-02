@@ -1,0 +1,5 @@
+# Block for division pathway constants
+def const C0 = 2
+
+# Block for division pathway molecules
+def signal P1 = 0.0

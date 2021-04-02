@@ -1,0 +1,7 @@
+def pathway P1Diffusion {
+    # Condition for P1 dynamic
+    P1Dynamic -> P1Dynamic when (P1 >= 0.0)
+
+    # Conditions for P1 release
+    P1Dynamic -> P1Release when (P1 >= 10.0)
+}

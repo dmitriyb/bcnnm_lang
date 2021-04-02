@@ -1,0 +1,7 @@
+def mechanism P1Release::SignalTransfer {
+    ObjectType = Cell=>Space
+    Duration = 400
+    Delay = 0
+    Signal = P1
+    Amount = P1 * 0.35
+}
