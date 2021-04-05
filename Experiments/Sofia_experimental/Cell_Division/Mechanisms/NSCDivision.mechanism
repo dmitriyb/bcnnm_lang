@@ -1,0 +1,5 @@
+def mechanism NSCDivision::Division {
+    ObjectType = Cell
+    Duration = 200
+    Delay = 0
+}

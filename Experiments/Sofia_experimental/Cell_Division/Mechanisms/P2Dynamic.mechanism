@@ -1,0 +1,7 @@
+def mechanism P2Dynamic::Dynamic {
+    ObjectType = Cell
+    Duration = 300
+    Delay = 0
+    DeltaSignal = P2
+    DeltaFormula = C3
+}
