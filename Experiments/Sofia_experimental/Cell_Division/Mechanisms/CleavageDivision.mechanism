@@ -1,0 +1,5 @@
+def mechanism CleavageDivision::Division {
+    ObjectType = Cell
+    Duration = 1500000   # 4/13 of cell cycle: 1.500.000.000.000 ns = 25*6*10^10 = 1.5e+12 == 25 minutes full cycle at 25C /1.000.000 to convert to ms
+    Delay = 0
+}

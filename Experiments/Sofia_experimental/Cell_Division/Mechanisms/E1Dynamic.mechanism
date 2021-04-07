@@ -1,7 +1,0 @@
-def mechanism E1Dynamic::Dynamic {
-    ObjectType = Cell
-    Duration = 100
-    Delay = 0
-    DeltaSignal = E1
-    DeltaFormula = C2
-}
