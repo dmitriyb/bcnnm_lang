@@ -48,8 +48,7 @@ public class Pathway extends LanguageEntity {
         String currentBlock = "";
         List<PathwayCondition> currentConditions = new ArrayList<>();
 
-        // рефактори этот код, невозможно понять что делаешь
-//        for(String line : allLines) {
+        // TODO: refactor
         for(int i = 0; i < allLines.size() - 1; ++i)
         {
             String line = allLines.get(i);

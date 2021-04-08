@@ -10,7 +10,8 @@ public class TranslatorFactory {
             case "Dynamic":
                 return new DynamicMechanismTranslator(mech);
             case "Division":
-                return new DivisionMechanismTranslator(mech);
+            case "Apoptosis":
+                return new GenericMechanismTranslator(mech);
             case "Diffusion":
                 return new DiffusionMechanismTranslator(mech);
             case "SignalTransfer":

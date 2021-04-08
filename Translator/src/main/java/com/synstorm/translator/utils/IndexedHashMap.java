@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-// зачем изобретаешь, не мог обойтись штатными коллекциями?
+// This class is necessary  because we need to be able to get index of a key.
 public class IndexedHashMap<K, V> implements Map<K, V> {
     public IndexedHashMap()
     {
