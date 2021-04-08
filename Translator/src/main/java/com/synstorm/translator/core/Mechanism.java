@@ -56,12 +56,9 @@ public class Mechanism extends LanguageEntity {
 
         // processing properties
         // we need to ignore the header
-        lines.subList(1, lines.size() - 1).forEach(line -> {
-            if(!LangUtils.isComment(line))
-            {
-                final String[] tokens = line.split("=");
-                properties.put(tokens[0].trim(), tokens[1].trim());
-            }
+        lines.subList(1, lines.size() - 1).stream().filter(line -> !LangUtils.isComment(line)).forEach(line -> {
+            final String[] tokens = line.split("=");
+            properties.put(tokens[0].trim(), tokens[1].trim());
         });
 
     }
