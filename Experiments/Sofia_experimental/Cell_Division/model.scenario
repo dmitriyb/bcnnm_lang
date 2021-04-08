@@ -11,4 +11,4 @@ InitialState:
 
 FinishCondition:
     Time:
-        t >= 150000000
+        t >= 1.8e+8                  # ~ 100 cell cycles
