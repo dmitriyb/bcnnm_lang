@@ -56,8 +56,7 @@ public class ConfigTranslator {
     private String getMechanismsBlock() {
         final StringBuilder res = new StringBuilder();
         parent.getEntities().forEach(languageEntity -> {
-            final String duration = languageEntity.getProperties().get("duration");
-            res.append(String.format("DSLLibrary.INSTANCE.addDSLMechanism(\"%s\", %s, 0);\n", languageEntity.getName(), duration));
+            res.append(String.format("DSLLibrary.INSTANCE.addDSLMechanism(\"%s\");\n", languageEntity.getName()));
         });
         return res.toString();
     }
@@ -66,9 +65,7 @@ public class ConfigTranslator {
         final StringBuilder res = new StringBuilder();
         parent.getEntities().forEach(languageEntity -> {
             final String mechName = languageEntity.getName();
-            final String varName = mechName.toLowerCase();
-            res.append(String.format("DSLLibrary.DSLMechanism %s = DSLLibrary.INSTANCE.getDSLMechanismById(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel(\"%s\"));\n", varName, mechName));
-            res.append(String.format("DSLLibrary.INSTANCE.linkMechanismToClass(\"%s\", new %s(%s.getDuration(), %s.getDelay()));\n\n", mechName, mechName, varName, varName));
+            res.append(String.format("DSLLibrary.INSTANCE.linkMechanismToClass(\"%s\", new %s());\n\n", mechName, mechName));
         });
         return res.toString();
     }
@@ -121,21 +118,16 @@ public class ConfigTranslator {
     }
 
     private String generateConditionBlock(final String mechName, final List<PathwayCondition> conditions) {
-        String res = getConditionHeader(mechName);
-
         final List<PathwayCondition> nonEmptyConditions = conditions.stream().filter(cond -> !cond.isAlwaysRun()).collect(Collectors.toList());
         final List<String> expressionList = new ArrayList<>();
 
         nonEmptyConditions.forEach(condition -> {
             String moleculeName = condition.getMoleculeName().toLowerCase();
-//            String[] boundaryTokens = condition.getBounds().split(";");
-//            String lowerBound = boundaryTokens[0];
-//            String upperBound = boundaryTokens[1];
-//
             expressionList.addAll(this.generateExpression(moleculeName, condition));
         });
-        res += String.join(" && \n", expressionList);
-        res += "});\n";
+
+        final String expression = String.join(" && \n", expressionList);
+        String res = getConditionHeader(mechName, expression);
 
         return res;
     }
@@ -175,15 +167,16 @@ public class ConfigTranslator {
 
         } else {
             final String moleculeId = moleculeName + "Id";
-            return String.format("obj2.getSignal(%s)", moleculeId);
+            return String.format("obj1.getSignal(%s)", moleculeId);
         }
     }
 
 
-    private String getConditionHeader(final String mechName) {
+    private String getConditionHeader(final String mechName, final String expression) {
         return String.format("DSLLibrary.INSTANCE.setConditionToDSLMechanism(\"%s\", affectedObjects -> {\n" +
-                "            final PhysicalObject obj1 = (PhysicalObject) ((Connection) affectedObjects[0]).getObj1();\n" +
-                "            final Space obj2 = (Space) ((Connection) affectedObjects[0]).getObj2();\n", mechName);
+                "            final PhysicalObject obj1 = (PhysicalObject) affectedObjects[0];\n" +
+                "            return %s\n" +
+                "            });\n", mechName, expression);
     }
 
     private String getMoleculeIdBlock() {

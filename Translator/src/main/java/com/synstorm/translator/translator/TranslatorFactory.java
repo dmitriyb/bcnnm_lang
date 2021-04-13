@@ -5,19 +5,28 @@ import com.synstorm.translator.core.Mechanism;
 public class TranslatorFactory {
     public static MechanismTranslator getTranslator(Mechanism mech) {
         final String parentName = mech.getMechanismParent();
+        MechanismTranslator translator;
 
         switch(parentName) {
             case "Dynamic":
-                return new DynamicMechanismTranslator(mech);
+                translator = new DynamicMechanismTranslator(mech);
+                break;
             case "Division":
+                translator = new GenericMechanismTranslator(mech);
+                break;
             case "Apoptosis":
-                return new GenericMechanismTranslator(mech);
+                translator = new GenericMechanismTranslator(mech);
+                break;
             case "Diffusion":
-                return new DiffusionMechanismTranslator(mech);
+                translator = new DiffusionMechanismTranslator(mech);
+                break;
             case "SignalTransfer":
-                return new SignalTransferTranslator(mech);
+                translator = new SignalTransferTranslator(mech);
+                break;
             default:
                 throw new RuntimeException(String.format("Cannot find mechanism type %s", parentName));
         }
+
+        return translator;
     }
 }

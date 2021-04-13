@@ -32,7 +32,33 @@ public class Mechanism extends LanguageEntity {
     }
 
     public String getInputType() {
-        return inputType;
+        String result = this.inputType;
+
+        if(result == null)
+        {
+            switch(this.mechanismParent)
+            {
+                case "Dynamic":
+                    result = "Cell";
+                    break;
+                case "Division":
+                    result = "Cell<=>Space";
+                    break;
+                case "Apoptosis":
+                    result = "Cell";
+                    break;
+                case "Diffusion":
+                    result = "Space";
+                    break;
+                case "SignalTransfer":
+                    result = "Cell<=>Space";
+                    break;
+                default:
+                    throw new RuntimeException(String.format("Cannot find mechanism type %s", this.mechanismParent));
+            }
+        }
+
+        return result;
     }
 
     public void setInputType(String inputType) {

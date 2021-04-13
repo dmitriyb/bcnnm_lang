@@ -6,10 +6,9 @@ import com.synstorm.MOC.LogicObjects.PhysicalObject;
 import com.synstorm.DSLCommons.GeneratedMechanisms.*;
 import com.synstorm.MOC.LogicObjects.Space;
 
-public enum InitialConfigTranslatorExample {
-    INSTANCE;
-
-    public void initAll() {
+public class GeneratedConfig implements Configuration {
+    @Override
+    public void initConfiguration() {
         initMolecules();
         initObjectsTypes();
         initIntraObjectConcentration();
@@ -17,6 +16,33 @@ public enum InitialConfigTranslatorExample {
         linkMechanisms();
         transformPathwaysToConditions();
         addMechanismsToObjects();
+    }
+
+    // TODO: fix that
+    @Override
+    public Space createSpace() {
+        final SpaceGrid spaceGrid = new SpaceGrid(100, new double[DSLLibrary.INSTANCE.molecules.size()]);
+        return new Space(spaceGrid);
+    }
+
+    // TODO : fix that
+    @Override
+    public IEventResponse[] addInitialObjects(final Space space) {
+        final int objectType = DSLLibrary.INSTANCE.getDSLObjectTypeByLabel(\"Cell\");
+        final DSLLibrary.DSLObject dslObject = DSLLibrary.INSTANCE.getDSLObjectByType(objectType);
+        final PhysicalObject startObj = new Cell(objectType, DSLLibrary.INSTANCE.molecules.size());
+        dslObject.getMolecules().forEachEntry((s, v) -> {
+            startObj.updateSignal(startObj.getId(), startObj.getId(), s, v);
+            return true;
+        });
+        final PhysicalObjectAddResponse startObjResp = new PhysicalObjectAddResponse(space::updateAddObject,
+                startObj,100 * (50 * 100 + 50) + 50,1);
+
+        final int cellSpaceConType = DSLLibrary.INSTANCE.getDSLObjectTypeByLabel(\"Cell<=>Space\");
+        final Connection cellSpaceCon = new Connection(cellSpaceConType, startObj, space);
+        final ConnectionAddResponse cellShellConResp = new ConnectionAddResponse(LogicObject::updateConnect, cellSpaceCon);
+
+        return new IEventResponse[] {startObjResp, cellShellConResp};
     }
 
     private void initMolecules() {
