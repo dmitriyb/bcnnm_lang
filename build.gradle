@@ -10,14 +10,10 @@ idea {
 sourceCompatibility = 11
 targetCompatibility = 11
 
-subprojects {
-    apply plugin: 'idea'
-    apply plugin: 'application'
-    apply plugin: 'java'
-    repositories {
-        mavenCentral()
-    }
+repositories {
+    mavenCentral()
 }
+
 
 mainClassName = 'com.synstorm.translator.CompilerRunner'
 dependencies {
