@@ -1,6 +1,5 @@
 def pathway NSCDivision {
     # Conditions for E1 dynamic
-    E1Dynamic -> E1Dynamic always
     P1Dynamic -| E1Dynamic when (P1 >= 1.0)
 
     # Condition for P1 dynamic
