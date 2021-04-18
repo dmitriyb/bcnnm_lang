@@ -14,11 +14,8 @@ public class CompilerRunner {
 
         ProjectHandler handler = new ProjectHandler(argumentValues.get("config"));
         handler.prefetchData();
-        handler.compile(argumentValues.get("out_path"));
-
-//        ProjectHandler handler = new ProjectHandler(args[0]);
-//        handler.prefetchData();
-//        handler.compile(args[1]);
+        handler.compile();
+        handler.writeProjectCode(argumentValues.get("out_path"));
 
     }
 }

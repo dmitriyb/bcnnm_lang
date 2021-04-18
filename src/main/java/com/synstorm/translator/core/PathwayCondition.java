@@ -24,7 +24,7 @@ public class PathwayCondition {
         final String[] tokens = this.condition.split(" ");
         this.parent = tokens[0];
 
-        if (tokens.length == 1) {
+        if (tokens[1].toLowerCase().equals("always")) {
             alwaysRun = true;
             return;
         }

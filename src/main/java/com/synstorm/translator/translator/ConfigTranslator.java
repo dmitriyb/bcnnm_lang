@@ -126,7 +126,7 @@ public class ConfigTranslator {
             expressionList.addAll(this.generateExpression(moleculeName, condition));
         });
 
-        final String expression = String.join(" && \n", expressionList);
+        final String expression = String.join(" && ", expressionList);
         String res = getConditionHeader(mechName, expression);
 
         return res;

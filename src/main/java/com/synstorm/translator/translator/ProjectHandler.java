@@ -2,6 +2,7 @@ package com.synstorm.translator.translator;
 
 import com.synstorm.translator.core.Mechanism;
 import com.synstorm.translator.core.Pathway;
+import com.synstorm.translator.core.TranslatedEntity;
 import com.synstorm.translator.utils.IndexedHashMap;
 import org.apache.commons.math3.util.Pair;
 
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -31,7 +33,10 @@ public class ProjectHandler {
     private List<LanguageEntity> entities;
     private List<LanguageEntity> pathways;
 
-    public ProjectHandler(String root)
+    private Map<String, TranslatedEntity> translatedCode;
+
+
+    public ProjectHandler(final String root)
     {
         this.root = root;
     }
@@ -60,39 +65,76 @@ public class ProjectHandler {
         pathways = pathwaySourceFiles.stream().map(this::processSourceFile).collect(Collectors.toList());
     }
 
-    private void writeCode(String outputDir, String code, String name) {
+    public void writeProjectCode(final String outputDir) {
+        createProjectStructure(outputDir);
+
+        final TranslatedEntity initialConfigEntity = this.translatedCode.remove("config");
+        final String initialConfigCode = initialConfigEntity.getSingleFileCode();
+
+        writeCode(Paths.get(outputDir, this.configurationOutpath).toString(), initialConfigCode, "GeneratedConfig");
+
+        this.translatedCode.entrySet().forEach(pair ->{
+            final String translatedCode = pair.getValue().getSingleFileCode();
+
+            writeCode(
+                    Paths.get(outputDir, this.mechanismsOutpath).toString(),
+                    translatedCode,
+                    pair.getKey()
+            );
+
+        });
+    }
+
+    public String getDynamicCompilationCode()
+    {
+        String res =  "";
+
+        final TranslatedEntity initialConfigEntity = this.translatedCode.remove("config");
+
+        res += initialConfigEntity.getImportsHeader();
+        res += initialConfigEntity.getCode();
+
+        List<String> classesTranslated = this.translatedCode.values().stream().map(TranslatedEntity::getCode).collect(Collectors.toList());
+
+        res += String.join("\n", classesTranslated);
+
+        return res;
+    }
+
+    public void compile() {
+        this.translatedCode = new HashMap<>();
+
+        final String initialConfigCode = this.compileConfig();
+
+        this.translatedCode.put("config", new TranslatedEntity("config", initialConfigCode));
+
+        entities.forEach(languageEntity -> {
+            final String translatedCode = languageEntity.translate();
+            TranslatedEntity translatedObject = new TranslatedEntity(languageEntity.getName(), translatedCode);
+            this.translatedCode.put(languageEntity.getName(), translatedObject);
+
+        });
+    }
+
+    private void writeCode(final String outputDir, final String code, final String name) {
         final Path outFpath = Paths.get(outputDir, String.join(".", name, "java"));
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(outFpath.toString()));
             writer.write(code);
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            final String errorMessage = String.format("Cannot create a source file for %s", name);
+            throw new RuntimeException(errorMessage);
         }
     }
 
-    public void compile(String outputDir) {
-        final String initialConfigCode = this.compileConfig();
-
-        createProjectStructure(outputDir);
-        writeCode(Paths.get(outputDir, this.configurationOutpath).toString(), initialConfigCode, "GeneratedConfig");
-
-        entities.forEach(languageEntity -> {
-            final String translatedCode = languageEntity.translate();
-            writeCode(
-                    Paths.get(outputDir, this.mechanismsOutpath).toString(),
-                    translatedCode,
-                    languageEntity.getName());
-        });
-    }
-
-    private void createProjectStructure(String outputDir) {
+    private void createProjectStructure(final String outputDir) {
         try {
             Files.createDirectories(Paths.get(outputDir));
             Files.createDirectories(Paths.get(outputDir, this.configurationOutpath));
             Files.createDirectories(Paths.get(outputDir, this.mechanismsOutpath));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Cannot create the project structure!");
         }
     }
 
@@ -101,14 +143,14 @@ public class ProjectHandler {
         return translator.translate();
     }
 
-    private LanguageEntity processSourceFile(Path fpath) {
+    private LanguageEntity processSourceFile(final Path fpath) {
         System.out.println(fpath);
         return fpath.toString().endsWith("mechanism") ?
                 this.processMechanism(fpath) :
                 this.processPathway(fpath);
     }
 
-    private LanguageEntity processMechanism(Path fpath) {
+    private LanguageEntity processMechanism(final Path fpath) {
         final String mechName = fpath.getFileName().toString().split("\\.")[0];
         final List<String> cleanLines = LangUtils.readCodeFile(fpath);
         final Mechanism mech = new Mechanism(this, mechName);
@@ -116,7 +158,7 @@ public class ProjectHandler {
         return mech;
     }
 
-    private LanguageEntity processPathway(Path fpath) {
+    private LanguageEntity processPathway(final Path fpath) {
         final String mechName = fpath.getFileName().toString().split("\\.")[0];
         final List<String> cleanLines = LangUtils.readCodeFile(fpath);
         final Pathway pathway = new Pathway(this, mechName);
@@ -147,7 +189,7 @@ public class ProjectHandler {
             constantFiles = Files.list(dirPath).collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Cannot fine files with constants!");
+            throw new RuntimeException("Cannot find files with constants!");
         }
 
         this.constantValues = new IndexedHashMap<>();

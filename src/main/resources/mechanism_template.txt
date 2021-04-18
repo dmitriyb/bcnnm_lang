@@ -4,6 +4,6 @@ import com.synstorm.MOC.LogicObjects.PhysicalObject;
 import com.synstorm.MOC.Mechanisms.Dynamic;
 import com.synstorm.MOC.Mechanisms.Division;
 
-public final class {MECHANISM_NAME} extends {MECHANISM_TYPE} {
+public Static final class {MECHANISM_NAME} extends {MECHANISM_TYPE} {
     {FUNCTION_BLOCK}
 }
