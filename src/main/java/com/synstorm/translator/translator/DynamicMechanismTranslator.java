@@ -45,7 +45,7 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
 
     private String getFormulaTemplate() {
         String template = "    @Override\n" +
-                "    public double calculateDeltaFormula(final PhysicalObject o) {\n" +
+                "    public double DeltaFormula(final PhysicalObject o) {\n" +
                 "        return %s;\n" +
                 "    };\n\n";
 

@@ -18,7 +18,7 @@ public abstract class MechanismTranslator {
     protected String getValueTemplate()
     {
         String template =  "@Override\n" +
-                "public int get%s() {\n" +
+                "public int %s() {\n" +
                 "return %s;\n" +
                 "};\n\n";
 

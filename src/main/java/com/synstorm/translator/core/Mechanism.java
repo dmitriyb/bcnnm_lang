@@ -36,26 +36,14 @@ public class Mechanism extends LanguageEntity {
 
         if(result == null)
         {
-            switch(this.mechanismParent)
+            String objectType = this.properties.get("ObjectType");
+
+            if(objectType == null)
             {
-                case "Dynamic":
-                    result = "Cell";
-                    break;
-                case "Division":
-                    result = "Cell<=>Space";
-                    break;
-                case "Apoptosis":
-                    result = "Cell";
-                    break;
-                case "Diffusion":
-                    result = "Space";
-                    break;
-                case "SignalTransfer":
-                    result = "Cell<=>Space";
-                    break;
-                default:
-                    throw new RuntimeException(String.format("Cannot find mechanism type %s", this.mechanismParent));
+                throw new RuntimeException(String.format("Cannot find mechanism type %s", this.mechanismParent));
             }
+
+            return objectType;
         }
 
         return result;

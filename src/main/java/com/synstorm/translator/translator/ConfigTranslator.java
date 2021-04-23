@@ -81,8 +81,9 @@ public class ConfigTranslator {
         final StringBuilder res = new StringBuilder();
         final List<String> indexedKeys = new ArrayList<>(typeToMechanisms.keySet());
         typeToMechanisms.forEach((key, value) -> {
-            String typeInnerName = String.format("type_%d", indexedKeys.indexOf(key));
-            res.append(String.format("DSLLibrary.DSLObject %s = DSLLibrary.INSTANCE.getDSLObjectByType(DSLLibrary.INSTANCE.getDSLObjectTypeByLabel(\"%s\"));\n", typeInnerName, key));
+            final String typeInnerName = String.format("type_%d", indexedKeys.indexOf(key));
+            final String line = String.format("DSLLibrary.DSLObject %s = DSLLibrary.INSTANCE.getDSLObjectByType(DSLLibrary.INSTANCE.getDSLObjectTypeByLabel(\"%s\"));\n", typeInnerName, key);
+            res.append(line);
             value.forEach(mechanismName -> res.append(String.format("%s.addApplicableMechanism(DSLLibrary.INSTANCE.getDSLMechanismIdByLabel(\"%s\"));\n", typeInnerName, mechanismName)));
             res.append("\n");
         });
@@ -175,7 +176,7 @@ public class ConfigTranslator {
     private String getConditionHeader(final String mechName, final String expression) {
         return String.format("DSLLibrary.INSTANCE.setConditionToDSLMechanism(\"%s\", affectedObjects -> {\n" +
                 "            final PhysicalObject obj1 = (PhysicalObject) affectedObjects[0];\n" +
-                "            return %s\n" +
+                "            return %s;\n" +
                 "            });\n", mechName, expression);
     }
 

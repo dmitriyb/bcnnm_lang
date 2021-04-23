@@ -87,16 +87,19 @@ public class ProjectHandler {
 
     public String getDynamicCompilationCode()
     {
-        String res =  "";
+        String res =  "package com.synstorm.Configuration;\n";
 
         final TranslatedEntity initialConfigEntity = this.translatedCode.remove("config");
 
         res += initialConfigEntity.getImportsHeader();
         res += initialConfigEntity.getCode();
 
+        res = res.substring(0, res.length() - 2);
+
         List<String> classesTranslated = this.translatedCode.values().stream().map(TranslatedEntity::getCode).collect(Collectors.toList());
 
         res += String.join("\n", classesTranslated);
+        res += "}\n";
 
         return res;
     }

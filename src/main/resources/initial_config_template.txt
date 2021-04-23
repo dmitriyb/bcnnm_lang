@@ -1,10 +1,18 @@
-package com.synstorm.DSLCommons;
+package com.synstorm.Configuration;
 
-import com.synstorm.MOC.LibraryFunctions.LibraryFunctions;
+import com.synstorm.Configuration.Configuration;
+import com.synstorm.Configuration.DSLLibrary;
+import com.synstorm.DES.IEventResponse;
 import com.synstorm.MOC.LogicObjects.Connection;
+import com.synstorm.MOC.LogicObjects.LogicObject;
 import com.synstorm.MOC.LogicObjects.PhysicalObject;
-import com.synstorm.DSLCommons.GeneratedMechanisms.*;
 import com.synstorm.MOC.LogicObjects.Space;
+import com.synstorm.MOC.Mechanisms.Dynamic;
+import com.synstorm.MOC.Responses.ConnectionAddResponse;
+import com.synstorm.MOC.Responses.PhysicalObjectAddResponse;
+import com.synstorm.NSDomain.LogicObjects.Cell;
+import com.synstorm.NSDomain.Mechanisms.Division;
+import com.synstorm.Space.SpaceGrid;
 
 public class GeneratedConfig implements Configuration {
     @Override
@@ -28,21 +36,17 @@ public class GeneratedConfig implements Configuration {
     // TODO : fix that
     @Override
     public IEventResponse[] addInitialObjects(final Space space) {
-        final int objectType = DSLLibrary.INSTANCE.getDSLObjectTypeByLabel(\"Cell\");
+        final int objectType = DSLLibrary.INSTANCE.getDSLObjectTypeByLabel("Cell");
         final DSLLibrary.DSLObject dslObject = DSLLibrary.INSTANCE.getDSLObjectByType(objectType);
-        final PhysicalObject startObj = new Cell(objectType, DSLLibrary.INSTANCE.molecules.size());
+        final PhysicalObject obj_0 = new Cell(objectType, DSLLibrary.INSTANCE.molecules.size(), space);
         dslObject.getMolecules().forEachEntry((s, v) -> {
-            startObj.updateSignal(startObj.getId(), startObj.getId(), s, v);
+            obj_0.updateSignal(obj_0.getId(), obj_0.getId(), s, v);
             return true;
         });
-        final PhysicalObjectAddResponse startObjResp = new PhysicalObjectAddResponse(space::updateAddObject,
-                startObj,100 * (50 * 100 + 50) + 50,1);
-
-        final int cellSpaceConType = DSLLibrary.INSTANCE.getDSLObjectTypeByLabel(\"Cell<=>Space\");
-        final Connection cellSpaceCon = new Connection(cellSpaceConType, startObj, space);
-        final ConnectionAddResponse cellShellConResp = new ConnectionAddResponse(LogicObject::updateConnect, cellSpaceCon);
-
-        return new IEventResponse[] {startObjResp, cellShellConResp};
+        final PhysicalObjectAddResponse resp_0 = new PhysicalObjectAddResponse(space::updateAddObject,
+                obj_0, 100 * (50 * 100 + 50) + 50, 1);
+        final ConnectionAddResponse resp_1 = obj_0.connectWithSpace();
+        return new IEventResponse[] {resp_0, resp_1};
     }
 
     private void initMolecules() {
