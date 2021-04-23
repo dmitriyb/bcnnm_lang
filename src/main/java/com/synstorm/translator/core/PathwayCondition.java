@@ -4,6 +4,7 @@ public class PathwayCondition {
     private String name;
     private String condition;
     private PathwayConditionType type;
+    private boolean excitation;
 
     private String parent;
     private boolean alwaysRun = false;
@@ -13,11 +14,12 @@ public class PathwayCondition {
     private double[] bounds;
     private boolean[] strictness;
 
-    public PathwayCondition(final String name, final String condition, final PathwayConditionType type) {
+    public PathwayCondition(final String name, final String condition, final PathwayConditionType type, final boolean excitation) {
         this.name = name;
         this.condition = condition.trim();
         this.type = type;
         this.processConditionString();
+        this.excitation = excitation;
     }
 
     private void processConditionString() {
@@ -75,6 +77,8 @@ public class PathwayCondition {
     public String getName() {
         return name;
     }
+
+    public boolean isExcitation() { return this.excitation; }
 
     public void setName(String name) {
         this.name = name;

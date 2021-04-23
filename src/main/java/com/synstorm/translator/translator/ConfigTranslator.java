@@ -115,7 +115,7 @@ public class ConfigTranslator {
     private String generateEternalCondition(final String mechName) {
         return String.format("DSLLibrary.INSTANCE.setConditionToDSLMechanism(\"%s\", affectedObjects ->\n" +
                 "                true\n" +
-                "            );", mechName);
+                "            );\n", mechName);
     }
 
     private String generateConditionBlock(final String mechName, final List<PathwayCondition> conditions) {
@@ -143,16 +143,19 @@ public class ConfigTranslator {
         if (!Double.isNaN(value = condition.getBoundary(0))) {
             final String op = condition.getStrictness(0) ? ">" : ">=";
             expr = String.format("%s %s %.2f", signalExpression, op, value);
-
-            expressions.add(expr);
         }
 
         if (!Double.isNaN(value = condition.getBoundary(1))) {
-            String op = condition.getStrictness(1) ? "<" : "<=";
+            final String op = condition.getStrictness(1) ? "<" : "<=";
             expr = String.format("%s %s %.2f", signalExpression, op, value);
-
-            expressions.add(expr);
         }
+
+        if(condition.isExcitation())
+        {
+            expr = String.format("!(%s)", expr);
+        }
+
+        expressions.add(expr);
 
         return expressions;
     }

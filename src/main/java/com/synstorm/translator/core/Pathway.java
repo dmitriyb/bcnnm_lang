@@ -34,7 +34,6 @@ public class Pathway extends LanguageEntity {
         processHeader(header);
 
         entityBlocks = processBlocks(lines.subList(1, lines.size()));
-
     }
 
     private void processHeader(final String line) {
@@ -69,7 +68,6 @@ public class Pathway extends LanguageEntity {
             else {
                 PathwayCondition condition  = this.processConditionString(line);
                 currentConditions.add(condition);
-//                currentConditions.put(tokens[0].trim(), this.processConditionString(tokens[1].trim()));
             }
         }
 
@@ -86,10 +84,11 @@ public class Pathway extends LanguageEntity {
         final String conditionName = tokens[0];
         final String conditionTypeName = tokens[1];
         final String conditionString = String.join(" ", Arrays.copyOfRange(tokens, 2, tokens.length));
+        final boolean excitation = tokens[1].equals("->");
 
         final PathwayConditionType conditionType = (conditionTypeName.equals("->")) ? PathwayConditionType.CONDITION_START : PathwayConditionType.CONDITION_INHIBIT;
 
-        return new PathwayCondition(conditionName, conditionString, conditionType);
+        return new PathwayCondition(conditionName, conditionString, conditionType, excitation);
     }
 
     public Map<String, List<PathwayCondition>> groupByMechanism() {
