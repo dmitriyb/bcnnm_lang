@@ -190,9 +190,9 @@ public class ConfigTranslator {
     }
 
     private String generateEternalCondition(final String mechName) {
-        return String.format("DSLLibrary.INSTANCE.setConditionToDSLMechanism(\"%s\", affectedObjects ->\n" +
-                "                true\n" +
-                "            );\n", mechName);
+        return String.format("DSLLibrary.INSTANCE.setConditionToDSLMechanism(\"%s\", affectedObjects -> {\n" +
+                "                return true;\n" +
+                "            });\n", mechName);
     }
 
     private String generateConditionBlock(final String mechName, final List<PathwayCondition> conditions) {
@@ -211,28 +211,26 @@ public class ConfigTranslator {
     }
 
     private List<String> generateExpression(final String moleculeName, final PathwayCondition condition) {
+        final String[] operators = {">", "<"};
         final List<String> expressions = new ArrayList<>();
         final String signalExpression = this.getSignalExpression(moleculeName);
 
         double value = 0.0;
         String expr = "";
 
-        if (!Double.isNaN(value = condition.getBoundary(0))) {
-            final String op = condition.getStrictness(0) ? ">" : ">=";
-            expr = String.format("%s %s %.2f", signalExpression, op, value);
-        }
+        for(int i = 0; i < 2; ++i) {
+            if (!Double.isNaN(value = condition.getBoundary(i))) {
+                final String op = condition.getStrictness(i) ? operators[i] : operators[i] + "=";
 
-        if (!Double.isNaN(value = condition.getBoundary(1))) {
-            final String op = condition.getStrictness(1) ? "<" : "<=";
-            expr = String.format("%s %s %.2f", signalExpression, op, value);
-        }
+                expr = String.format("%s %s %.2f", signalExpression, op, value);
 
-        if(condition.isExcitation())
-        {
-            expr = String.format("!(%s)", expr);
-        }
+                if (!condition.isExcitation()) {
+                    expr = String.format("!(%s)", expr);
+                }
 
-        expressions.add(expr);
+                expressions.add(expr);
+            }
+        }
 
         return expressions;
     }
