@@ -18,6 +18,7 @@ public class CompilerRunner {
         ProjectHandler handler = new ProjectHandler(argumentValues.get("config"));
         handler.prefetchData();
         handler.compile();
+
         handler.writeProjectCode(argumentValues.get("out_path"));
 
 //        final String code = handler.getDynamicCompilationCode();

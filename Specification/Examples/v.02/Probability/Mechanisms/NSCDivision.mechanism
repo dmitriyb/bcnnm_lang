@@ -2,4 +2,4 @@ def mechanism NSCDivision::Division {
     ObjectType = Cell
     Duration = 200
     Delay = 0
-} with Probability = 1 / (P1)^2
+} with Probability = 1 / pow(P1, 2)

@@ -19,6 +19,7 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
 
     public final String getFunctionsBlock() {
         final StringBuilder res = new StringBuilder();
+
         mechanism.properties.forEach((property, value) -> {
             switch(property) {
                 case "Delay":
@@ -38,6 +39,20 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
                     break;
             }
         });
+
+        final String probabilityExpression = this.mechanism.getProbabilityExpression();
+        if(!(probabilityExpression == null))
+        {
+            final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
+            final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
+
+            final String fixedExpression = LangUtils.transformToFormula(probabilityExpression, constantValues, moleculeValues);
+
+            final String template = this.getProbabilityTemplate();
+            final String probabilityBlock = String.format(template, fixedExpression);
+
+            res.append(probabilityBlock);
+        }
 
 
         return res.toString();

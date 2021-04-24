@@ -11,6 +11,8 @@ public class Mechanism extends LanguageEntity {
     private String inputType;
     private String[] outputArguments;
 
+    private String probabilityExpression;
+
     public Mechanism(ProjectHandler parent, String name) {
         super(parent, name);
     }
@@ -30,6 +32,8 @@ public class Mechanism extends LanguageEntity {
     public void setMechanismParent(String mechanismParent) {
         this.mechanismParent = mechanismParent;
     }
+
+    public String getProbabilityExpression() { return probabilityExpression; }
 
     public String getInputType() {
         String result = this.inputType;
@@ -63,16 +67,28 @@ public class Mechanism extends LanguageEntity {
 
     public void processCodeBlock(final List<String> lines) {
         final String header = lines.get(0);
-        final String mapProperties = lines.get(1);
 
         processHeader(header);
-//        this.processMapping(mapProperties);
 
-        // processing properties
-        // we need to ignore the header
-        lines.subList(1, lines.size() - 1).stream().filter(line -> !LangUtils.isComment(line)).forEach(line -> {
-            final String[] tokens = line.split("=");
-            properties.put(tokens[0].trim(), tokens[1].trim());
+        lines.stream().filter(line -> !LangUtils.isComment(line)).forEach(line -> {
+            if(line.startsWith("def") || line.strip().equals("}"))
+            {
+                return; //header, ignore the line;
+            }
+            else if(line.contains("with")) // optinal segment
+            {
+                final String expression = line.split("with")[1];
+                final String[] tokens = expression.split("=");
+
+                if(tokens[0].strip().toLowerCase().equals("probability"))
+                {
+                    this.probabilityExpression = tokens[1];
+                }
+            }
+            else {
+                final String[] tokens = line.split("=");
+                properties.put(tokens[0].trim(), tokens[1].trim());
+            }
         });
 
     }

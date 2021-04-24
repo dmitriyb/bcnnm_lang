@@ -17,6 +17,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.lang.StrictMath;
 
 public class LangUtils {
     // переназначать подаваемое значение не кошерно
@@ -109,12 +110,9 @@ public class LangUtils {
         return res;
     }
 
-    public static String getMechanismFormula(Mechanism mechanism) {
+    public static String transformToFormula(final String expression, final Map<String, Double> constantValues, final IndexedHashMap<String, Double> moleculeValues)
+    {
         final StringBuilder res = new StringBuilder();
-        final String delta = mechanism.getProperties().get("DeltaFormula");
-
-        final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
-        final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
 
         final Set<String> possibleConstants = constantValues.keySet();
         final Set<String> possibleMolecules = moleculeValues.keySet();
@@ -127,12 +125,23 @@ public class LangUtils {
         final Map<String, Function> userFunctions = new HashMap<>(4);
         final Map<String, Operator> userOperators = new HashMap<>(4);
 
-        final Tokenizer tokenizer = new Tokenizer(delta, userFunctions, userOperators, allVariables);
+
+        final Tokenizer tokenizer = new Tokenizer(expression, userFunctions, userOperators, allVariables);
+        int parameterCounter = 0;
+
         while (tokenizer.hasNext()) {
             final Token token = tokenizer.nextToken();
             switch (token.getType()) {
                 case Token.TOKEN_NUMBER:
                     res.append(((NumberToken) token).getValue());
+
+                    if(parameterCounter > 1)
+                    {
+                        res.append(", ");
+                        parameterCounter -= 1;
+                    }
+
+
                     break;
                 case Token.TOKEN_VARIABLE:
                     final String name = ((VariableToken) token).getName();
@@ -147,10 +156,22 @@ public class LangUtils {
                     }
 
                     res.append(processedName);
+
+                    if(parameterCounter > 1)
+                    {
+                        res.append(", ");
+                        parameterCounter -= 1;
+                    }
+
                     break;
                 case Token.TOKEN_FUNCTION:
                     final FunctionToken func = (FunctionToken) token;
-                    String funcName = func.getFunction().getName();
+                    final String funcName = func.getFunction().getName();
+                    final String libraryFunc = String.format("StrictMath.%s", funcName);
+
+                    parameterCounter += func.getFunction().getNumArguments();
+
+                    res.append(libraryFunc);
                     break;
                 case Token.TOKEN_SEPARATOR:
                     break;
@@ -170,6 +191,15 @@ public class LangUtils {
         }
 
         return res.toString();
+    }
+
+    public static String getMechanismFormula(Mechanism mechanism) {
+        final String delta = mechanism.getProperties().get("DeltaFormula");
+
+        final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
+        final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
+
+        return LangUtils.transformToFormula(delta, constantValues, moleculeValues);
     }
 
     public static boolean isComment(String line)

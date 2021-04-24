@@ -3,6 +3,7 @@ package com.synstorm.translator.core;
 import com.synstorm.translator.translator.LangUtils;
 import com.synstorm.translator.translator.LanguageEntity;
 import com.synstorm.translator.translator.ProjectHandler;
+import java.lang.Math;
 
 import java.util.*;
 
