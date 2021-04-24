@@ -41,6 +41,20 @@ public class LangUtils {
         return new ArrayList<>();
     }
 
+    public static List<Integer> findAllIntegers(final String expression)
+    {
+        List<Integer> res = new ArrayList<>();
+
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(expression);
+
+        while(m.find()) {
+            res.add(Integer.parseInt(m.group()));
+        }
+
+        return res;
+    }
+
     public static String readTemplate(final String resourceName) {
         URI resourcePath = null;
         try {

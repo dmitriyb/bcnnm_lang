@@ -3,12 +3,11 @@ package com.synstorm.translator.translator;
 import com.synstorm.translator.core.Mechanism;
 import com.synstorm.translator.core.Pathway;
 import com.synstorm.translator.core.TranslatedEntity;
+import com.synstorm.translator.core.scenario.ModelScenario;
 import com.synstorm.translator.utils.IndexedHashMap;
 import org.apache.commons.math3.util.Pair;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,6 +18,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Construct;
+import org.yaml.snakeyaml.constructor.Constructor;
+import org.yaml.snakeyaml.representer.Representer;
 
 public class ProjectHandler {
     private final String root;
@@ -27,11 +30,13 @@ public class ProjectHandler {
     private final String mechanismsOutpath = "Mechanisms";
     private final String constantsPath = "Signals";
     private final String entityAssignSymbol = "=";
+    private final String modelPath = "model.scenario";
 
     private Map<String, Double> constantValues;
     private Map<String, Double> moleculeValues;
     private List<LanguageEntity> entities;
     private List<LanguageEntity> pathways;
+    private ModelScenario scenario;
 
     private Map<String, TranslatedEntity> translatedCode;
 
@@ -55,7 +60,10 @@ public class ProjectHandler {
 
     public List<LanguageEntity> getPathways() { return pathways; }
 
+    public ModelScenario getScenario() { return this.scenario; }
+
     public void prefetchData() {
+        this.gatherModelData(Paths.get(this.root, this.modelPath));
         this.gatherNamedEntities(Paths.get(this.root, this.constantsPath));
 
         List<Path> mechanismSourceFiles = this.getSourceFiles("Mechanisms");
@@ -182,6 +190,19 @@ public class ProjectHandler {
         }
 
         return result;
+    }
+
+    private void gatherModelData(final Path dirPath) {
+
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(dirPath.toFile());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Yaml yaml = new Yaml(new Constructor(ModelScenario.class));
+        this.scenario = yaml.load(inputStream);
     }
 
     // TODO: move to separate class, same as other

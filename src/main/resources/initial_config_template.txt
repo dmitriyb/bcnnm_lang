@@ -29,7 +29,7 @@ public class GeneratedConfig implements Configuration {
     // TODO: fix that
     @Override
     public Space createSpace() {
-        final SpaceGrid spaceGrid = new SpaceGrid(100, new double[DSLLibrary.INSTANCE.molecules.size()]);
+        final SpaceGrid spaceGrid = new SpaceGrid({EDGE_SIZE}, new double[DSLLibrary.INSTANCE.molecules.size()]);
         return new Space(spaceGrid);
     }
 
@@ -38,15 +38,7 @@ public class GeneratedConfig implements Configuration {
     public IEventResponse[] addInitialObjects(final Space space) {
         final int objectType = DSLLibrary.INSTANCE.getDSLObjectTypeByLabel("Cell");
         final DSLLibrary.DSLObject dslObject = DSLLibrary.INSTANCE.getDSLObjectByType(objectType);
-        final PhysicalObject obj_0 = new Cell(objectType, DSLLibrary.INSTANCE.molecules.size(), space);
-        dslObject.getMolecules().forEachEntry((s, v) -> {
-            obj_0.updateSignal(obj_0.getId(), obj_0.getId(), s, v);
-            return true;
-        });
-        final PhysicalObjectAddResponse resp_0 = new PhysicalObjectAddResponse(space::updateAddObject,
-                obj_0, 100 * (50 * 100 + 50) + 50, 1);
-        final ConnectionAddResponse resp_1 = obj_0.connectWithSpace();
-        return new IEventResponse[] {resp_0, resp_1};
+        {INITIAL_OBJECTS_BLOCK}
     }
 
     private void initMolecules() {

@@ -3,6 +3,7 @@ package com.synstorm.translator.translator;
 import com.synstorm.translator.core.Mechanism;
 import com.synstorm.translator.core.Pathway;
 import com.synstorm.translator.core.PathwayCondition;
+import com.synstorm.translator.core.scenario.ScenarioCell;
 import com.synstorm.translator.utils.IndexedHashMap;
 
 import java.util.ArrayList;
@@ -27,16 +28,92 @@ public class ConfigTranslator {
         final String linksBlock = this.getMechanismLinksBlock();
         final String mechToObjectsBlock = this.getMechanismsToObjectsBlock();
         final String pathwaysBlock = this.getPathwaysToConditionBlock();
+        final String initialObjectsBlock = this.getInitialObjectsBlock();
+
+        final int edgeSize = this.parent.getScenario().getInitialState().getSpace().getGrid().getEdge();
 
         return template.replaceAll("\\{MOLECULES_BLOCK\\}", moleculesBlock)
                              .replaceAll("\\{INTRA_CONCENTRATIONS_BLOCK\\}", concentrationsBlock)
                              .replaceAll("\\{MECHANISMS_BLOCK\\}", mechanismsBlock)
                              .replaceAll("\\{LINKS_BLOCK\\}", linksBlock)
                              .replaceAll("\\{MECHANISMS_TO_OBJECTS_BLOCK\\}", mechToObjectsBlock)
-                             .replaceAll("\\{PATHWAY_TO_CONDITION_BLOCK\\}", pathwaysBlock);
+                             .replaceAll("\\{PATHWAY_TO_CONDITION_BLOCK\\}", pathwaysBlock)
+                             .replaceAll("\\{EDGE_SIZE\\}", Integer.toString(edgeSize))
+                             .replaceAll("\\{INITIAL_OBJECTS_BLOCK\\}", initialObjectsBlock);
     }
 
-    private String getMoleculesBlock() {
+    private String getInitialObjectsBlock()
+    {
+        StringBuilder res = new StringBuilder();
+        List<String> responseVariables = new ArrayList<>();
+
+        List<ScenarioCell> cellsList = this.parent.getScenario().getInitialState().getSpace().getObjects();
+
+        for(int objectId = 0; objectId < cellsList.size(); ++objectId)
+        {
+            final ScenarioCell cell = cellsList.get(objectId);
+
+            final String objectVarName = String.format("obj_%d", objectId);
+            final String objectCode = getNewCellObjectCode(objectVarName);
+            final String responsesCode = getNewCellResponseCode(objectId, cell.getPosition());
+
+            final String resp_0 = String.format("resp_%d", objectId*2);
+            final String resp_1 = String.format("resp_%d", objectId*2 + 1);
+
+
+            res.append(objectCode);
+            res.append(responsesCode);
+
+            responseVariables.add(resp_0);
+            responseVariables.add(resp_1);
+        }
+
+        final String returnExpression = String.format("return new IEventResponse[] {%s};\n", String.join(", ", responseVariables));
+
+        res.append(returnExpression);
+
+        return res.toString();
+    }
+
+    private String getNewCellObjectCode(final String variableName)
+    {
+        String template = "        final PhysicalObject %s = new Cell(objectType, DSLLibrary.INSTANCE.molecules.size(), space);\n" +
+                "        dslObject.getMolecules().forEachEntry((s, v) -> {\n" +
+                "            %s.updateSignal(%s.getId(), %s.getId(), s, v);\n" +
+                "            return true;\n" +
+                "        });\n";
+
+        final String res = String.format(template, variableName, variableName, variableName, variableName);
+        return res;
+    }
+
+    private String getNewCellResponseCode(final int objectId, final String cellPosition)
+    {
+        final String coordExpression = this.getFlatCoordinate(cellPosition);
+
+        String template = "        final PhysicalObjectAddResponse resp_%d = new PhysicalObjectAddResponse(space::updateAddObject,\n" +
+                "                obj_%d, %s, 1);\n" +
+                "        final ConnectionAddResponse resp_%d = obj_%d.connectWithSpace();\n";
+
+        final String res = String.format(template, objectId*2, objectId, coordExpression, objectId*2 + 1, objectId);;
+
+        return res;
+    }
+
+    private String getFlatCoordinate(final String cellPosition)
+    {
+        List<Integer> positions = LangUtils.findAllIntegers(cellPosition);
+
+        final int edgeSize = this.parent.getScenario().getInitialState().getSpace().getGrid().getEdge();
+        final String template = "%d * (%d * %d + %d) + %d";
+
+        final String res = String.format(template, edgeSize, positions.get(0), edgeSize, positions.get(1), positions.get(2));
+
+        return res;
+    }
+
+    private String getMoleculesBlock()
+    {
         final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) this.parent.getMoleculeValues();
         final StringBuilder res = new StringBuilder();
         final Map<Integer, String> moleculesReversed = new HashMap<>();
