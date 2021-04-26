@@ -28,7 +28,7 @@ public class GenericMechanismTranslator extends MechanismTranslator {
 
 
         final String probabilityExpression = this.mechanism.getProbabilityExpression();
-        if(probabilityExpression.length() > 0)
+        if(probabilityExpression != null && probabilityExpression.length() > 0)
         {
             final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
             final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
