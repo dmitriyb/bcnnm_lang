@@ -6,6 +6,7 @@ import com.synstorm.translator.translator.ProjectHandler;
 import java.lang.Math;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Pathway extends LanguageEntity {
     private String name;
@@ -39,7 +40,7 @@ public class Pathway extends LanguageEntity {
 
     private void processHeader(final String line) {
         String[] tokens = line.split(" ");
-        setName(tokens[1]);
+        setName(tokens[2]);
     }
 
     private Map<String, List<PathwayCondition>> processBlocks(List<String> allLines) {
@@ -49,10 +50,10 @@ public class Pathway extends LanguageEntity {
         List<PathwayCondition> currentConditions = new ArrayList<>();
 
         // TODO: refactor
-        for(int i = 0; i < allLines.size() - 1; ++i)
+        for(int i = 0; i < allLines.size(); ++i)
         {
             String line = allLines.get(i);
-            if(LangUtils.isComment(line))
+            if(LangUtils.isComment(line) || LangUtils.isBracket(line))
             {
                 continue;
             }
@@ -68,6 +69,7 @@ public class Pathway extends LanguageEntity {
             }
             else {
                 PathwayCondition condition  = this.processConditionString(line);
+
                 currentConditions.add(condition);
             }
         }
@@ -75,6 +77,33 @@ public class Pathway extends LanguageEntity {
         if(!currentConditions.isEmpty())
         {
             result.put(currentBlock, currentConditions);
+        }
+
+        Set<String> possibleMechanisms = parent.getEntities().stream().map(entity -> entity.getName()).collect(Collectors.toSet());
+        Set<String> undefinedMechanisms = new HashSet<>();
+
+        result.values().forEach(pathways -> {
+            pathways.forEach(condition -> {
+                String name = condition.getName();
+                String parent = condition.getParent();
+
+                if(!possibleMechanisms.contains(name) && !undefinedMechanisms.contains(name))
+                {
+                    undefinedMechanisms.add(name);
+                }
+
+                if(!possibleMechanisms.contains(parent) && !undefinedMechanisms.contains(parent))
+                {
+                    undefinedMechanisms.add(parent);
+                }
+            });
+        });
+
+        if(undefinedMechanisms.size() > 0)
+        {
+            String mechsJoined = String.join(", ", undefinedMechanisms);
+            String error = String.format("Undefined mechanisms: %s in a pathway %s!", mechsJoined, this.name);
+            throw new RuntimeException(error);
         }
 
         return result;

@@ -11,15 +11,18 @@ public class GenericMechanismTranslator extends MechanismTranslator {
     }
 
     public final String getFunctionsBlock() {
+        final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
+        final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
+
         final StringBuilder res = new StringBuilder();
         mechanism.properties.forEach((property, value) -> {
             switch(property) {
                 case "Delay":
                 case "Duration":
-                    res.append(String.format(
-                            this.getValueTemplate(),
-                            property,
-                            value));
+                    // TODO: for the future, if we want to process them as formulas
+//                    final String durationProcessed = LangUtils.transformToFormula(value, constantValues, moleculeValues);
+//                    res.append(String.format(getValueTemplate(), property, durationProcessed));
+                    res.append(String.format(getValueTemplate(), property, value));
                     break;
                 default:
                     break;
@@ -30,9 +33,6 @@ public class GenericMechanismTranslator extends MechanismTranslator {
         final String probabilityExpression = this.mechanism.getProbabilityExpression();
         if(probabilityExpression != null && probabilityExpression.length() > 0)
         {
-            final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
-            final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
-
             final String fixedExpression = LangUtils.transformToFormula(probabilityExpression, constantValues, moleculeValues);
 
             final String template = this.getProbabilityTemplate();

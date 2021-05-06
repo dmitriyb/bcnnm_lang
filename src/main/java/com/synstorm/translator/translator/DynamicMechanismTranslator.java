@@ -20,6 +20,9 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
     public final String getFunctionsBlock() {
         final StringBuilder res = new StringBuilder();
 
+        final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
+        final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
+
         mechanism.properties.forEach((property, value) -> {
             switch(property) {
                 case "Delay":
@@ -27,7 +30,6 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
                     res.append(String.format(getValueTemplate(), property, value));
                     break;
                 case "DeltaSignal":
-                    final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) this.mechanism.parent.getMoleculeValues();
                     int id = moleculeValues.getIndex(value);
                     res.append(String.format(getValueTemplate(), property, id));
                     break;
@@ -43,9 +45,6 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
         final String probabilityExpression = this.mechanism.getProbabilityExpression();
         if(!(probabilityExpression == null))
         {
-            final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
-            final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
-
             final String fixedExpression = LangUtils.transformToFormula(probabilityExpression, constantValues, moleculeValues);
 
             final String template = this.getProbabilityTemplate();

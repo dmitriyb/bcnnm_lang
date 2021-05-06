@@ -1,14 +1,9 @@
-InitialState:
-    Space:
-        Grid:
-            Edge = 100
+initialState:
+    space:
+        grid:
+            edge: 100
 
-        Objects:
-            Cell:
-                id = 1
-                position = (50,50,50)
-                volume = 1.
-
-FinishCondition:
-    Time:
-        t >= 1.8 * pow(10, 7)                  # ~ 10 cell cycles
+        objects:
+            - id: 1
+              position: (50,50,50)
+              volume: 1.0

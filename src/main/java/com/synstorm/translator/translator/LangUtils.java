@@ -207,4 +207,6 @@ public class LangUtils {
         return line.trim().startsWith("#");
     }
 
+    public static boolean isBracket(String line) { return line.trim().equals("}") || line.trim().equals("{"); }
+
 }
