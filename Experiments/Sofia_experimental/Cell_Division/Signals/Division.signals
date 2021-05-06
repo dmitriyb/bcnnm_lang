@@ -1,18 +1,20 @@
 # Block for cleavage division pathway constants
 
-def const vi = 4.17*10^(-7)         # uM/ms = 0.025 uM/min; the constant rate of cyclin synthesis (per nanosecond == tick) 4.1666667e-13
-def const vd = 4.17*10^(-6)         # uM/ms = 0.25 uM/min; the maximum rate of cyclin degradation by protease X (reached for X = 1)
-def const Kd = 0.02                 # uM Michaelis constant for cyclin degradation
-def const kd = 600                  # ms−1 = 0.01 min-1; represents an apparent first-order rate constant related to nonspecific degradation of cyclin
-def const VM1 = 1.8*10^5            # ms-1 = 3 min-1; the maximum rate of E1 phosphatase reached at saturating cyclin levels
-def const VM3 = 6*10^4              # ms−1 = 1 min-1; the maximum velocity of the kinase reached for M == 1
-def const V2 = 9*10^4               # ms−1 = 1.5 min-1; the effective max rate of E2, divided by the total amount of relevant target protein (MT)***
-def const V4 = 3*10^4               # ms−1 = 0.5 min-1; the effective max rate of E4, divided by the total amount of relevant target protein (XT)***
-def const K1 = 0.1                  # normalized Km for E1 (divided by MT=4uM)
-def const K2 = 0.1                  # normalized Km for E2 (divided by MT=4uM)
-def const K3 = 0.1                  # normalized Km for E3 (divided by XT=4uM)
-def const K4 = 0.1                  # normalized Km for E4 (divided by XT=4uM)
-def const Kc = 0.5                  # uM Michaelis constant for cyclin activation of the phosphatase acting on the phosphorylated form of cdc2 kinase
+def const vi = 4.17 * pow(10, -7)           # uM/ms = 0.025 uM/min; the constant rate of cyclin synthesis (per nanosecond == tick) 4.1666667e-13
+def const vd = 4.17 * pow(10, -6)           # uM/ms = 0.25 uM/min; the maximum rate of cyclin degradation by protease X (reached for X = 1)
+def const Kd = 0.02                         # uM Michaelis constant for cyclin degradation
+def const kd = 600                          # ms−1 = 0.01 min-1; represents an apparent first-order rate constant related to nonspecific degradation of cyclin
+def const VM1 = 1.8 * pow(10, 5)            # ms-1 = 3 min-1; the maximum rate of E1 phosphatase reached at saturating cyclin levels
+def const VM3 = 6 * pow(10, 4)              # ms−1 = 1 min-1; the maximum velocity of the kinase reached for M == 1
+def const V2 = 9 * pow(10, 4)               # ms−1 = 1.5 min-1; the effective max rate of E2, divided by the total amount of relevant target protein (MT)***
+def const V4 = 3 * pow(10, 4)               # ms−1 = 0.5 min-1; the effective max rate of E4, divided by the total amount of relevant target protein (XT)***
+def const K1 = 0.1                          # normalized Km for E1 (divided by MT=4uM)
+def const K2 = 0.1                          # normalized Km for E2 (divided by MT=4uM)
+def const K3 = 0.1                          # normalized Km for E3 (divided by XT=4uM)
+def const K4 = 0.1                          # normalized Km for E4 (divided by XT=4uM)
+def const Kc = 0.5                          # uM Michaelis constant for cyclin activation of the phosphatase acting on the phosphorylated form of cdc2 kinase
+def const MT = 4                            # uM, total enzyme M (M_in + M_a)
+def const XT = 4                            # uM, total enzyme X (X_in + X_a)
 
 
                                     # *** MT (total amount of cdc2 kinase) for enzymes E1 and E2, and XT (total amount of cyclin protease)
@@ -24,5 +26,3 @@ def const Kc = 0.5                  # uM Michaelis constant for cyclin activatio
 def signal C = 0.01                 # uM, initial
 def signal M_a = 0.01               # fraction of the active enzyme, initial
 def signal X_a = 0.01               # fraction of the active enzyme, initial
-def signal MT = 4                   # uM, total enzyme M (M_in + M_a)
-def signal XT = 4                   # uM, total enzyme X (X_in + X_a)

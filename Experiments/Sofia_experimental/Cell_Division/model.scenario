@@ -11,4 +11,4 @@ InitialState:
 
 FinishCondition:
     Time:
-        t >= 1.8e+8                  # ~ 100 cell cycles
+        t >= 1.8 * pow(10, 7)                  # ~ 10 cell cycles
