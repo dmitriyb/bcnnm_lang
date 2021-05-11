@@ -1,6 +1,6 @@
  def mechanism CyclinDynamic::Dynamic {
     ObjectType = Cell
-    Duration = 0.002
+    Duration = 1
     Delay = 0
     DeltaSignal = C
     DeltaFormula = vi - vd * X_a * C / (Kd + C) - Kd * C              # vi - vd * X_a * C / (Kd + C) - Kd * C when the protease X is inhibited
