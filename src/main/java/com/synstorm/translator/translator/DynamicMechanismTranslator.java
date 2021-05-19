@@ -1,6 +1,7 @@
 package com.synstorm.translator.translator;
 
 import com.synstorm.translator.core.Mechanism;
+import com.synstorm.translator.core.exceptions.LangException;
 import com.synstorm.translator.utils.IndexedHashMap;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
@@ -17,14 +18,16 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
         super(target);
     }
 
-    public final String getFunctionsBlock() {
+    public final String getFunctionsBlock() throws LangException {
         final StringBuilder res = new StringBuilder();
 
         final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
         final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
 
-        mechanism.properties.forEach((property, value) -> {
-            switch(property) {
+        for (Map.Entry<String, String> entry : mechanism.properties.entrySet()) {
+            String property = entry.getKey();
+            String value = entry.getValue();
+            switch (property) {
                 case "Delay":
                 case "Duration":
                     res.append(String.format(getValueTemplate(), property, value));
@@ -35,12 +38,12 @@ public class DynamicMechanismTranslator extends MechanismTranslator {
                     break;
                 case "DeltaFormula":
                     String formula = LangUtils.getMechanismFormula(this.mechanism);
-                    res.append(String.format(getFormulaTemplate(),  formula));
+                    res.append(String.format(getFormulaTemplate(), formula));
                     break;
                 default:
                     break;
             }
-        });
+        }
 
         final String probabilityExpression = this.mechanism.getProbabilityExpression();
         if(!(probabilityExpression == null))

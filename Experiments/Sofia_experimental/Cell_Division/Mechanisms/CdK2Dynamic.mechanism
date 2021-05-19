@@ -3,5 +3,5 @@ def mechanism CdK2Dynamic::Dynamic {
     Duration = 100
     Delay = 0
     DeltaSignal = M_a
-    DeltaFormula = C / (Kc + C) * VM1 * (1 - M_a) / (K1 + (1 - M_a)) - V2 * M_a / (K2 + M_a)                # V1 = C / (Kc + C) * VM1
+    DeltaFormula = C / (KcP + C) * VM1 * (1 - M_a) / (K1 + (1 - M_a)) - V2 * M_a / (K2 + M_a)                # V1 = C / (Kc + C) * VM1
 }

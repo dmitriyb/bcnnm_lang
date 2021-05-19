@@ -1,6 +1,7 @@
 package com.synstorm.translator.translator;
 
 import com.synstorm.translator.core.Mechanism;
+import com.synstorm.translator.core.exceptions.LangException;
 import com.synstorm.translator.utils.IndexedHashMap;
 
 import java.util.Map;
@@ -10,7 +11,7 @@ public class GenericMechanismTranslator extends MechanismTranslator {
         super(target);
     }
 
-    public final String getFunctionsBlock() {
+    public final String getFunctionsBlock() throws LangException {
         final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();
         final IndexedHashMap<String, Double> moleculeValues = (IndexedHashMap<String, Double>) mechanism.getParent().getMoleculeValues();
 

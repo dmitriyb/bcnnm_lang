@@ -1,6 +1,7 @@
 package com.synstorm.translator.core;
 
 
+import com.synstorm.translator.core.exceptions.LangException;
 import com.synstorm.translator.translator.*;
 
 import java.util.List;
@@ -111,7 +112,7 @@ public class Mechanism extends LanguageEntity {
         setOutputArguments(outputArguments);
     }
 
-    public String translate() {
+    public String translate() throws LangException {
         MechanismTranslator basicTranslator = TranslatorFactory.getTranslator(this);
         String template = LangUtils.readTemplate("/mechanism_template.txt");
 

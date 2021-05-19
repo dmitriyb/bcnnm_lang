@@ -1,6 +1,8 @@
 package com.synstorm.translator.translator;
 
 import com.synstorm.translator.core.Mechanism;
+import com.synstorm.translator.core.exceptions.ExceptionFabric;
+import com.synstorm.translator.core.exceptions.LangException;
 import com.synstorm.translator.utils.IndexedHashMap;
 import net.objecthunter.exp4j.function.Function;
 import net.objecthunter.exp4j.operator.Operator;
@@ -110,8 +112,7 @@ public class LangUtils {
         return res;
     }
 
-    public static String transformToFormula(final String expression, final Map<String, Double> constantValues, final IndexedHashMap<String, Double> moleculeValues)
-    {
+    public static String transformToFormula(final String expression, final Map<String, Double> constantValues, final IndexedHashMap<String, Double> moleculeValues) throws LangException {
         final StringBuilder res = new StringBuilder();
 
         final Set<String> possibleConstants = constantValues.keySet();
@@ -130,7 +131,16 @@ public class LangUtils {
         int parameterCounter = 0;
 
         while (tokenizer.hasNext()) {
-            final Token token = tokenizer.nextToken();
+            Token token;
+            try {
+                token = tokenizer.nextToken();
+            }
+            catch(IllegalArgumentException e) {
+                LangException exceptionProcessed = ExceptionFabric.createLanguageException(e);
+
+                throw exceptionProcessed;
+            }
+
             switch (token.getType()) {
                 case Token.TOKEN_NUMBER:
                     res.append(((NumberToken) token).getValue());
@@ -193,7 +203,7 @@ public class LangUtils {
         return res.toString();
     }
 
-    public static String getMechanismFormula(Mechanism mechanism) {
+    public static String getMechanismFormula(Mechanism mechanism) throws LangException {
         final String delta = mechanism.getProperties().get("DeltaFormula");
 
         final Map<String, Double> constantValues = mechanism.getParent().getConstantValues();

@@ -1,13 +1,14 @@
 package com.synstorm.translator.translator;
 
 import com.synstorm.translator.core.Mechanism;
+import com.synstorm.translator.core.exceptions.LangException;
 
 public abstract class MechanismTranslator {
     public MechanismTranslator(Mechanism target) {
         this.mechanism = target;
     }
 
-    public abstract String getFunctionsBlock();
+    public abstract String getFunctionsBlock() throws LangException;
 
     protected Mechanism mechanism;
 

@@ -1,5 +1,7 @@
 package com.synstorm.translator.translator;
 
+import com.synstorm.translator.core.exceptions.LangException;
+
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +30,7 @@ public abstract class LanguageEntity {
     }
 
     public abstract void processCodeBlock(List<String> lines);
-    public abstract String translate();
+    public abstract String translate() throws LangException;
 
 
 

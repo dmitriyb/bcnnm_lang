@@ -3,6 +3,7 @@ package com.synstorm.translator.translator;
 import com.synstorm.translator.core.Mechanism;
 import com.synstorm.translator.core.Pathway;
 import com.synstorm.translator.core.TranslatedEntity;
+import com.synstorm.translator.core.exceptions.LangException;
 import com.synstorm.translator.core.scenario.ModelScenario;
 import com.synstorm.translator.utils.IndexedHashMap;
 import org.apache.commons.math3.util.Pair;
@@ -37,6 +38,7 @@ public class ProjectHandler {
     private List<LanguageEntity> entities;
     private List<LanguageEntity> pathways;
     private ModelScenario scenario;
+    private List<LangException> exceptions;
 
     private Map<String, TranslatedEntity> translatedCode;
 
@@ -71,6 +73,8 @@ public class ProjectHandler {
 
         entities = mechanismSourceFiles.stream().map(this::processSourceFile).collect(Collectors.toList());
         pathways = pathwaySourceFiles.stream().map(this::processSourceFile).collect(Collectors.toList());
+
+        exceptions = new ArrayList<>();
     }
 
     public void writeProjectCode(final String outputDir) {
@@ -119,12 +123,25 @@ public class ProjectHandler {
 
         this.translatedCode.put("config", new TranslatedEntity("config", initialConfigCode));
 
-        entities.forEach(languageEntity -> {
-            final String translatedCode = languageEntity.translate();
+        for(LanguageEntity languageEntity : entities)
+        {
+            String translatedCode = "";
+            try {
+                translatedCode = languageEntity.translate();
+            }
+            catch(LangException e)
+            {
+                exceptions.add(e);
+                continue;
+            }
             TranslatedEntity translatedObject = new TranslatedEntity(languageEntity.getName(), translatedCode);
             this.translatedCode.put(languageEntity.getName(), translatedObject);
+        }
 
-        });
+        if(this.exceptions.size() > 0)
+        {
+            throw new RuntimeException("wtf");
+        }
     }
 
     private void writeCode(final String outputDir, final String code, final String name) {
