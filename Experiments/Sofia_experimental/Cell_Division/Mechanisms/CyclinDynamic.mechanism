@@ -3,5 +3,5 @@
     Duration = 1
     Delay = 0
     DeltaSignal = C
-    DeltaFormula = vi - vd * X_a * C / (Kd + C) - Kd * C              # vi - vd * X_a * C / (Kd + C) - Kd * C when the protease X is inhibited
+    DeltaFormula = vi - vd * X_a * C / (Kd + C) - kd * C              # vi - vd * X_a * C / (Kd + C) - kd * C when the protease X is inhibited
 }
