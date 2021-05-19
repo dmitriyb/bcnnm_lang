@@ -1,6 +1,6 @@
 def mechanism CleavageDivision::Division {
     ObjectType = Cell
-    Duration = 1800000
+    Duration = 30
     Delay = 0
 }
 

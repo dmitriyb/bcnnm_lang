@@ -1,6 +1,6 @@
 def mechanism ProteaseDynamic::Dynamic {
     ObjectType = Cell
-    Duration = 100
+    Duration = 1
     Delay = 0
     DeltaSignal = X_a
     DeltaFormula = M_a * VM3 * (1 - X_a) / (K3 + (1 - X_a)) - V4 * X_a / (K4 + X_a)                             # V3 = M_a * VM3
