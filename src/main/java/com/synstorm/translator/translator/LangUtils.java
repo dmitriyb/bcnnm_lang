@@ -162,7 +162,7 @@ public class LangUtils {
                         processedName = String.format("o.getSignal(%d)", signalId);
                     } else if (possibleConstants.contains(name)) {
                         double constantValue = constantValues.get(name);
-                        processedName = String.format("%.2f", constantValue);
+                        processedName = Double.toString(constantValue);
                     }
 
                     res.append(processedName);

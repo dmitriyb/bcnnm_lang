@@ -131,6 +131,7 @@ public class ProjectHandler {
             }
             catch(LangException e)
             {
+                e.setParentEntity(languageEntity.getName());
                 exceptions.add(e);
                 continue;
             }
@@ -140,7 +141,13 @@ public class ProjectHandler {
 
         if(this.exceptions.size() > 0)
         {
-            throw new RuntimeException("wtf");
+            for(LangException e : this.exceptions)
+            {
+                String message = e.getParentEntity() + '\n' + e.getMessage() + "\n===============\n";
+                System.out.println(message);
+            }
+
+            throw new RuntimeException("An error occured during compulation!");
         }
     }
 
