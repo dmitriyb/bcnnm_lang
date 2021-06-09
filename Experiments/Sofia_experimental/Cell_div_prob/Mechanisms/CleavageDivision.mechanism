@@ -1,0 +1,7 @@
+def mechanism CleavageDivision::Division {
+    ObjectType = Cell
+    Duration = 30
+    Delay = 0
+} with Probability = 0.5
+
+# frog egg: 30 min full cycle = 1.8e+6 ms

@@ -1,0 +1,9 @@
+initialState:
+    space:
+        grid:
+            edge: 100
+
+        objects:
+            - id: 1
+              position: (50,50,50)
+              volume: 1.0
