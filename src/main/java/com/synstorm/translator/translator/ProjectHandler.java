@@ -7,6 +7,8 @@ import com.synstorm.translator.core.exceptions.LangException;
 import com.synstorm.translator.core.scenario.ModelScenario;
 import com.synstorm.translator.utils.IndexedHashMap;
 import org.apache.commons.math3.util.Pair;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.*;
 import java.nio.file.DirectoryStream;
@@ -18,11 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Construct;
-import org.yaml.snakeyaml.constructor.Constructor;
-import org.yaml.snakeyaml.representer.Representer;
 
 public class ProjectHandler {
     private final String root;
@@ -179,7 +176,7 @@ public class ProjectHandler {
     }
 
     private LanguageEntity processSourceFile(final Path fpath) {
-        System.out.println(fpath);
+//        System.out.println(fpath);
         return fpath.toString().endsWith("mechanism") ?
                 this.processMechanism(fpath) :
                 this.processPathway(fpath);
