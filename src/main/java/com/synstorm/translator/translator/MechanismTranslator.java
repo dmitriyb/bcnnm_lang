@@ -29,6 +29,10 @@ public abstract class MechanismTranslator {
     protected String getProbabilityTemplate()
     {
         String template = "    @Override\n" +
+                "protected boolean HasProbability() {\n" +
+                "        return true;\n" +
+                "    }\n" +
+                "    @Override\n" +
                 "    protected double Probability(final LogicObject logicObject) {\n" +
                 "        final Cell o = (Cell) logicObject;\n" +
                 "        return %s;\n" +
