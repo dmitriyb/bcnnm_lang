@@ -1,0 +1,9 @@
+def pathway MitosisPW {
+    # Always working dynamic mechanisms
+    CdK2Dynamic -> CdK2Dynamic always
+    CyclinDynamic -> CyclinDynamic always
+    ProteaseDynamic -> ProteaseDynamic always
+
+    # Conditions for cleavage division
+    CdK2Dynamic -> CleavageDivision when (M_a >= 0.5)
+}
