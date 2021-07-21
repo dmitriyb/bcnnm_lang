@@ -6,4 +6,7 @@ def pathway MitosisPW {
 
     # Conditions for cleavage division
     CdK2Dynamic -> CleavageDivision when (M_a >= 0.5)
+
+    # Condition for Birthday update
+    CleavageDivision -> BirthDate once    # Maybe add this new keyword? Not sure how to make it run just once in a cycle
 }

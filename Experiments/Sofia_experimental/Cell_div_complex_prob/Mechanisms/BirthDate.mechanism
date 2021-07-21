@@ -1,0 +1,8 @@
+def mechanism BirthDate::Dynamic {
+    ObjectType = Cell
+    Duration = 1
+    Delay = 0
+    DeltaSignal = B
+    DeltaFormula = T    # Maybe we don't need a condition for this, but rather just make the Division
+                        # trigger this mechanism in our Pathway? Jus need to make sure this mech. runs only once
+}

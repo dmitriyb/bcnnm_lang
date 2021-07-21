@@ -1,0 +1,7 @@
+def mechanism Time::Dynamic {
+    ObjectType = Cell
+    Duration = 1
+    Delay = 0
+    DeltaSignal = T
+    DeltaFormula = T + 1
+}

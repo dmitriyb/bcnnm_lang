@@ -1,0 +1,7 @@
+def mechanism Age::Dynamic {
+    ObjectType = Cell
+    Duration = 1
+    Delay = 0
+    DeltaSignal = A
+    DeltaFormula = B - T
+}
