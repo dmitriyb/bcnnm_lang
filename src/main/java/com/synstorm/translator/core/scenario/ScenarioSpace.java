@@ -3,15 +3,15 @@ package com.synstorm.translator.core.scenario;
 import java.util.List;
 
 public class ScenarioSpace {
-    private ScenarioGrid grid;
+    private ScenarioLattice lattice;
     private List<ScenarioCell> objects;
 
-    public ScenarioGrid getGrid() {
-        return grid;
+    public ScenarioLattice getLattice() {
+        return lattice;
     }
 
-    public void setGrid(ScenarioGrid grid) {
-        this.grid = grid;
+    public void setLattice(ScenarioLattice grid) {
+        this.lattice = grid;
     }
 
     public List<ScenarioCell> getObjects() {

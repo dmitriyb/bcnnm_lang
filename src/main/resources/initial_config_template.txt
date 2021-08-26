@@ -12,7 +12,7 @@ import com.synstorm.MOC.Responses.ConnectionAddResponse;
 import com.synstorm.MOC.Responses.PhysicalObjectAddResponse;
 import com.synstorm.NSDomain.LogicObjects.Cell;
 import com.synstorm.NSDomain.Mechanisms.Division;
-import com.synstorm.Space.SpaceGrid;
+import com.synstorm.Space.Lattice;
 
 public class GeneratedConfig implements Configuration {
     @Override
@@ -29,8 +29,8 @@ public class GeneratedConfig implements Configuration {
     // TODO: fix that
     @Override
     public Space createSpace() {
-        final SpaceGrid spaceGrid = new SpaceGrid({EDGE_SIZE}, new double[DSLLibrary.INSTANCE.molecules.size()]);
-        return new Space(spaceGrid);
+        final Lattice lattice = new Lattice({EDGE_SIZE}, new double[DSLLibrary.INSTANCE.molecules.size()]);
+        return new Space(lattice);
     }
 
     // TODO : fix that

@@ -30,7 +30,7 @@ public class ConfigTranslator {
         final String pathwaysBlock = this.getPathwaysToConditionBlock();
         final String initialObjectsBlock = this.getInitialObjectsBlock();
 
-        final int edgeSize = this.parent.getScenario().getInitialState().getSpace().getGrid().getEdge();
+        final int edgeSize = this.parent.getScenario().getInitialState().getSpace().getLattice().getEdge();
 
         return template.replaceAll("\\{MOLECULES_BLOCK\\}", moleculesBlock)
                              .replaceAll("\\{INTRA_CONCENTRATIONS_BLOCK\\}", concentrationsBlock)
@@ -104,7 +104,7 @@ public class ConfigTranslator {
     {
         List<Integer> positions = LangUtils.findAllIntegers(cellPosition);
 
-        final int edgeSize = this.parent.getScenario().getInitialState().getSpace().getGrid().getEdge();
+        final int edgeSize = this.parent.getScenario().getInitialState().getSpace().getLattice().getEdge();
         final String template = "%d * (%d * %d + %d) + %d";
 
         final String res = String.format(template, edgeSize, positions.get(0), edgeSize, positions.get(1), positions.get(2));

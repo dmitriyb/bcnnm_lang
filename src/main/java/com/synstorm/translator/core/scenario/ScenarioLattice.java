@@ -1,6 +1,6 @@
 package com.synstorm.translator.core.scenario;
 
-public class ScenarioGrid {
+public class ScenarioLattice {
     private int edge;
 
     public int getEdge() {

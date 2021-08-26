@@ -12,7 +12,7 @@ public class TranslatorFactory {
                 translator = new DynamicMechanismTranslator(mech);
                 break;
             case "Division":
-                translator = new GenericMechanismTranslator(mech);
+                translator = new SelectDirectionMechanismTranslator(mech);
                 break;
             case "Apoptosis":
                 translator = new GenericMechanismTranslator(mech);
